@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Tech Talk - News Portal</title>
+    <title>Digital Tech Talk</title>
     <style>
         * {
             margin: 0;
@@ -13,172 +13,186 @@
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
         }
         header {
             background: #008c6c;
             color: white;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            text-align: center;
+            padding: 20px;
         }
-        header img {
-            height: 50px;
+        header h1 {
+            font-size: 2.5rem;
         }
         nav {
             display: flex;
+            justify-content: center;
             gap: 20px;
+            background: #00bfae;
+            padding: 10px;
         }
         nav a {
             color: white;
             text-decoration: none;
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
         nav a:hover {
             text-decoration: underline;
         }
-        .hero {
-            background: url('https://via.placeholder.com/1920x500') no-repeat center center/cover;
-            height: 500px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-align: center;
-        }
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-        .hero p {
-            font-size: 1.2rem;
-        }
-        .content {
+        .section {
             max-width: 1200px;
             margin: 20px auto;
             padding: 20px;
-        }
-        .section {
-            margin-bottom: 30px;
+            background: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
         }
         .section h2 {
-            border-bottom: 2px solid #00bfae;
-            display: inline-block;
             margin-bottom: 15px;
-            padding-bottom: 5px;
+            font-size: 1.8rem;
+            color: #008c6c;
+            text-align: center;
         }
-        .articles {
+        .highlights {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
         }
-        .article {
+        .highlight {
+            padding: 15px;
+            background: #f4f4f4;
             border: 1px solid #ddd;
             border-radius: 5px;
-            overflow: hidden;
-            background: white;
+            text-align: center;
         }
-        .article img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        .article h3 {
-            padding: 10px;
+        .highlight h3 {
+            margin-bottom: 10px;
             font-size: 1.2rem;
         }
-        .article p {
-            padding: 0 10px 10px;
-            font-size: 0.9rem;
-            color: #666;
+        .urgent {
+            text-align: center;
+            background: #ffeb3b;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
         }
-        footer {
+        .urgent h3 {
+            color: #d32f2f;
+            font-size: 1.4rem;
+        }
+        .team {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+        .team-member {
+            padding: 10px;
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .team-member h3 {
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+        .footer {
             background: #333;
             color: white;
             text-align: center;
             padding: 20px;
             margin-top: 20px;
         }
-        footer a {
+        .footer a {
             color: #00bfae;
             text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <header>
-        <img src="https://via.placeholder.com/200x50?text=Digital+Tech+Talk" alt="Digital Tech Talk Logo">
-        <nav>
-            <a href="#latest">Latest</a>
-            <a href="#technology">Technology</a>
-            <a href="#opinions">Opinions</a>
-            <a href="#features">Features</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
 
-    <div class="hero">
-        <div>
-            <h1>Welcome to Digital Tech Talk</h1>
-            <p>Your source for the latest tech news, insights, and opinions.</p>
+<header>
+    <h1>Digital Tech Talk</h1>
+    <p>Innovating Technology Together</p>
+</header>
+
+<nav>
+    <a href="#highlights">Quick Highlights</a>
+    <a href="#urgent">Urgent Hiring</a>
+    <a href="#team">Team Updates</a>
+    <a href="#spotlight">Staff Spotlight</a>
+    <a href="#contact">Get in Touch</a>
+</nav>
+
+<section id="highlights" class="section">
+    <h2>Quick Highlights</h2>
+    <div class="highlights">
+        <div class="highlight">
+            <h3>Article 1</h3>
+            <p>Short description of the first article.</p>
+        </div>
+        <div class="highlight">
+            <h3>Article 2</h3>
+            <p>Short description of the second article.</p>
+        </div>
+        <div class="highlight">
+            <h3>Article 3</h3>
+            <p>Short description of the third article.</p>
         </div>
     </div>
+</section>
 
-    <div class="content">
-        <!-- Latest News Section -->
-        <div class="section" id="latest">
-            <h2>Latest News</h2>
-            <div class="articles">
-                <div class="article">
-                    <img src="https://via.placeholder.com/300x200" alt="News">
-                    <h3>Breaking News Title</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque varius.</p>
-                </div>
-                <div class="article">
-                    <img src="https://via.placeholder.com/300x200" alt="News">
-                    <h3>Latest Tech Update</h3>
-                    <p>Aliquam erat volutpat. Nullam suscipit orci at magna accumsan facilisis.</p>
-                </div>
-                <div class="article">
-                    <img src="https://via.placeholder.com/300x200" alt="News">
-                    <h3>Innovation in AI</h3>
-                    <p>Proin vitae justo nec tortor tincidunt dignissim quis eget lorem.</p>
-                </div>
-            </div>
+<section id="urgent" class="section">
+    <h2>Urgent Hiring</h2>
+    <div class="urgent">
+        <h3>🌟 Website Maintenance Team Needed! 🌟</h3>
+        <p>Are you skilled in web development? We're seeking passionate individuals to join our website maintenance team on short notice!</p>
+    </div>
+</section>
+
+<section id="team" class="section">
+    <h2>Team Updates</h2>
+    <div class="team">
+        <div class="team-member">
+            <h3>Update 1</h3>
+            <p>Details about the first team update.</p>
         </div>
-
-        <!-- Technology Section -->
-        <div class="section" id="technology">
-            <h2>Technology</h2>
-            <div class="articles">
-                <div class="article">
-                    <img src="https://via.placeholder.com/300x200" alt="Technology">
-                    <h3>Gadgets of the Year</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque varius.</p>
-                </div>
-                <div class="article">
-                    <img src="https://via.placeholder.com/300x200" alt="Technology">
-                    <h3>Blockchain Revolution</h3>
-                    <p>Aliquam erat volutpat. Nullam suscipit orci at magna accumsan facilisis.</p>
-                </div>
-            </div>
+        <div class="team-member">
+            <h3>Update 2</h3>
+            <p>Details about the second team update.</p>
         </div>
-
-        <!-- Opinions Section -->
-        <div class="section" id="opinions">
-            <h2>Opinions</h2>
-            <div class="articles">
-                <div class="article">
-                    <img src="https://via.placeholder.com/300x200" alt="Opinions">
-                    <h3>The Future of Tech</h3>
-                    <p>Proin vitae justo nec tortor tincidunt dignissim quis eget lorem.</p>
-                </div>
-            </div>
+        <div class="team-member">
+            <h3>Update 3</h3>
+            <p>Details about the third team update.</p>
         </div>
     </div>
+</section>
 
-    <footer>
-        <p>&copy; 2025 Digital Tech Talk. All rights reserved. | <a href="#contact">Contact Us</a></p>
-    </footer>
+<section id="spotlight" class="section">
+    <h2>Staff Spotlight</h2>
+    <div class="team">
+        <div class="team-member">
+            <h3>Name 1</h3>
+            <p>Position</p>
+        </div>
+        <div class="team-member">
+            <h3>Name 2</h3>
+            <p>Position</p>
+        </div>
+        <div class="team-member">
+            <h3>Name 3</h3>
+            <p>Position</p>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <p>&copy; 2025 Digital Tech Talk. All rights reserved. | <a href="#contact">Contact Us</a></p>
+</footer>
+
 </body>
 </html>
