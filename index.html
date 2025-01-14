@@ -3,81 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Tech Talk - Launching Soon</title>
+    <title>Digital Tech Talk</title>
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #00bfae, #008c6c);
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background: #008c6c;
             color: #fff;
-            height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
             display: flex;
             justify-content: center;
-            align-items: center;
+            background: #00bfae;
+            padding: 10px;
         }
-        .container {
-            text-align: center;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
-        }
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-            font-weight: 600;
-        }
-        p {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            font-weight: 300;
-        }
-        .cta-button {
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            background-color: #00bfae;
-            border: none;
-            color: white;
-            border-radius: 30px;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
-            transition: 0.3s;
-        }
-        .cta-button:hover {
-            background-color: #008c6c;
-            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4);
-        }
-        .social-links {
-            margin-top: 20px;
-        }
-        .social-links a {
-            color: #00bfae;
+        nav a {
+            color: #fff;
             text-decoration: none;
             margin: 0 15px;
-            font-size: 1.5rem;
+            font-size: 1rem;
         }
-        .social-links a:hover {
-            color: #008c6c;
+        nav a:hover {
+            text-decoration: underline;
+        }
+        section {
+            padding: 20px;
+            margin: 20px;
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 0;
+            font-size: 1rem;
+            background: #00bfae;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        .btn:hover {
+            background: #008c6c;
+        }
+        form {
+            max-width: 400px;
+            margin: auto;
+        }
+        form input, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        form button {
+            width: 100%;
+            padding: 10px;
+            background: #00bfae;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        form button:hover {
+            background: #008c6c;
+        }
+        footer {
+            background: #008c6c;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Launching Soon</h1>
-        <p>We're working hard to bring you something amazing. Stay tuned for updates!</p>
-        <button class="cta-button">Notify Me</button>
+    <header>
+        <h1>Digital Tech Talk</h1>
+        <p>Innovating Technology Together</p>
+    </header>
+    <nav>
+        <a href="#login">Login</a>
+        <a href="#signup">Sign Up</a>
+        <a href="#feedback">Feedback</a>
+        <a href="#youtube">YouTube</a>
+        <a href="#hiring">Team Hiring</a>
+    </nav>
 
-        <div class="social-links">
-            <a href="https://www.youtube.com/@DigitalTechTalkOfficial/videos" target="_blank">YouTube</a>
-            <a href="https://discord.gg/gKDWGJhtUv" target="_blank">Discord</a>
-        </div>
-    </div>
+    <!-- Login Section -->
+    <section id="login">
+        <h2>Login</h2>
+        <form>
+            <input type="text" placeholder="Username or Email" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </section>
 
-    <!-- Tidio Chatbot Integration -->
-    <script src="//code.tidio.co/epkjo3wr4luihigjg81yxo8jzqivxwj6.js" async></script>
+    <!-- Sign Up Section -->
+    <section id="signup">
+        <h2>Sign Up</h2>
+        <form>
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Sign Up</button>
+        </form>
+    </section>
+
+    <!-- Feedback Section -->
+    <section id="feedback">
+        <h2>Feedback</h2>
+        <form>
+            <textarea placeholder="Your feedback or suggestion" rows="5" required></textarea>
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </section>
+
+    <!-- YouTube Section -->
+    <section id="youtube">
+        <h2>Check Our YouTube Channel</h2>
+        <p>Visit our official YouTube channel for the latest videos, tutorials, and tech updates.</p>
+        <a href="https://www.youtube.com/@DigitalTechTalkOfficial/videos" target="_blank" class="btn">Go to YouTube</a>
+    </section>
+
+    <!-- Team Hiring Section -->
+    <section id="hiring">
+        <h2>We're Hiring!</h2>
+        <p>Join our team and contribute to the future of technology. We're looking for talented individuals who share our passion for innovation.</p>
+        <a href="mailto:hr@digitaltechtalk.com" class="btn">Apply Now</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Digital Tech Talk. All Rights Reserved.</p>
+    </footer>
 </body>
 </html>
