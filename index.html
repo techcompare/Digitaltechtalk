@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Tech Talk</title>
+    <title>Digital Tech Talk - News Portal</title>
     <style>
         * {
             margin: 0;
@@ -12,150 +12,173 @@
         }
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
             line-height: 1.6;
         }
         header {
             background: #008c6c;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header img {
+            height: 50px;
         }
         nav {
             display: flex;
-            justify-content: center;
-            background: #00bfae;
-            padding: 10px;
+            gap: 20px;
         }
         nav a {
-            color: #fff;
+            color: white;
             text-decoration: none;
-            margin: 0 15px;
             font-size: 1rem;
         }
         nav a:hover {
             text-decoration: underline;
         }
-        section {
-            padding: 20px;
-            margin: 20px;
-            background: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-        h1, h2 {
+        .hero {
+            background: url('https://via.placeholder.com/1920x500') no-repeat center center/cover;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
             text-align: center;
+        }
+        .hero h1 {
+            font-size: 3rem;
             margin-bottom: 10px;
         }
-        .btn {
+        .hero p {
+            font-size: 1.2rem;
+        }
+        .content {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section h2 {
+            border-bottom: 2px solid #00bfae;
             display: inline-block;
-            padding: 10px 20px;
-            margin: 10px 0;
-            font-size: 1rem;
-            background: #00bfae;
-            color: #fff;
-            text-decoration: none;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+        }
+        .articles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .article {
+            border: 1px solid #ddd;
             border-radius: 5px;
-            transition: background 0.3s ease;
+            overflow: hidden;
+            background: white;
         }
-        .btn:hover {
-            background: #008c6c;
-        }
-        form {
-            max-width: 400px;
-            margin: auto;
-        }
-        form input, form textarea {
+        .article img {
             width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            height: 200px;
+            object-fit: cover;
         }
-        form button {
-            width: 100%;
+        .article h3 {
             padding: 10px;
-            background: #00bfae;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.2rem;
         }
-        form button:hover {
-            background: #008c6c;
+        .article p {
+            padding: 0 10px 10px;
+            font-size: 0.9rem;
+            color: #666;
         }
         footer {
-            background: #008c6c;
-            color: #fff;
+            background: #333;
+            color: white;
             text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        footer a {
+            color: #00bfae;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Digital Tech Talk</h1>
-        <p>Innovating Technology Together</p>
+        <img src="https://via.placeholder.com/200x50?text=Digital+Tech+Talk" alt="Digital Tech Talk Logo">
+        <nav>
+            <a href="#latest">Latest</a>
+            <a href="#technology">Technology</a>
+            <a href="#opinions">Opinions</a>
+            <a href="#features">Features</a>
+            <a href="#contact">Contact</a>
+        </nav>
     </header>
-    <nav>
-        <a href="#login">Login</a>
-        <a href="#signup">Sign Up</a>
-        <a href="#feedback">Feedback</a>
-        <a href="#youtube">YouTube</a>
-        <a href="#hiring">Team Hiring</a>
-    </nav>
 
-    <!-- Login Section -->
-    <section id="login">
-        <h2>Login</h2>
-        <form>
-            <input type="text" placeholder="Username or Email" required>
-            <input type="password" placeholder="Password" required>
-            <button type="submit">Login</button>
-        </form>
-    </section>
+    <div class="hero">
+        <div>
+            <h1>Welcome to Digital Tech Talk</h1>
+            <p>Your source for the latest tech news, insights, and opinions.</p>
+        </div>
+    </div>
 
-    <!-- Sign Up Section -->
-    <section id="signup">
-        <h2>Sign Up</h2>
-        <form>
-            <input type="text" placeholder="Full Name" required>
-            <input type="email" placeholder="Email" required>
-            <input type="password" placeholder="Password" required>
-            <button type="submit">Sign Up</button>
-        </form>
-    </section>
+    <div class="content">
+        <!-- Latest News Section -->
+        <div class="section" id="latest">
+            <h2>Latest News</h2>
+            <div class="articles">
+                <div class="article">
+                    <img src="https://via.placeholder.com/300x200" alt="News">
+                    <h3>Breaking News Title</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque varius.</p>
+                </div>
+                <div class="article">
+                    <img src="https://via.placeholder.com/300x200" alt="News">
+                    <h3>Latest Tech Update</h3>
+                    <p>Aliquam erat volutpat. Nullam suscipit orci at magna accumsan facilisis.</p>
+                </div>
+                <div class="article">
+                    <img src="https://via.placeholder.com/300x200" alt="News">
+                    <h3>Innovation in AI</h3>
+                    <p>Proin vitae justo nec tortor tincidunt dignissim quis eget lorem.</p>
+                </div>
+            </div>
+        </div>
 
-    <!-- Feedback Section -->
-    <section id="feedback">
-        <h2>Feedback</h2>
-        <form>
-            <textarea placeholder="Your feedback or suggestion" rows="5" required></textarea>
-            <button type="submit">Submit Feedback</button>
-        </form>
-    </section>
+        <!-- Technology Section -->
+        <div class="section" id="technology">
+            <h2>Technology</h2>
+            <div class="articles">
+                <div class="article">
+                    <img src="https://via.placeholder.com/300x200" alt="Technology">
+                    <h3>Gadgets of the Year</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque varius.</p>
+                </div>
+                <div class="article">
+                    <img src="https://via.placeholder.com/300x200" alt="Technology">
+                    <h3>Blockchain Revolution</h3>
+                    <p>Aliquam erat volutpat. Nullam suscipit orci at magna accumsan facilisis.</p>
+                </div>
+            </div>
+        </div>
 
-    <!-- YouTube Section -->
-    <section id="youtube">
-        <h2>Check Our YouTube Channel</h2>
-        <p>Visit our official YouTube channel for the latest videos, tutorials, and tech updates.</p>
-        <a href="https://www.youtube.com/@DigitalTechTalkOfficial/videos" target="_blank" class="btn">Go to YouTube</a>
-    </section>
-
-    <!-- Team Hiring Section -->
-    <section id="hiring">
-        <h2>We're Hiring!</h2>
-        <p>Join our team and contribute to the future of technology. We're looking for talented individuals who share our passion for innovation.</p>
-        <a href="mailto:hr@digitaltechtalk.com" class="btn">Apply Now</a>
-    </section>
+        <!-- Opinions Section -->
+        <div class="section" id="opinions">
+            <h2>Opinions</h2>
+            <div class="articles">
+                <div class="article">
+                    <img src="https://via.placeholder.com/300x200" alt="Opinions">
+                    <h3>The Future of Tech</h3>
+                    <p>Proin vitae justo nec tortor tincidunt dignissim quis eget lorem.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer>
-        <p>&copy; 2025 Digital Tech Talk. All Rights Reserved.</p>
+        <p>&copy; 2025 Digital Tech Talk. All rights reserved. | <a href="#contact">Contact Us</a></p>
     </footer>
 </body>
 </html>
