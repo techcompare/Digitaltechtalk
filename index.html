@@ -1,197 +1,528 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Farmhouse Phaltan</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      background: #f8f8f8;
-      color: #333;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UV Community</title>
+    <style>
+        :root {
+            --primary: #6E48AA;
+            --primary-dark: #4B2E83;
+            --secondary: #9D50BB;
+            --accent: #4776E6;
+            --background: #1A1A2E;
+            --card-bg: #16213E;
+            --text: #E6E6E6;
+            --text-muted: #A0A0A0;
+        }
 
-    header {
-      background: #3b7d3b;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      padding: 15px 30px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
 
-    .logo {
-      font-size: 1.5em;
-      font-weight: bold;
-    }
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-      padding: 0;
-      margin: 0;
-    }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-    }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
 
-    .hero {
-      text-align: center;
-      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-        url('https://images.unsplash.com/photo-1587806232043-43c7eab768e3?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
-      padding: 100px 20px;
-      color: white;
-    }
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
 
-    .hero .btn {
-      background: #4caf50;
-      color: white;
-      padding: 12px 25px;
-      text-decoration: none;
-      border-radius: 4px;
-      font-weight: bold;
-      margin-top: 20px;
-      display: inline-block;
-    }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
 
-    section {
-      padding: 60px 30px;
-      text-align: center;
-    }
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
 
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 15px;
-      margin-top: 20px;
-    }
+        .nav-link:hover {
+            color: white;
+        }
 
-    .gallery-grid img {
-      width: 100%;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
 
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      max-width: 400px;
-      margin: 0 auto;
-    }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(110, 72, 170, 0.4);
+        }
 
-    input, textarea {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 16px;
-    }
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--background), var(--card-bg));
+        }
 
-    button {
-      background: #3b7d3b;
-      color: white;
-      border: none;
-      padding: 12px;
-      border-radius: 4px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
 
-    button:hover {
-      background: #2e662e;
-    }
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin-bottom: 2.5rem;
+            color: var(--text-muted);
+        }
 
-    footer {
-      background: #222;
-      color: white;
-      text-align: center;
-      padding: 15px;
-    }
+        .features {
+            padding: 5rem 5%;
+            background-color: var(--card-bg);
+        }
 
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
 
-      nav ul {
-        flex-direction: column;
-        gap: 10px;
-        margin-top: 10px;
-      }
-    }
-  </style>
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .feature-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: var(--background);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            color: var(--text-muted);
+        }
+
+        .community-showcase {
+            padding: 5rem 5%;
+            text-align: center;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            min-width: 200px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .testimonials {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-dark);
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .author-info h4 {
+            font-size: 1.1rem;
+        }
+
+        .author-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .join-cta {
+            padding: 5rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--card-bg), var(--background));
+        }
+
+        .join-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .join-cta p {
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            color: var(--text-muted);
+        }
+
+        footer {
+            background-color: var(--card-bg);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1.5rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            .stat {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
 </head>
 <body>
-
-  <header>
-    <div class="logo">🌾 Farmhouse Phaltan</div>
-    <nav>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#stay">Stay</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+    <nav class="navbar">
+        <div class="logo">
+            <div class="logo-icon">UV</div>
+            <span>UV Community</span>
+        </div>
+        <a href="https://discord.gg/UZPacyDQtq" class="cta-button">Join Now</a>
     </nav>
-  </header>
 
-  <section class="hero">
-    <h1>Escape to Nature in Phaltan</h1>
-    <p>Your peaceful retreat surrounded by green fields & pure air.</p>
-    <a href="#contact" class="btn">Book Now</a>
-  </section>
+    <section class="hero">
+        <h1>Chat, Hangout, Play, Voice Chat</h1>
+        <p>Join the UV Community - a vibrant space for creators, developers, and enthusiasts to connect and grow together.</p>
+        <div>
+            <a href="https://discord.gg/UZPacyDQtq" class="cta-button" style="margin-right: 1rem;">Join The Discord Server</a>
+        </div>
+    </section>
 
-  <section id="about">
-    <h2>About Us</h2>
-    <p>
-      Welcome to our serene farmhouse nestled in the heart of Phaltan. Ideal for weekend getaways, family events, and peaceful stays close to nature.
-    </p>
-  </section>
+    <section class="features">
+        <div class="section-header">
+            <h2>Why Join UV Community?</h2>
+            <p>Discover the features that make our community special and different from the rest</p>
+        </div>
 
-  <section id="gallery">
-    <h2>Gallery</h2>
-    <div class="gallery-grid">
-      <img src="https://images.unsplash.com/photo-1599305445671-f7e0a72b2ad1?auto=format&fit=crop&w=800&q=80" alt="Farm View">
-      <img src="https://images.unsplash.com/photo-1587806232003-1e5cbe00d9b9?auto=format&fit=crop&w=800&q=80" alt="Lawn View">
-      <img src="https://images.unsplash.com/photo-1610576667606-01ac7e96b065?auto=format&fit=crop&w=800&q=80" alt="Farmhouse">
-      <img src="https://images.unsplash.com/photo-1611605692981-2f2b8cce1764?auto=format&fit=crop&w=800&q=80" alt="Sunset">
-    </div>
-  </section>
+        <div class="feature-cards">
+            <div class="card">
+                <div class="card-icon">👥</div>
+                <h3>Vibrant Community</h3>
+                <p>Connect with like-minded individuals who share your passions and interests in a welcoming environment.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">💬</div>
+                <h3>Engaging Discussions</h3>
+                <p>Participate in meaningful conversations across dozens of specialized channels and topics.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🎮</div>
+                <h3>Regular Events</h3>
+                <p>Join game nights, workshops, AMAs, and other exciting events organized by our team.</p>
+            </div>
+        </div>
+    </section>
 
-  <section id="stay">
-    <h2>Stay Options</h2>
-    <p>We offer clean, comfortable rooms with beautiful views, perfect for couples, families, or groups. Meals can be arranged on request.</p>
-  </section>
+    <section class="community-showcase">
+        <div class="section-header">
+            <h2>Our Community in Numbers</h2>
+            <p>Join members who are already part of the UV Community</p>
+        </div>
 
-  <section id="contact">
-    <h2>Contact & Booking</h2>
-    <form onsubmit="sendMessage(event)">
-      <input type="text" placeholder="Your Name" required />
-      <input type="email" placeholder="Email" required />
-      <textarea placeholder="Message or Booking Info" required></textarea>
-      <button type="submit">Send</button>
-    </form>
-    <p>Or call us directly at: <strong>+91 98765 43210</strong></p>
-    <p><a href="https://wa.me/919876543210" target="_blank">📱 Chat on WhatsApp</a></p>
-  </section>
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">400+</div>
+                <div class="stat-label">Members</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">22</div>
+                <div class="stat-label">Channels</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">1</div>
+                <div class="stat-label">Events Monthly</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Active Community</div>
+            </div>
+        </div>
 
-  <footer>
-    <p>&copy; 2025 Farmhouse Phaltan. All rights reserved.</p>
-  </footer>
+        <div class="testimonials">
+            <div class="testimonial">
+                <p>"The UV Community has helped me grow my network and meet awesome developers. Super active and friendly!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">U</div>
+                    <div class="author-info">
+                        <h4>UV</h4>
+                        <p>Full Stack Developer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial">
+                <p>"There’s always someone online to talk to or get help from. Plus, the events are a fun way to unwind."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">U</div>
+                    <div class="author-info">
+                        <h4>UV</h4>
+                        <p>Game Developer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial">
+                <p>"I love how organized the community is — channels for everything and amazing mods to keep things running smooth."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">U</div>
+                    <div class="author-info">
+                        <h4>UV</h4>
+                        <p>Bot Developer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial">
+                <p>"The UV community is where I go to chill and collaborate. Everyone is so welcoming and supportive."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">J</div>
+                    <div class="author-info">
+                        <h4>jakemonomon</h4>
+                        <p>Website Developer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <script>
-    function sendMessage(event) {
-      event.preventDefault();
-      alert('Thank you! Your message has been sent.');
-    }
-  </script>
+    <footer>
+        <div class="logo" style="justify-content: center;">
+            <div class="logo-icon">UV</div>
+            <span>UV Community</span>
+        </div>
+    </footer>
+</body>
+</html>
 
+        <div class="feature-cards">
+            <div class="card">
+                <div class="card-icon">👥</div>
+                <h3>Vibrant Community</h3>
+                <p>Connect with like-minded individuals who share your passions and interests in a welcoming environment.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">💬</div>
+                <h3>Engaging Discussions</h3>
+                <p>Participate in meaningful conversations across dozens of specialized channels and topics.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">🎮</div>
+                <h3>Regular Events</h3>
+                <p>Join game nights, workshops, AMAs, and other exciting events organized by our team.</p>
+            </div>
+            
+
+            
+        </div>
+    </section>
+    
+    <section class="community-showcase">
+        <div class="section-header">
+            <h2>Our Community in Numbers</h2>
+            <p>Join members who are already part of the UV Community</p>
+        </div>
+        
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">400+</div>
+                <div class="stat-label">Members</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">22</div>
+                <div class="stat-label">Channels</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">1</div>
+                <div class="stat-label">Events Monthly</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Active Community</div>
+            </div>
+        </div>
+        
+            
+            <div class="testimonial">
+              
+                <div class="testimonial-author">
+                    <div class="author-info">
+                        <h4>Unlimited Vibes</h4>
+                        <p>Website Developer</p>
+                    </div>
+                </div>
+            </div>
+            
+    
+    <footer>
+        <div class="logo" style="justify-content: center;">
+            <div class="logo-icon">UV</div>
+            <span>UV Community</span>
+        </div>
+        
+
+    </footer>
 </body>
 </html>
