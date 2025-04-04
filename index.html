@@ -2,103 +2,196 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Shivtara Farms</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Farmhouse Phaltan</title>
   <style>
-    /* ...styles remain unchanged for brevity... */
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f8f8f8;
+      color: #333;
+    }
+
+    header {
+      background: #3b7d3b;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 30px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .hero {
+      text-align: center;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url('https://images.unsplash.com/photo-1587806232043-43c7eab768e3?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+      padding: 100px 20px;
+      color: white;
+    }
+
+    .hero .btn {
+      background: #4caf50;
+      color: white;
+      padding: 12px 25px;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+      margin-top: 20px;
+      display: inline-block;
+    }
+
+    section {
+      padding: 60px 30px;
+      text-align: center;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    input, textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    button {
+      background: #3b7d3b;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #2e662e;
+    }
+
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+      }
+    }
   </style>
 </head>
 <body>
-  <nav class="navbar">
-    <div class="logo">
-      <div class="logo-icon">🌿</div>
-      <span>Shivtara Farms</span>
-    </div>
-    <a href="https://thefarmstead.in/farm-stay/" class="cta-button">Visit Now</a>
-  </nav>
+
+  <header>
+    <div class="logo">🌾 Farmhouse Phaltan</div>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#stay">Stay</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
   <section class="hero">
-    <h1>Escape to Peace & Nature</h1>
-    <p>Welcome to Shivtara Farms – a rustic getaway surrounded by lush fields, calming vibes, and cozy stays.</p>
-    <a href="https://thefarmstead.in/farm-stay/" class="cta-button">Book Your Stay</a>
+    <h1>Escape to Nature in Phaltan</h1>
+    <p>Your peaceful retreat surrounded by green fields & pure air.</p>
+    <a href="#contact" class="btn">Book Now</a>
   </section>
 
-  <section class="features">
-    <div class="section-header">
-      <h2>What Awaits You</h2>
-      <p>Reconnect with nature, relax in serenity, and make beautiful memories on our farm stay.</p>
-    </div>
-    <div class="feature-cards">
-      <div class="card">
-        <div class="card-icon">🌾</div>
-        <h3>Serene Landscapes</h3>
-        <p>Wake up to the chirping of birds and stroll through organic fields and green open spaces.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🍽️</div>
-        <h3>Farm-to-Table Meals</h3>
-        <p>Enjoy fresh, home-cooked meals made from organic ingredients sourced right from the farm.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🔥</div>
-        <h3>Evening Bonfires</h3>
-        <p>Unwind by the fire with good company, stories, music, or just peaceful silence under the stars.</p>
-      </div>
+  <section id="about">
+    <h2>About Us</h2>
+    <p>
+      Welcome to our serene farmhouse nestled in the heart of Phaltan. Ideal for weekend getaways, family events, and peaceful stays close to nature.
+    </p>
+  </section>
+
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery-grid">
+      <img src="https://images.unsplash.com/photo-1599305445671-f7e0a72b2ad1?auto=format&fit=crop&w=800&q=80" alt="Farm View">
+      <img src="https://images.unsplash.com/photo-1587806232003-1e5cbe00d9b9?auto=format&fit=crop&w=800&q=80" alt="Lawn View">
+      <img src="https://images.unsplash.com/photo-1610576667606-01ac7e96b065?auto=format&fit=crop&w=800&q=80" alt="Farmhouse">
+      <img src="https://images.unsplash.com/photo-1611605692981-2f2b8cce1764?auto=format&fit=crop&w=800&q=80" alt="Sunset">
     </div>
   </section>
 
-  <section class="community-showcase">
-    <div class="section-header">
-      <h2>Experience in Numbers</h2>
-      <p>We’ve hosted families, couples, and solo travelers from across the country.</p>
-    </div>
-    <div class="stats">
-      <div class="stat">
-        <div class="stat-number">1,200+</div>
-        <div class="stat-label">Happy Guests</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">4.9★</div>
-        <div class="stat-label">Google Rating</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">20+</div>
-        <div class="stat-label">Acres of Farmland</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">365</div>
-        <div class="stat-label">Days of Nature</div>
-      </div>
-    </div>
+  <section id="stay">
+    <h2>Stay Options</h2>
+    <p>We offer clean, comfortable rooms with beautiful views, perfect for couples, families, or groups. Meals can be arranged on request.</p>
+  </section>
 
-    <div class="testimonial">
-      <p>"This place is a hidden gem! The food was amazing, the rooms were cozy, and the hosts made us feel like family."</p>
-      <div class="testimonial-author">
-        <div class="author-avatar">A</div>
-        <div class="author-info">
-          <h4>Ananya R.</h4>
-          <p>Guest from Mumbai</p>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial">
-      <p>"The peace and quiet here is unmatched. I finally got the break I was craving from the city hustle."</p>
-      <div class="testimonial-author">
-        <div class="author-avatar">R</div>
-        <div class="author-info">
-          <h4>Rahul M.</h4>
-          <p>Weekend Traveler</p>
-        </div>
-      </div>
-    </div>
+  <section id="contact">
+    <h2>Contact & Booking</h2>
+    <form onsubmit="sendMessage(event)">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Email" required />
+      <textarea placeholder="Message or Booking Info" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+    <p>Or call us directly at: <strong>+91 98765 43210</strong></p>
+    <p><a href="https://wa.me/919876543210" target="_blank">📱 Chat on WhatsApp</a></p>
   </section>
 
   <footer>
-    <div class="logo" style="justify-content: center;">
-      <div class="logo-icon">🌿</div>
-      <span>Shivtara Farms</span>
-    </div>
-    <p class="copyright">© 2025 Shivtara Farms. All rights reserved.</p>
+    <p>&copy; 2025 Farmhouse Phaltan. All rights reserved.</p>
   </footer>
+
+  <script>
+    function sendMessage(event) {
+      event.preventDefault();
+      alert('Thank you! Your message has been sent.');
+    }
+  </script>
+
 </body>
 </html>
