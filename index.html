@@ -3,30 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UV Community</title>
+    <title>Phaltan Agro Tourism</title>
     <style>
         :root {
-            --primary: #6E48AA;
-            --primary-dark: #4B2E83;
-            --secondary: #9D50BB;
-            --accent: #4776E6;
-            --background: #1A1A2E;
-            --card-bg: #16213E;
-            --text: #E6E6E6;
-            --text-muted: #A0A0A0;
+            --primary: #4E944F;
+            --primary-dark: #386641;
+            --secondary: #A7C957;
+            --accent: #6A994E;
+            --background: #F1FAEE;
+            --card-bg: #E9F5DB;
+            --text: #1D1D1D;
+            --text-muted: #555;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
         }
 
         body {
             background-color: var(--background);
             color: var(--text);
-            line-height: 1.6;
         }
 
         .navbar {
@@ -34,11 +33,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 1.5rem 5%;
-            background-color: var(--card-bg);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            background-color: var(--primary);
+            color: white;
         }
 
         .logo {
@@ -47,13 +43,12 @@
             gap: 0.75rem;
             font-size: 1.5rem;
             font-weight: 700;
-            color: white;
         }
 
         .logo-icon {
             width: 36px;
             height: 36px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--secondary);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -61,468 +56,181 @@
             font-weight: bold;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-link {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .nav-link:hover {
-            color: white;
-        }
-
         .cta-button {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--accent);
             color: white;
             padding: 0.6rem 1.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(110, 72, 170, 0.4);
         }
 
         .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            padding: 4rem 2rem;
             text-align: center;
-            padding: 5rem 2rem;
-            background: linear-gradient(135deg, var(--background), var(--card-bg));
+            background: linear-gradient(135deg, #D8F3DC, #E9F5DB);
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            line-height: 1.2;
+            font-size: 3rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
         }
 
         .hero p {
             font-size: 1.25rem;
             max-width: 700px;
-            margin-bottom: 2.5rem;
+            margin: 0 auto 2rem;
             color: var(--text-muted);
         }
 
         .features {
-            padding: 5rem 5%;
-            background-color: var(--card-bg);
+            padding: 4rem 5%;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
 
         .section-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 2rem;
+            color: var(--primary-dark);
         }
 
         .section-header p {
             color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto;
         }
 
         .feature-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            margin-top: 2rem;
         }
 
         .card {
-            background-color: var(--background);
+            background-color: white;
+            padding: 1.5rem;
             border-radius: 12px;
-            padding: 2rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
         .card-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
+            font-size: 2rem;
             margin-bottom: 1rem;
         }
 
-        .card p {
-            color: var(--text-muted);
+        .card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
         }
 
         .community-showcase {
-            padding: 5rem 5%;
+            padding: 4rem 5%;
             text-align: center;
+            background: var(--card-bg);
         }
 
         .stats {
             display: flex;
             justify-content: center;
-            gap: 3rem;
-            margin: 3rem 0;
+            gap: 2rem;
             flex-wrap: wrap;
+            margin-top: 2rem;
         }
 
         .stat {
-            background-color: var(--card-bg);
-            padding: 2rem;
-            border-radius: 12px;
-            min-width: 200px;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            min-width: 150px;
         }
 
         .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 0.5rem;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
         }
 
         .stat-label {
             color: var(--text-muted);
-            font-size: 1rem;
-        }
-
-        .testimonials {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .testimonial {
-            background-color: var(--card-bg);
-            padding: 2rem;
-            border-radius: 12px;
-            margin: 2rem 0;
-            text-align: left;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            margin-top: 1rem;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: var(--primary-dark);
-            margin-right: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        .author-info h4 {
-            font-size: 1.1rem;
-        }
-
-        .author-info p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .join-cta {
-            padding: 5rem 2rem;
-            text-align: center;
-            background: linear-gradient(135deg, var(--card-bg), var(--background));
-        }
-
-        .join-cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .join-cta p {
-            max-width: 600px;
-            margin: 0 auto 2.5rem;
-            color: var(--text-muted);
         }
 
         footer {
-            background-color: var(--card-bg);
-            padding: 3rem 5%;
-            text-align: center;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 1.5rem 0;
-            flex-wrap: wrap;
-        }
-
-        .footer-link {
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .footer-link:hover {
+            background-color: var(--primary-dark);
             color: white;
-        }
-
-        .copyright {
-            color: var(--text-muted);
-            margin-top: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 1.5rem;
-                padding: 1rem;
-            }
-
-            .nav-links {
-                gap: 1rem;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .stats {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: center;
-            }
-
-            .stat {
-                width: 100%;
-                max-width: 300px;
-            }
+            text-align: center;
+            padding: 2rem 0;
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="logo">
-            <div class="logo-icon">UV</div>
-            <span>UV Community</span>
+            <div class="logo-icon">AG</div>
+            <span>Phaltan Agro Tourism</span>
         </div>
-        <a href="https://discord.gg/VEzMUF9tFR" class="cta-button">Join Now</a>
+        <a href="#" class="cta-button">Book a Visit</a>
     </nav>
 
     <section class="hero">
-        <h1>Chat, Hangout, Play, Voice Chat</h1>
-        <p>Join the UV Community - a vibrant space for creators, developers, and enthusiasts to connect and grow together.</p>
-        <div>
-            <a href="https://discord.gg/VEzMUF9tFR" class="cta-button" style="margin-right: 1rem;">Join The Discord Server</a>
-        </div>
+        <h1>Welcome to Phaltan Agro Tourism</h1>
+        <p>Experience the joy of rural life, nature, farming, and local food — all in one beautiful destination.</p>
+        <a href="#" class="cta-button">Explore More</a>
     </section>
 
     <section class="features">
         <div class="section-header">
-            <h2>Why Join UV Community?</h2>
-            <p>Discover the features that make our community special and different from the rest</p>
+            <h2>Our Experiences</h2>
+            <p>Discover everything we offer at our farm stay and eco-tourism center</p>
         </div>
-
         <div class="feature-cards">
             <div class="card">
-                <div class="card-icon">👥</div>
-                <h3>Vibrant Community</h3>
-                <p>Connect with like-minded individuals who share your passions and interests in a welcoming environment.</p>
+                <div class="card-icon">🌾</div>
+                <h3>Farming Experience</h3>
+                <p>Get your hands dirty with real farming activities guided by local farmers.</p>
             </div>
             <div class="card">
-                <div class="card-icon">💬</div>
-                <h3>Engaging Discussions</h3>
-                <p>Participate in meaningful conversations across dozens of specialized channels and topics.</p>
+                <div class="card-icon">🍽️</div>
+                <h3>Local Cuisine</h3>
+                <p>Enjoy traditional home-cooked meals with ingredients grown right here.</p>
             </div>
             <div class="card">
-                <div class="card-icon">🎮</div>
-                <h3>Regular Events</h3>
-                <p>Join game nights, workshops, AMAs, and other exciting events organized by our team.</p>
+                <div class="card-icon">🏡</div>
+                <h3>Stay & Relax</h3>
+                <p>Stay in cozy, nature-inspired cottages surrounded by greenery.</p>
             </div>
         </div>
     </section>
 
     <section class="community-showcase">
         <div class="section-header">
-            <h2>Our Community in Numbers</h2>
-            <p>Join members who are already part of the UV Community</p>
+            <h2>Visitors So Far</h2>
+            <p>We’re grateful to host families, friends, and nature lovers from across the country</p>
         </div>
-
         <div class="stats">
             <div class="stat">
-                <div class="stat-number">400+</div>
-                <div class="stat-label">Members</div>
+                <div class="stat-number">1,200+</div>
+                <div class="stat-label">Guests Hosted</div>
             </div>
             <div class="stat">
-                <div class="stat-number">22</div>
-                <div class="stat-label">Channels</div>
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Events Held</div>
             </div>
             <div class="stat">
-                <div class="stat-number">1</div>
-                <div class="stat-label">Events Monthly</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">24/7</div>
-                <div class="stat-label">Active Community</div>
-            </div>
-        </div>
-
-        <div class="testimonials">
-            <div class="testimonial">
-                <p>"The UV Community has helped me grow my network and meet awesome developers. Super active and friendly!"</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">U</div>
-                    <div class="author-info">
-                        <h4>UV</h4>
-                        <p>Full Stack Developer</p>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial">
-                <p>"There’s always someone online to talk to or get help from. Plus, the events are a fun way to unwind."</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">U</div>
-                    <div class="author-info">
-                        <h4>UV</h4>
-                        <p>Game Developer</p>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial">
-                <p>"I love how organized the community is — channels for everything and amazing mods to keep things running smooth."</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">U</div>
-                    <div class="author-info">
-                        <h4>UV</h4>
-                        <p>Bot Developer</p>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial">
-                <p>"The UV community is where I go to chill and collaborate. Everyone is so welcoming and supportive."</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">J</div>
-                    <div class="author-info">
-                        <h4>jakemonomon</h4>
-                        <p>Website Developer</p>
-                    </div>
-                </div>
+                <div class="stat-number">5★</div>
+                <div class="stat-label">Average Rating</div>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="logo" style="justify-content: center;">
-            <div class="logo-icon">UV</div>
-            <span>UV Community</span>
+        <div class="logo">
+            <div class="logo-icon">AG</div>
+            <span>Phaltan Agro Tourism</span>
         </div>
-    </footer>
-</body>
-</html>
-
-        <div class="feature-cards">
-            <div class="card">
-                <div class="card-icon">👥</div>
-                <h3>Vibrant Community</h3>
-                <p>Connect with like-minded individuals who share your passions and interests in a welcoming environment.</p>
-            </div>
-            
-            <div class="card">
-                <div class="card-icon">💬</div>
-                <h3>Engaging Discussions</h3>
-                <p>Participate in meaningful conversations across dozens of specialized channels and topics.</p>
-            </div>
-            
-            <div class="card">
-                <div class="card-icon">🎮</div>
-                <h3>Regular Events</h3>
-                <p>Join game nights, workshops, AMAs, and other exciting events organized by our team.</p>
-            </div>
-            
-
-            
-        </div>
-    </section>
-    
-    <section class="community-showcase">
-        <div class="section-header">
-            <h2>Our Community in Numbers</h2>
-            <p>Join members who are already part of the UV Community</p>
-        </div>
-        
-        <div class="stats">
-            <div class="stat">
-                <div class="stat-number">400+</div>
-                <div class="stat-label">Members</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">22</div>
-                <div class="stat-label">Channels</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">1</div>
-                <div class="stat-label">Events Monthly</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">24/7</div>
-                <div class="stat-label">Active Community</div>
-            </div>
-        </div>
-        
-            
-            <div class="testimonial">
-              
-                <div class="testimonial-author">
-                    <div class="author-info">
-                        <h4>Unlimited Vibes</h4>
-                        <p>Website Developer</p>
-                    </div>
-                </div>
-            </div>
-            
-    
-    <footer>
-        <div class="logo" style="justify-content: center;">
-            <div class="logo-icon">UV</div>
-            <span>UV Community</span>
-        </div>
-        
-
+        <p>&copy; 2025 Phaltan Agro Tourism. All rights reserved.</p>
     </footer>
 </body>
 </html>
