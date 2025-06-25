@@ -1,160 +1,662 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FreshBake Delights | Artisanal Bakery</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Palki Sharma Upadhyay | A Firstpost-styled Tribute</title>
+  <meta name="description" content="A news-portal style tribute to Palki Sharma Upadhyay, inspired by Firstpost.">
+  <link rel="icon" href="favicon.png">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; background: #fff8f0; scroll-behavior: smooth; }
-    .container { width: 90%; max-width: 1200px; margin: 0 auto; }
-    header { background: #fff; padding: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
-    .logo { font-size: 28px; font-weight: bold; color: #e67e22; }
-    .logo span { color: #d35400; }
-    nav { display: flex; justify-content: space-between; align-items: center; }
-    .nav-links a { margin-left: 20px; text-decoration: none; color: #333; font-weight: 500; transition: all 0.3s; }
-    .nav-links a:hover { color: #e67e22; }
-    .hero { background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat; color: #fff; padding: 100px 20px; text-align: center; }
-    .hero h1 { font-size: 48px; margin-bottom: 20px; }
-    .hero p { font-size: 20px; max-width: 600px; margin: 0 auto 30px; }
-    .btn { background: #e67e22; color: #fff; padding: 12px 30px; border-radius: 30px; text-decoration: none; font-weight: 600; transition: 0.3s; display: inline-block; }
-    .btn:hover { background: #d35400; transform: translateY(-3px); }
-    .product-categories { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 60px 0; }
-    .category-card { position: relative; height: 200px; border-radius: 10px; overflow: hidden; cursor: pointer; transition: transform 0.3s; }
-    .category-card:hover { transform: translateY(-10px); }
-    .category-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-    .category-card:hover img { transform: scale(1.05); }
-    .category-overlay { position: absolute; bottom: 0; width: 100%; padding: 20px; color: #fff; background: linear-gradient(transparent, rgba(0,0,0,0.7)); }
-    .cta { background: #e67e22; color: #fff; padding: 60px 20px; text-align: center; }
-    .cta h2 { font-size: 36px; margin-bottom: 20px; }
-    footer { background: #333; color: #fff; padding: 40px 20px; text-align: center; }
-    .social-links { margin: 20px 0; }
-    .social-links a { color: white; margin: 0 10px; font-size: 20px; transition: all 0.3s; }
-    .social-links a:hover { color: #f8c291; transform: translateY(-3px); }
-    .quick-teleport { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.9); padding: 15px 10px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); display: flex; flex-direction: column; z-index: 90; }
-    .quick-teleport a { margin: 8px 0; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #f8c291; color: white; text-decoration: none; transition: all 0.3s; }
-    .quick-teleport a:hover { background: #e67e22; transform: scale(1.1); }
-    .back-to-top { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: #e67e22; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 99; }
-    .back-to-top.show { opacity: 1; visibility: visible; }
-    .back-to-top:hover { background: #d35400; transform: translateY(-5px); }
+    :root {
+      --fp-black: #1a1a1a;
+      --fp-dark: #222;
+      --fp-orange: #ff5a00;
+      --fp-grey: #efefef;
+      --fp-light: #fff;
+    }
+    html,body {
+      font-family: 'Roboto', Arial, Helvetica, sans-serif;
+      background: var(--fp-grey);
+      color: var(--fp-black);
+      margin: 0; padding: 0;
+      min-height: 100vh;
+    }
+    a { color: var(--fp-orange); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    /* Sticky Header */
+    header {
+      background: var(--fp-black);
+      color: var(--fp-light);
+      position: sticky;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,.03);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+      height: 62px;
+    }
+    .nav .logo {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      font-size: 1.7rem;
+      color: var(--fp-orange);
+      letter-spacing: 1px;
+    }
+    .nav .logo i {
+      font-size: 1.5rem;
+      margin-right: 9px;
+      color: var(--fp-light);
+    }
+    .nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+      margin: 0; padding: 0;
+    }
+    .nav ul li a {
+      color: var(--fp-light);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 8px 0;
+      border-bottom: 3px solid transparent;
+      transition: border 0.2s;
+    }
+    .nav ul li a.active, .nav ul li a:hover {
+      color: var(--fp-orange);
+      border-bottom: 3px solid var(--fp-orange);
+    }
+    /* Hero/Lead Story */
+    .hero {
+      background: var(--fp-light);
+      padding: 40px 0 32px 0;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-start;
+      gap: 40px;
+      flex-wrap: wrap;
+      padding: 0 20px;
+    }
+    .hero-img {
+      flex: 0 0 230px;
+      width: 230px; height: 230px;
+      border-radius: 7px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,.08);
+      border: 5px solid var(--fp-orange);
+    }
+    .hero-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-content {
+      flex: 1 1 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .hero-content h1 {
+      font-size: 2.5rem;
+      margin: 0 0 10px 0;
+      font-weight: 700;
+      color: var(--fp-black);
+      letter-spacing: -1px;
+    }
+    .hero-content .subtitle {
+      color: var(--fp-orange);
+      font-size: 1.08rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .hero-content .desc {
+      font-size: 1.12rem;
+      line-height: 1.6;
+      color: #444;
+      margin-bottom: 8px;
+    }
+    .hero-content .social-links {
+      margin-top: 3px;
+      display: flex;
+      gap: 16px;
+    }
+    .hero-content .social-links a {
+      color: var(--fp-black);
+      font-size: 1.2rem;
+      background: #eee;
+      padding: 8px;
+      border-radius: 50%;
+      transition: background .15s, color .15s;
+    }
+    .hero-content .social-links a:hover {
+      background: var(--fp-orange);
+      color: #fff;
+    }
+    /* Section Titles */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 20px 0 20px;
+    }
+    .section h2 {
+      color: var(--fp-black);
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      border-left: 7px solid var(--fp-orange);
+      padding-left: 14px;
+      letter-spacing: 0px;
+    }
+    .section .section-lead {
+      color: #555;
+      font-size: 1rem;
+      margin-bottom: 25px;
+      margin-left: 21px;
+    }
+    /* News Cards/Articles */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      margin-top: 18px;
+      margin-bottom: 18px;
+    }
+    .card {
+      background: var(--fp-light);
+      border-radius: 8px;
+      box-shadow: 0 2px 14px rgba(0,0,0,.07);
+      display: flex;
+      flex-direction: column;
+      min-height: 250px;
+      position: relative;
+      border: 1.5px solid #e9e9e9;
+      transition: box-shadow .15s;
+    }
+    .card:hover {
+      box-shadow: 0 6px 32px rgba(255,90,0,0.09);
+      border-color: var(--fp-orange);
+    }
+    .card .card-media {
+      width: 100%; height: 180px;
+      overflow: hidden;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      background: #ddd;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .card .card-media img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block;
+      transition: transform 0.2s;
+    }
+    .card:hover .card-media img {
+      transform: scale(1.04);
+    }
+    .card-content {
+      flex: 1;
+      padding: 22px 18px 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .card .card-title {
+      color: var(--fp-black);
+      font-size: 1.13rem;
+      font-weight: 700;
+    }
+    .card .card-meta {
+      font-size: 0.96rem;
+      color: #888;
+      margin-bottom: 2px;
+    }
+    .card .card-desc {
+      color: #333;
+      font-size: 0.99rem;
+      margin-bottom: 10px;
+    }
+    .card .card-link {
+      color: var(--fp-orange);
+      font-weight: 700;
+      font-size: 0.97rem;
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .card .card-link i {
+      font-size: 1.01rem;
+    }
+    /* Timeline/Experience */
+    .timeline {
+      border-left: 4px solid var(--fp-orange);
+      margin: 32px 0 0 23px;
+      padding-left: 30px;
+    }
+    .timeline-item {
+      margin-bottom: 38px;
+      position: relative;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: -41px;
+      top: 6px;
+      width: 21px; height: 21px;
+      background: var(--fp-orange);
+      border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 7px rgba(0,0,0,0.07);
+      z-index: 2;
+    }
+    .timeline-title {
+      font-size: 1.14rem;
+      font-weight: 700;
+      color: var(--fp-black);
+      margin: 0 0 4px 0;
+    }
+    .timeline-period {
+      color: #888; font-size: 0.98rem;
+      margin-bottom: 4px;
+      display: block;
+    }
+    .timeline-desc {
+      color: #444;
+      font-size: 1.01rem;
+      margin-bottom: 0px;
+      margin-top: 2px;
+      line-height: 1.6;
+    }
+    /* Tribute Form */
+    .tribute-form-wrapper {
+      background: var(--fp-light);
+      border-radius: 12px;
+      box-shadow: 0 2px 14px rgba(0,0,0,.06);
+      padding: 34px 28px 20px 28px;
+      max-width: 500px;
+      margin: 0 auto;
+      border-left: 6px solid var(--fp-orange);
+      margin-bottom: 50px;
+    }
+    .tribute-form label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--fp-black);
+      font-weight: 700;
+      font-size: 0.99rem;
+    }
+    .tribute-form input, .tribute-form textarea {
+      width: 100%;
+      padding: 11px 12px;
+      margin-bottom: 18px;
+      border-radius: 5px;
+      border: 1.3px solid #d8d8d8;
+      background: #f8f8f8;
+      font-size: 0.99rem;
+      font-family: inherit;
+      resize: vertical;
+      transition: border 0.2s;
+    }
+    .tribute-form input:focus, .tribute-form textarea:focus {
+      border-color: var(--fp-orange);
+      outline: none;
+    }
+    .tribute-form button {
+      background: var(--fp-orange);
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 4px;
+      padding: 13px 0;
+      width: 100%;
+      margin-top: 0;
+      cursor: pointer;
+      transition: background 0.18s;
+    }
+    .tribute-form button:hover {
+      background: var(--fp-black);
+    }
+    .form-message {
+      padding: 12px;
+      border-radius: 5px;
+      text-align: center;
+      font-weight: 600;
+      margin-bottom: 0;
+      margin-top: 10px;
+      display: none;
+    }
+    .form-message.success {
+      background: #e6fff1; color: #1a7d42; border: 1px solid #28a745; display: block;
+    }
+    .form-message.error {
+      background: #fff1f1; color: #dc3545; border: 1px solid #dc3545; display: block;
+    }
+    /* Footer */
+    footer {
+      background: var(--fp-black);
+      color: #fff;
+      padding: 36px 0 18px 0;
+      margin-top: 36px;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+    }
+    .footer-col {
+      min-width: 230px;
+      flex: 1 1 230px;
+    }
+    .footer-col h3 {
+      color: var(--fp-orange);
+      font-weight: 700;
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-col ul li {
+      margin-bottom: 7px;
+    }
+    .footer-col ul li a {
+      color: #fff;
+      opacity: 0.86;
+      font-size: 0.99rem;
+      transition: color 0.15s;
+    }
+    .footer-col ul li a:hover {
+      color: var(--fp-orange);
+      opacity: 1;
+    }
+    .footer-social {
+      margin-top: 15px;
+      display: flex;
+      gap: 12px;
+    }
+    .footer-social a {
+      color: #fff;
+      background: #222;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.08rem;
+      transition: background 0.13s, color 0.13s;
+    }
+    .footer-social a:hover {
+      background: var(--fp-orange);
+      color: #fff;
+    }
+    .copyright {
+      text-align: center;
+      font-size: 0.93rem;
+      color: #bbb;
+      margin-top: 20px;
+      letter-spacing: 0.1px;
+    }
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .footer-inner {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+    @media (max-width: 600px) {
+      .hero-img { width: 100vw; height: 48vw; max-width: 100%; max-height: 220px;}
+      .section, .hero-inner, .footer-inner { padding: 0 9px;}
+      .timeline { padding-left: 14px; }
+      .timeline-dot { left: -29px;}
+    }
   </style>
 </head>
 <body>
-  
-  
-  <div class="quick-teleport">
-    <a href="#home" title="Home"><i class="fas fa-home"></i></a>
-    <a href="products.html" title="Products"><i class="fas fa-bread-slice"></i></a>
-    <a href="order.html" title="Order"><i class="fas fa-shopping-cart"></i></a>
-    <a href="#contact" title="Contact"><i class="fas fa-envelope"></i></a>
-  </div>
-  
- 
-  <a href="#home" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
-
+  <!-- Header/Navbar -->
   <header>
-    <div class="container">
-      <nav>
-        <a href="index.html" class="logo">Fresh<span>Bake</span> Delights</a>
-        <div class="nav-links">
-          <a href="index.html">Home</a>
-          <a href="products.html">Products</a>
-          <a href="about.html">About</a>
-          <a href="contact.html">Contact</a>
-          <a href="order.html" class="btn">Order Now</a>
-        </div>
-      </nav>
-    </div>
+    <nav class="nav">
+      <div class="logo"><i class="fas fa-bolt"></i> Firstpost Tribute</div>
+      <ul>
+        <li><a href="#about" class="active">About</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#career">Career</a></li>
+        <li><a href="#tribute">Tribute</a></li>
+      </ul>
+    </nav>
   </header>
-
-  <section class="hero" id="home">
-    <div class="container">
-      <h1>Artisanal Bakery Delivered to Your Doorstep</h1>
-      <p>Enjoy freshly baked goods made with love and premium ingredients — no middlemen.</p>
-      <a href="order.html" class="btn">Order Now</a>
-    </div>
-  </section>
-
-  <section class="products" id="products">
-    <div class="container">
-      <h2 style="text-align:center; color:#d35400; margin-top:40px;">Explore Our Creations</h2>
-      <div class="product-categories">
-        <div class="category-card" onclick="window.location.href='products.html'">
-          <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=500&q=80" alt="Cookies">
-          <div class="category-overlay">
-            <h3>Cookies & Biscuits</h3>
-          </div>
+  <!-- Hero -->
+  <section class="hero" id="about">
+    <div class="hero-inner">
+      <div class="hero-img">
+        <img src="https://pbs.twimg.com/profile_images/1620849803738624000/oZwSBu1m_400x400.jpg" alt="Palki Sharma Upadhyay">
+      </div>
+      <div class="hero-content">
+        <span class="subtitle">Fearless, Insightful, Global</span>
+        <h1>Palki Sharma Upadhyay</h1>
+        <div class="desc">
+          Celebrating India’s face of world news.<br>
+          Editor-in-Chief at Firstpost, former WION “Gravitas” anchor, and a journalist who makes global stories relevant to millions.
         </div>
-
-        <div class="category-card" onclick="window.location.href='products.html'">
-          <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=500&q=80" alt="Cakes">
-          <div class="category-overlay">
-            <h3>Cakes & Pastries</h3>
-          </div>
+        <div class="desc" style="font-size:1rem; color:#666;">
+          <i class="fas fa-award"></i> Winner, Best International News Anchor · <i class="fas fa-clock"></i> 20+ years in journalism
         </div>
-
-        <div class="category-card" onclick="window.location.href='products.html'">
-          <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=500&q=80" alt="Breads">
-          <div class="category-overlay">
-            <h3>Breads & Buns</h3>
-          </div>
-        </div>
-        
-        <div class="category-card" onclick="window.location.href='products.html'">
-          <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=500&q=80" alt="Sweets">
-          <div class="category-overlay">
-            <h3>Desserts & Sweets</h3>
-          </div>
+        <div class="social-links">
+          <a href="https://twitter.com/palkisu" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/palkisharmaupadhyay/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/c/WION" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.linkedin.com/in/palki-sharma-upadhyay-1a2b3c4d/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="cta">
-    <div class="container">
-      <h2>Want Something Custom?</h2>
-      <p>We create bespoke cakes and treats for any celebration. Reach out today!</p>
-      <a href="order.html" class="btn" style="background: white; color: #e67e22;">Place Custom Order</a>
+  <!-- Featured Work -->
+  <section class="section" id="work">
+    <h2>Featured Work</h2>
+    <div class="section-lead">A selection of Palki Sharma's most impactful journalism pieces and interviews</div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-media">
+          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/cOZZCWM9QTY" title="Gravitas: India's Global Voice" allowfullscreen></iframe>
+        </div>
+        <div class="card-content">
+          <div class="card-title">Gravitas: India's Global Voice</div>
+          <div class="card-meta">2023 · WION</div>
+          <div class="card-desc">
+            In-depth analysis of India's foreign policy under the Modi government and its impact on global geopolitics.
+          </div>
+          <a href="https://youtu.be/cOZZCWM9QTY" class="card-link" target="_blank">Watch <i class="fas fa-external-link-alt"></i></a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-media">
+          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/cIGL52QomiM" title="Interview with PM Modi" allowfullscreen></iframe>
+        </div>
+        <div class="card-content">
+          <div class="card-title">Interview with PM Modi</div>
+          <div class="card-meta">2022 · Firstpost</div>
+          <div class="card-desc">
+            Exclusive conversation about India's economic growth, foreign policy, and vision for the future.
+          </div>
+          <a href="https://youtu.be/cIGL52QomiM" class="card-link" target="_blank">Watch <i class="fas fa-external-link-alt"></i></a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-media">
+          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/fcsmSRMJsRc" title="Vantage: Global Headlines" allowfullscreen></iframe>
+        </div>
+        <div class="card-content">
+          <div class="card-title">Vantage: Global Headlines</div>
+          <div class="card-meta">2023 · Firstpost</div>
+          <div class="card-desc">
+            Breaking down complex international issues with clarity and context for global audiences.
+          </div>
+          <a href="https://youtu.be/fcsmSRMJsRc" class="card-link" target="_blank">Watch <i class="fas fa-external-link-alt"></i></a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <footer id="contact">
-    <div class="container">
-      <div class="logo" style="color: white; margin-bottom: 20px;">Fresh<span style="color: #f8c291;">Bake</span> Delights</div>
-      
-      <div class="social-links">
-        <a href="https://whatsapp.com/channel/0029VaBUc9HDp2QIE8kPAK3P" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://www.instagram.com/anchor_palkisharma/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.youtube.com/@palkisharmaFanPage/shorts" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-        <a href="https://x.com/PalkiSharmaFP" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+  <!-- Career Timeline -->
+  <section class="section" id="career">
+    <h2>Career Timeline</h2>
+    <div class="section-lead">A journey through India’s top newsrooms</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-title">Doordarshan</div>
+        <span class="timeline-period">2002–2005</span>
+        <div class="timeline-desc">Began her journalism career as a news anchor on India’s national broadcaster, developing foundational skills in broadcast journalism.</div>
       </div>
-      
-      <p style="margin-top: 20px;">
-        <i class="fas fa-map-marker-alt"></i> Mumbai, India<br>
-        <a href="mailto:workwithme785@gmail.com" style="color: #f8c291; text-decoration: none;">
-          <i class="fas fa-envelope"></i> workwithme785@gmail.com
-        </a>
-      </p>
-      
-      <p style="margin-top: 20px;">&copy; 2025 FreshBake Delights. Crafted with ❤️ in Mumbai.</p>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-title">CNN-IBN</div>
+        <span class="timeline-period">2005–2015</span>
+        <div class="timeline-desc">Prime-time anchor and political reporter, acclaimed for interviews and analytical coverage of major news events.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-title">WION</div>
+        <span class="timeline-period">2016–2022</span>
+        <div class="timeline-desc">Hosted ‘Gravitas’, gaining international recognition for balanced global news analysis.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-title">Firstpost</div>
+        <span class="timeline-period">2023–Present</span>
+        <div class="timeline-desc">Editor-in-Chief and host of “Vantage with Palki Sharma”, continuing her incisive reporting on world affairs.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tribute Form -->
+  <section class="section" id="tribute">
+    <h2>Share Your Tribute</h2>
+    <div class="section-lead">How has Palki’s journalism inspired you? Share your thoughts below.</div>
+    <div class="tribute-form-wrapper">
+      <form class="tribute-form" id="tributeForm" action="https://formspree.io/f/mwpbwlbq" method="POST">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="email" required>
+        <label for="message">Your Tribute</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+        <button type="submit">Submit <i class="fas fa-paper-plane"></i></button>
+        <div id="formMessage" class="form-message"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h3>About This Tribute</h3>
+        <p>This is a fan-made, Firstpost-inspired tribute page to Palki Sharma Upadhyay. Not affiliated with Firstpost or any media group.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#career">Career</a></li>
+          <li><a href="#tribute">Tribute</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Follow Palki</h3>
+        <div class="footer-social">
+          <a href="https://twitter.com/palkisu" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/palkisharmaupadhyay/" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/c/WION" target="_blank"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.linkedin.com/in/palki-sharma-upadhyay-1a2b3c4d/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; <span id="year"></span> Tribute to Palki Sharma Upadhyay.
     </div>
   </footer>
-
   <script>
-  
-    const backToTopButton = document.getElementById('backToTop');
-    
-    window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 300) {
-        backToTopButton.classList.add('show');
-      } else {
-        backToTopButton.classList.remove('show');
+    // Update copyright year
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Tribute form AJAX
+    const form = document.getElementById('tributeForm');
+    const formMessage = document.getElementById('formMessage');
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
+      try {
+        const resp = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (resp.ok) {
+          formMessage.textContent = 'Thank you for your tribute!';
+          formMessage.className = 'form-message success';
+          form.reset();
+        } else throw new Error();
+      } catch {
+        formMessage.textContent = 'There was an error. Please try again later.';
+        formMessage.className = 'form-message error';
       }
+      btn.disabled = false;
+      btn.innerHTML = 'Submit <i class="fas fa-paper-plane"></i>';
+      setTimeout(() => { formMessage.className = 'form-message'; formMessage.textContent = ''; }, 5000);
     });
-    
-    
-    document.querySelectorAll('.category-card').forEach(card => {
-      card.style.cursor = 'pointer';
+    // Smooth scroll nav
+    document.querySelectorAll('.nav ul li a').forEach(link => {
+      link.addEventListener('click', function(e){
+        if(this.getAttribute('href').startsWith('#')) {
+          e.preventDefault();
+          document.querySelectorAll('.nav ul li a').forEach(a => a.classList.remove('active'));
+          this.classList.add('active');
+          const target = document.querySelector(this.getAttribute('href'));
+          if(target) window.scrollTo({top: target.offsetTop-58, behavior: 'smooth'});
+        }
+      });
+    });
+    // Highlight nav on scroll
+    window.addEventListener('scroll', function(){
+      let scrollPos = window.scrollY + 70;
+      document.querySelectorAll('.section, .hero').forEach(sec => {
+        if(scrollPos >= sec.offsetTop && scrollPos < sec.offsetTop + sec.offsetHeight){
+          let id = sec.getAttribute('id');
+          document.querySelectorAll('.nav ul li a').forEach(a => {
+            a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+          });
+        }
+      });
     });
   </script>
 </body>
