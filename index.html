@@ -1,663 +1,737 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Palki Sharma Upadhyay | A Firstpost-styled Tribute</title>
-  <meta name="description" content="A news-portal style tribute to Palki Sharma Upadhyay, inspired by Firstpost.">
-  <link rel="icon" href="favicon.png">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    :root {
-      --fp-black: #1a1a1a;
-      --fp-dark: #222;
-      --fp-orange: #ff5a00;
-      --fp-grey: #efefef;
-      --fp-light: #fff;
-    }
-    html,body {
-      font-family: 'Roboto', Arial, Helvetica, sans-serif;
-      background: var(--fp-grey);
-      color: var(--fp-black);
-      margin: 0; padding: 0;
-      min-height: 100vh;
-    }
-    a { color: var(--fp-orange); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    /* Sticky Header */
-    header {
-      background: var(--fp-black);
-      color: var(--fp-light);
-      position: sticky;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      box-shadow: 0 2px 8px rgba(0,0,0,.03);
-    }
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px;
-      height: 62px;
-    }
-    .nav .logo {
-      display: flex;
-      align-items: center;
-      font-weight: bold;
-      font-size: 1.7rem;
-      color: var(--fp-orange);
-      letter-spacing: 1px;
-    }
-    .nav .logo i {
-      font-size: 1.5rem;
-      margin-right: 9px;
-      color: var(--fp-light);
-    }
-    .nav ul {
-      display: flex;
-      list-style: none;
-      gap: 30px;
-      margin: 0; padding: 0;
-    }
-    .nav ul li a {
-      color: var(--fp-light);
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      padding: 8px 0;
-      border-bottom: 3px solid transparent;
-      transition: border 0.2s;
-    }
-    .nav ul li a.active, .nav ul li a:hover {
-      color: var(--fp-orange);
-      border-bottom: 3px solid var(--fp-orange);
-    }
-    /* Hero/Lead Story */
-    .hero {
-      background: var(--fp-light);
-      padding: 40px 0 32px 0;
-      border-bottom: 1px solid #e8e8e8;
-    }
-    .hero-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      align-items: flex-start;
-      gap: 40px;
-      flex-wrap: wrap;
-      padding: 0 20px;
-    }
-    .hero-img {
-      flex: 0 0 230px;
-      width: 230px; height: 230px;
-      border-radius: 7px;
-      overflow: hidden;
-      box-shadow: 0 4px 24px rgba(0,0,0,.08);
-      border: 5px solid var(--fp-orange);
-    }
-    .hero-img img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .hero-content {
-      flex: 1 1 320px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-    .hero-content h1 {
-      font-size: 2.5rem;
-      margin: 0 0 10px 0;
-      font-weight: 700;
-      color: var(--fp-black);
-      letter-spacing: -1px;
-    }
-    .hero-content .subtitle {
-      color: var(--fp-orange);
-      font-size: 1.08rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-    .hero-content .desc {
-      font-size: 1.12rem;
-      line-height: 1.6;
-      color: #444;
-      margin-bottom: 8px;
-    }
-    .hero-content .social-links {
-      margin-top: 3px;
-      display: flex;
-      gap: 16px;
-    }
-    .hero-content .social-links a {
-      color: var(--fp-black);
-      font-size: 1.2rem;
-      background: #eee;
-      padding: 8px;
-      border-radius: 50%;
-      transition: background .15s, color .15s;
-    }
-    .hero-content .social-links a:hover {
-      background: var(--fp-orange);
-      color: #fff;
-    }
-    /* Section Titles */
-    .section {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 48px 20px 0 20px;
-    }
-    .section h2 {
-      color: var(--fp-black);
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-      border-left: 7px solid var(--fp-orange);
-      padding-left: 14px;
-      letter-spacing: 0px;
-    }
-    .section .section-lead {
-      color: #555;
-      font-size: 1rem;
-      margin-bottom: 25px;
-      margin-left: 21px;
-    }
-    /* News Cards/Articles */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 32px;
-      margin-top: 18px;
-      margin-bottom: 18px;
-    }
-    .card {
-      background: var(--fp-light);
-      border-radius: 8px;
-      box-shadow: 0 2px 14px rgba(0,0,0,.07);
-      display: flex;
-      flex-direction: column;
-      min-height: 250px;
-      position: relative;
-      border: 1.5px solid #e9e9e9;
-      transition: box-shadow .15s;
-    }
-    .card:hover {
-      box-shadow: 0 6px 32px rgba(255,90,0,0.09);
-      border-color: var(--fp-orange);
-    }
-    .card .card-media {
-      width: 100%; height: 180px;
-      overflow: hidden;
-      border-top-left-radius: 8px;
-      border-top-right-radius: 8px;
-      background: #ddd;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .card .card-media img {
-      width: 100%; height: 100%; object-fit: cover;
-      display: block;
-      transition: transform 0.2s;
-    }
-    .card:hover .card-media img {
-      transform: scale(1.04);
-    }
-    .card-content {
-      flex: 1;
-      padding: 22px 18px 16px 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .card .card-title {
-      color: var(--fp-black);
-      font-size: 1.13rem;
-      font-weight: 700;
-    }
-    .card .card-meta {
-      font-size: 0.96rem;
-      color: #888;
-      margin-bottom: 2px;
-    }
-    .card .card-desc {
-      color: #333;
-      font-size: 0.99rem;
-      margin-bottom: 10px;
-    }
-    .card .card-link {
-      color: var(--fp-orange);
-      font-weight: 700;
-      font-size: 0.97rem;
-      align-self: flex-start;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 4px;
-    }
-    .card .card-link i {
-      font-size: 1.01rem;
-    }
-    /* Timeline/Experience */
-    .timeline {
-      border-left: 4px solid var(--fp-orange);
-      margin: 32px 0 0 23px;
-      padding-left: 30px;
-    }
-    .timeline-item {
-      margin-bottom: 38px;
-      position: relative;
-    }
-    .timeline-dot {
-      position: absolute;
-      left: -41px;
-      top: 6px;
-      width: 21px; height: 21px;
-      background: var(--fp-orange);
-      border-radius: 50%;
-      border: 2px solid #fff;
-      box-shadow: 0 2px 7px rgba(0,0,0,0.07);
-      z-index: 2;
-    }
-    .timeline-title {
-      font-size: 1.14rem;
-      font-weight: 700;
-      color: var(--fp-black);
-      margin: 0 0 4px 0;
-    }
-    .timeline-period {
-      color: #888; font-size: 0.98rem;
-      margin-bottom: 4px;
-      display: block;
-    }
-    .timeline-desc {
-      color: #444;
-      font-size: 1.01rem;
-      margin-bottom: 0px;
-      margin-top: 2px;
-      line-height: 1.6;
-    }
-    /* Tribute Form */
-    .tribute-form-wrapper {
-      background: var(--fp-light);
-      border-radius: 12px;
-      box-shadow: 0 2px 14px rgba(0,0,0,.06);
-      padding: 34px 28px 20px 28px;
-      max-width: 500px;
-      margin: 0 auto;
-      border-left: 6px solid var(--fp-orange);
-      margin-bottom: 50px;
-    }
-    .tribute-form label {
-      display: block;
-      margin-bottom: 8px;
-      color: var(--fp-black);
-      font-weight: 700;
-      font-size: 0.99rem;
-    }
-    .tribute-form input, .tribute-form textarea {
-      width: 100%;
-      padding: 11px 12px;
-      margin-bottom: 18px;
-      border-radius: 5px;
-      border: 1.3px solid #d8d8d8;
-      background: #f8f8f8;
-      font-size: 0.99rem;
-      font-family: inherit;
-      resize: vertical;
-      transition: border 0.2s;
-    }
-    .tribute-form input:focus, .tribute-form textarea:focus {
-      border-color: var(--fp-orange);
-      outline: none;
-    }
-    .tribute-form button {
-      background: var(--fp-orange);
-      color: #fff;
-      font-size: 1.1rem;
-      font-weight: 700;
-      border: none;
-      border-radius: 4px;
-      padding: 13px 0;
-      width: 100%;
-      margin-top: 0;
-      cursor: pointer;
-      transition: background 0.18s;
-    }
-    .tribute-form button:hover {
-      background: var(--fp-black);
-    }
-    .form-message {
-      padding: 12px;
-      border-radius: 5px;
-      text-align: center;
-      font-weight: 600;
-      margin-bottom: 0;
-      margin-top: 10px;
-      display: none;
-    }
-    .form-message.success {
-      background: #e6fff1; color: #1a7d42; border: 1px solid #28a745; display: block;
-    }
-    .form-message.error {
-      background: #fff1f1; color: #dc3545; border: 1px solid #dc3545; display: block;
-    }
-    /* Footer */
-    footer {
-      background: var(--fp-black);
-      color: #fff;
-      padding: 36px 0 18px 0;
-      margin-top: 36px;
-    }
-    .footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 30px;
-    }
-    .footer-col {
-      min-width: 230px;
-      flex: 1 1 230px;
-    }
-    .footer-col h3 {
-      color: var(--fp-orange);
-      font-weight: 700;
-      font-size: 1.15rem;
-      margin-bottom: 8px;
-    }
-    .footer-col ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .footer-col ul li {
-      margin-bottom: 7px;
-    }
-    .footer-col ul li a {
-      color: #fff;
-      opacity: 0.86;
-      font-size: 0.99rem;
-      transition: color 0.15s;
-    }
-    .footer-col ul li a:hover {
-      color: var(--fp-orange);
-      opacity: 1;
-    }
-    .footer-social {
-      margin-top: 15px;
-      display: flex;
-      gap: 12px;
-    }
-    .footer-social a {
-      color: #fff;
-      background: #222;
-      border-radius: 50%;
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.08rem;
-      transition: background 0.13s, color 0.13s;
-    }
-    .footer-social a:hover {
-      background: var(--fp-orange);
-      color: #fff;
-    }
-    .copyright {
-      text-align: center;
-      font-size: 0.93rem;
-      color: #bbb;
-      margin-top: 20px;
-      letter-spacing: 0.1px;
-    }
-    /* Responsive */
-    @media (max-width: 900px) {
-      .hero-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .footer-inner {
-        flex-direction: column;
-        gap: 10px;
-      }
-    }
-    @media (max-width: 600px) {
-      .hero-img { width: 100vw; height: 48vw; max-width: 100%; max-height: 220px;}
-      .section, .hero-inner, .footer-inner { padding: 0 9px;}
-      .timeline { padding-left: 14px; }
-      .timeline-dot { left: -29px;}
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kadam Farms | Countryside Farmhouse in Phaltan, Satara</title>
+    <!-- SEO Meta -->
+    <meta name="description" content="Experience the authentic rural lifestyle at Kadam Farms in Phaltan, Satara. Stay in modern cottages, enjoy organic food, and explore farm activities.">
+    <meta property="og:title" content="Kadam Farms | Countryside Farmhouse in Phaltan, Satara">
+    <meta property="og:description" content="Experience the authentic rural lifestyle at Kadam Farms in Phaltan, Satara. Stay in modern cottages, enjoy organic food, and explore farm activities.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kadamfarms.com">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6B8E23;
+            --secondary: #8B9A46;
+            --accent: #C19A6B;
+            --light: #F5F5DC;
+            --dark: #222;
+            --text: #333;
+            --text-light: #fff;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            background: var(--light);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
+        }
+        body.dark-mode {
+            background: #181818;
+            color: var(--text-light);
+        }
+        body.dark-mode .sticky-nav,
+        body.dark-mode .footer-col,
+        body.dark-mode .carousel,
+        body.dark-mode .facility-card,
+        body.dark-mode .about-img,
+        body.dark-mode .contact-info,
+        body.dark-mode .contact-form,
+        body.dark-mode .faq-list,
+        body.dark-mode .testimonials-grid blockquote,
+        body.dark-mode .lightbox {
+            background: #252525 !important;
+            color: var(--text-light) !important;
+        }
+        body.dark-mode .section-title h2,
+        body.dark-mode .logo { color: var(--accent);}
+        body.dark-mode .btn,
+        body.dark-mode .social-links a,
+        body.dark-mode .teleport-item,
+        body.dark-mode .whatsapp-float { color: #fff; background: var(--primary);}
+        body.dark-mode .nav-links a:hover::after {background: var(--accent);}
+        body.dark-mode .carousel-dot.active {background: var(--accent);}
+        body.dark-mode .footer-links a:hover {color: var(--primary);}
+        body.dark-mode .lightbox {background: rgba(0,0,0,0.95);}
+        body.dark-mode .spinner {border-color: #fff #fff #eee #eee;}
+        #loading-spinner {
+            display:none;
+            align-items:center;
+            justify-content:center;
+            position:fixed;
+            z-index:3000;
+            top:0; left:0; right:0; bottom:0;
+            background:rgba(255,255,255,0.8);
+        }
+        #loading-spinner.active {display:flex;}
+        .spinner {
+            width:60px;height:60px;
+            border:8px solid #eee;
+            border-top:8px solid var(--primary);
+            border-radius:50%;
+            animation:spin 1s linear infinite;
+        }
+        @keyframes spin {to{transform:rotate(360deg);}}
+        #darkModeToggle {
+            position:fixed;
+            right:18px; top:18px;
+            background:var(--primary);
+            color:#fff;
+            border:none;
+            border-radius:50%;
+            width:42px; height:42px;
+            font-size:1.25rem;
+            z-index:2001;
+            transition:background 0.3s;
+            cursor:pointer;
+            box-shadow:var(--shadow);
+        }
+        #darkModeToggle:focus {outline:2px solid var(--accent);}
+        .sticky-nav {
+            position:fixed; top:0; left:0;
+            width:100%; background:rgba(255,255,255,0.97);
+            box-shadow:var(--shadow);
+            z-index:1000;
+            transition:var(--transition);
+            padding:15px 0;
+        }
+        .nav-container {
+            display:flex; justify-content:space-between; align-items:center;
+        }
+        .logo {
+            font-size:1.8rem; font-weight:700; color:var(--primary);
+            font-family:'Playfair Display',serif;
+        }
+        .logo span {color:var(--accent);}
+        .nav-links {
+            display:flex; list-style:none;
+        }
+        .nav-links li {margin-left:30px;}
+        .nav-links a {
+            font-weight:500; position:relative; padding:5px 0; color:inherit;
+        }
+        .nav-links a::after {
+            content:""; position:absolute; width:0; height:2px;
+            background:var(--primary); bottom:0; left:0;
+            transition:width 0.3s;
+        }
+        .nav-links a:hover::after {width:100%;}
+        .mobile-menu-btn {
+            display:none; font-size:1.5rem; background:none; border:none; color:var(--primary);
+        }
+        .mobile-menu-btn:focus {outline:2px solid var(--accent);}
+        .nav-links.active {
+            left:0;
+        }
+        .teleport-nav {
+            position:fixed; right:20px; top:50%; transform:translateY(-50%);
+            z-index:1000; display:flex; flex-direction:column; gap:15px;
+        }
+        .teleport-item {
+            width:40px; height:40px; border-radius:50%;
+            background:rgba(107,142,35,0.8); display:flex;
+            align-items:center; justify-content:center; cursor:pointer;
+            transition:var(--transition); color:#fff; box-shadow:0 2px 5px rgba(0,0,0,0.2);
+        }
+        .teleport-item:hover {transform:scale(1.1); background:rgba(107,142,35,1);}
+        .whatsapp-float {
+            position:fixed; bottom:30px; right:30px; width:60px; height:60px;
+            background:#25D366; color:#fff; border-radius:50%; display:flex;
+            align-items:center; justify-content:center; font-size:1.8rem;
+            box-shadow:0 2px 10px rgba(0,0,0,0.2);
+            z-index:1000;
+            transition:var(--transition);
+        }
+        .whatsapp-float:hover {transform:scale(1.1); box-shadow:0 4px 15px rgba(0,0,0,0.3);}
+        .container {
+            width:90%; max-width:1200px; margin:0 auto; padding:0 15px;
+        }
+        section {padding:80px 0;}
+        .section-title {text-align:center; margin-bottom:50px; position:relative;}
+        .section-title h2 {
+            font-size:2.5rem; display:inline-block; padding-bottom:15px; color:var(--primary);
+            font-family:'Playfair Display',serif;
+        }
+        .section-title h2::after {
+            content:""; position:absolute; width:80px; height:3px;
+            background:var(--accent); bottom:0; left:50%; transform:translateX(-50%);
+        }
+        .btn {
+            display:inline-block; background:var(--primary); color:#fff;
+            padding:12px 25px; border-radius:30px; font-weight:500;
+            transition:var(--transition); border:none; cursor:pointer;
+        }
+        .btn:hover {
+            background:var(--secondary); transform:translateY(-3px);
+            box-shadow:var(--shadow);
+        }
+        #home {
+            height:100vh;
+            background:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color:#fff; display:flex; align-items:center; text-align:center; position:relative;
+        }
+        .hero-content {
+            max-width:800px; margin:0 auto; animation:fadeInUp 1s;
+        }
+        .hero-content h1 {font-size:3.5rem; margin-bottom:20px; color:#fff;}
+        .hero-content p {font-size:1.2rem; margin-bottom:30px;}
+        .scroll-down {
+            position:absolute; bottom:30px; left:50%; transform:translateX(-50%);
+            animation:bounce 2s infinite;
+        }
+        .scroll-down i {font-size:2rem; color:#fff;}
+        #about {background:var(--light);}
+        .about-content {display:flex; align-items:center; gap:50px;}
+        .about-img {flex:1; border-radius:10px; overflow:hidden; box-shadow:var(--shadow);}
+        .about-img img {width:100%; height:auto; transition:transform 0.5s;}
+        .about-img:hover img {transform:scale(1.05);}
+        .about-text {flex:1;}
+        .about-text h3 {font-size:2rem; margin-bottom:20px;}
+        .facilities-grid {
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+            gap:30px;
+        }
+        .facility-card {
+            background:#fff; border-radius:10px; overflow:hidden; box-shadow:var(--shadow);
+            transition:transform 0.3s;
+        }
+        .facility-card:hover {transform:translateY(-10px);}
+        .facility-img {height:200px; overflow:hidden;}
+        .facility-img img {width:100%; height:100%; object-fit:cover; transition:transform 0.5s;}
+        .facility-card:hover .facility-img img {transform:scale(1.1);}
+        .facility-info {padding:20px;}
+        .facility-info h3 {margin-bottom:10px;}
+        #gallery {background:var(--light);}
+        .gallery-container {position:relative;}
+        .carousel {
+            display:flex; overflow-x:auto; scroll-snap-type:x mandatory;
+            scroll-behavior:smooth; -webkit-overflow-scrolling:touch;
+            margin-bottom:20px; scrollbar-width:none; background:#fff; border-radius:10px;
+        }
+        .carousel::-webkit-scrollbar {display:none;}
+        .carousel-item {
+            flex:0 0 100%; scroll-snap-align:start; position:relative;
+        }
+        .carousel-img {
+            width:100%; height:500px; object-fit:cover; border-radius:10px;
+        }
+        .carousel-nav {
+            display:flex; justify-content:center; gap:10px; margin-top:20px;
+        }
+        .carousel-dot {
+            width:12px; height:12px; border-radius:50%; background:#ccc;
+            cursor:pointer; transition:background 0.3s; border:none;
+        }
+        .carousel-dot.active {background:var(--primary);}
+        .gallery-grid {
+            display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+            gap:15px; margin-top:50px;
+        }
+        .gallery-item {
+            position:relative; border-radius:8px; overflow:hidden; height:200px; cursor:pointer;
+        }
+        .gallery-item img {width:100%; height:100%; object-fit:cover; transition:transform 0.5s;}
+        .gallery-item:hover img {transform:scale(1.1);}
+        .gallery-overlay {
+            position:absolute; top:0; left:0; width:100%; height:100%;
+            background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center;
+            opacity:0; transition:opacity 0.3s;
+        }
+        .gallery-item:hover .gallery-overlay {opacity:1;}
+        .gallery-overlay i {color:#fff; font-size:2rem;}
+        .lightbox {
+            position:fixed; top:0; left:0; width:100%; height:100%;
+            background:rgba(0,0,0,0.8); z-index:2000; display:none; align-items:center; justify-content:center;
+        }
+        .lightbox.active {display:flex;}
+        .lightbox-content {
+            position:relative; max-width:90%; max-height:90%;
+        }
+        .lightbox-img {
+            max-width:100%; max-height:90vh; border-radius:8px;
+        }
+        .lightbox-close {
+            position:absolute; top:-40px; right:0; color:#fff; font-size:2rem; cursor:pointer; background:none; border:none;
+        }
+        .lightbox-close:focus {outline:2px solid var(--accent);}
+        .testimonials-grid {
+            display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:30px;
+        }
+        .testimonial {
+            background:#fff; border-radius:10px; box-shadow:var(--shadow); padding:30px;
+            font-style:italic; color:var(--primary); position:relative;
+        }
+        .testimonial footer {color:var(--text); font-style:normal; margin-top:18px;}
+        .faq-list {max-width:800px; margin:0 auto;}
+        .faq-list details {background:#fff; border-radius:6px; margin-bottom:18px; box-shadow:var(--shadow);}
+        .faq-list summary {padding:18px 25px; cursor:pointer; font-weight:600;}
+        .faq-list details[open] summary {color:var(--primary);}
+        .faq-list p {padding:0 25px 18px;}
+        .contact-container {
+            display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:40px;
+        }
+        .contact-info h3 {margin-bottom:20px;}
+        .contact-details {margin-bottom:30px;}
+        .contact-item {display:flex; align-items:center; margin-bottom:15px;}
+        .contact-item i {margin-right:15px; color:var(--primary); font-size:1.2rem;}
+        .social-links {
+            display:flex; gap:15px;
+        }
+        .social-links a {
+            display:flex; align-items:center; justify-content:center;
+            width:40px; height:40px; border-radius:50%; background:var(--primary);
+            color:#fff; transition:var(--transition);
+        }
+        .social-links a:hover {background:var(--secondary); transform:translateY(-3px);}
+        .contact-form label {font-weight:500; margin-bottom:4px; display:block;}
+        .contact-form input, .contact-form textarea {
+            width:100%; padding:12px 15px; margin-bottom:20px; border:1px solid #ddd;
+            border-radius:5px; font-family:inherit;
+        }
+        .contact-form textarea {height:150px; resize:vertical;}
+        .map-container {height:400px; margin-top:40px; border-radius:10px; overflow:hidden; box-shadow:var(--shadow);}
+        .map-container iframe {width:100%; height:100%; border:none;}
+        footer {background:var(--dark); color:#fff; padding:50px 0 20px; text-align:center;}
+        .footer-content {
+            display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:30px; margin-bottom:40px;
+        }
+        .footer-col h3 {color:#fff; margin-bottom:20px; font-size:1.3rem;}
+        .footer-links {list-style:none;}
+        .footer-links li {margin-bottom:10px;}
+        .footer-links a {transition:color 0.3s;}
+        .footer-links a:hover {color:var(--accent);}
+        .copyright {padding-top:20px; border-top:1px solid rgba(255,255,255,0.1);}
+        @keyframes fadeInUp {
+            from {opacity:0; transform:translateY(20px);}
+            to {opacity:1; transform:translateY(0);}
+        }
+        @keyframes bounce {
+            0%,20%,50%,80%,100% {transform:translateY(0) translateX(-50%);}
+            40% {transform:translateY(-20px) translateX(-50%);}
+            60% {transform:translateY(-10px) translateX(-50%);}
+        }
+        @media (max-width:992px) {
+            .about-content {flex-direction:column;}
+            .about-img, .about-text {flex:none; width:100%;}
+        }
+        @media (max-width:768px) {
+            .mobile-menu-btn {display:block;}
+            .nav-links {
+                position:fixed; top:75px; left:-100%; width:100%; height:calc(100vh - 75px);
+                background:#fff; flex-direction:column; align-items:center; justify-content:center;
+                transition:all 0.5s; z-index:999;
+            }
+            .nav-links.active {left:0;}
+            .nav-links li {margin:15px 0;}
+            .teleport-nav {display:none;}
+            .hero-content h1 {font-size:2.5rem;}
+            .section-title h2 {font-size:2rem;}
+        }
+        @media (max-width:576px) {
+            section {padding:60px 0;}
+            .hero-content h1 {font-size:2rem;}
+            .carousel-img {height:300px;}
+            .footer-content {grid-template-columns:1fr;}
+        }
+    </style>
 </head>
 <body>
-  <!-- Header/Navbar -->
-  <header>
-    <nav class="nav">
-      <div class="logo"><i class="fas fa-bolt"></i> Firstpost Tribute</div>
-      <ul>
-        <li><a href="#about" class="active">About</a></li>
-        <li><a href="#work">Work</a></li>
-        <li><a href="#career">Career</a></li>
-        <li><a href="#tribute">Tribute</a></li>
-      </ul>
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" aria-hidden="true">
+        <div class="spinner"></div>
+    </div>
+    <button id="darkModeToggle" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+    <header aria-label="Site Header">
+        <nav class="sticky-nav" aria-label="Primary Navigation">
+            <div class="container nav-container">
+                <a href="#home" class="logo" aria-label="Kadam Farms Home">Kadam <span>Farms</span></a>
+                <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-controls="nav-links" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links" id="nav-links" role="menubar">
+                    <li role="none"><a role="menuitem" href="#home">Home</a></li>
+                    <li role="none"><a role="menuitem" href="#about">About</a></li>
+                    <li role="none"><a role="menuitem" href="#facilities">Facilities</a></li>
+                    <li role="none"><a role="menuitem" href="#gallery">Gallery</a></li>
+                    <li role="none"><a role="menuitem" href="#testimonials">Testimonials</a></li>
+                    <li role="none"><a role="menuitem" href="#faq">FAQ</a></li>
+                    <li role="none"><a role="menuitem" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <nav class="teleport-nav" aria-label="Section Navigation">
+        <a href="#home" class="teleport-item" aria-label="Home"><i class="fas fa-home"></i></a>
+        <a href="#about" class="teleport-item" aria-label="About"><i class="fas fa-info-circle"></i></a>
+        <a href="#facilities" class="teleport-item" aria-label="Facilities"><i class="fas fa-umbrella-beach"></i></a>
+        <a href="#gallery" class="teleport-item" aria-label="Gallery"><i class="fas fa-images"></i></a>
+        <a href="#testimonials" class="teleport-item" aria-label="Testimonials"><i class="fas fa-comment"></i></a>
+        <a href="#faq" class="teleport-item" aria-label="FAQ"><i class="fas fa-question"></i></a>
+        <a href="#contact" class="teleport-item" aria-label="Contact"><i class="fas fa-envelope"></i></a>
     </nav>
-  </header>
-  <!-- Hero -->
-  <section class="hero" id="about">
-    <div class="hero-inner">
-      <div class="hero-img">
-        <img src="https://pbs.twimg.com/profile_images/1620849803738624000/oZwSBu1m_400x400.jpg" alt="Palki Sharma Upadhyay">
-      </div>
-      <div class="hero-content">
-        <span class="subtitle">Fearless, Insightful, Global</span>
-        <h1>Palki Sharma Upadhyay</h1>
-        <div class="desc">
-          Celebrating India’s face of world news.<br>
-          Editor-in-Chief at Firstpost, former WION “Gravitas” anchor, and a journalist who makes global stories relevant to millions.
+    <a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <main>
+    <section id="home" tabindex="-1">
+        <div class="container">
+            <div class="hero-content" aria-label="Introductory Section">
+                <h1>Experience Rural Serenity at Kadam Farms</h1>
+                <p>Escape to our countryside farmhouse in Phaltan, Satara where nature meets comfort</p>
+                <a href="#contact" class="btn" aria-label="Book Your Stay">Book Your Stay</a>
+            </div>
+            <div class="scroll-down">
+                <a href="#about" aria-label="Scroll to About"><i class="fas fa-chevron-down"></i></a>
+            </div>
         </div>
-        <div class="desc" style="font-size:1rem; color:#666;">
-          <i class="fas fa-award"></i> Winner, Best International News Anchor · <i class="fas fa-clock"></i> 20+ years in journalism
+    </section>
+    <section id="about" tabindex="-1">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Our Farm</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1586771107445-d3ca888129ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Lush farm fields at Kadam Farms" loading="lazy" width="600" height="400">
+                </div>
+                <div class="about-text">
+                    <h3>Discover Our Peaceful Retreat</h3>
+                    <p>Nestled in the picturesque countryside of Phaltan, Satara, Kadam Farms offers a perfect blend of rural charm and modern comfort. Our farmhouse spans over 5 acres of lush greenery, providing a tranquil escape from city life.</p>
+                    <p>Established in 2010, we've been hosting guests who seek authentic farm experiences, organic food, and a chance to reconnect with nature. Our farm produces seasonal fruits, vegetables, and dairy products that you can enjoy during your stay.</p>
+                    <p>Whether you're looking for a weekend getaway, a family vacation, or a venue for special events, Kadam Farms provides the perfect setting with its serene atmosphere and warm hospitality.</p>
+                    <a href="#facilities" class="btn">Explore Facilities</a>
+                </div>
+            </div>
         </div>
-        <div class="social-links">
-          <a href="https://twitter.com/palkisu" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="https://www.instagram.com/palkisharmaupadhyay/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://www.youtube.com/c/WION" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-          <a href="https://www.linkedin.com/in/palki-sharma-upadhyay-1a2b3c4d/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    </section>
+    <section id="facilities" tabindex="-1">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Facilities</h2>
+            </div>
+            <div class="facilities-grid">
+                <div class="facility-card">
+                    <div class="facility-img">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Comfortable Cottages" loading="lazy" width="400" height="200">
+                    </div>
+                    <div class="facility-info">
+                        <h3>Comfortable Cottages</h3>
+                        <p>Stay in our well-appointed cottages with modern amenities while enjoying rustic charm. Each cottage has a private sit-out area with farm views.</p>
+                    </div>
+                </div>
+                <div class="facility-card">
+                    <div class="facility-img">
+                        <img src="https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Organic Dining" loading="lazy" width="400" height="200">
+                    </div>
+                    <div class="facility-info">
+                        <h3>Organic Dining</h3>
+                        <p>Enjoy farm-to-table meals prepared with ingredients harvested from our organic farm. Special dietary requirements can be accommodated.</p>
+                    </div>
+                </div>
+                <div class="facility-card">
+                    <div class="facility-img">
+                        <img src="https://images.unsplash.com/photo-1600566752229-250ed79470a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Farm Activities" loading="lazy" width="400" height="200">
+                    </div>
+                    <div class="facility-info">
+                        <h3>Farm Activities</h3>
+                        <p>Engage in milking cows, fruit picking, pottery, or traditional cooking classes. We also offer bullock cart rides and guided farm tours.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
+    <section id="gallery" tabindex="-1">
+        <div class="container">
+            <div class="section-title">
+                <h2>Gallery</h2>
+            </div>
+            <div class="gallery-container">
+                <div class="carousel" aria-label="Image Carousel">
+                    <div class="carousel-item"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Farm View" class="carousel-img" loading="lazy" width="1200" height="500"></div>
+                    <div class="carousel-item"><img src="https://images.unsplash.com/photo-1586771107445-d3ca888129ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cottage" class="carousel-img" loading="lazy" width="1200" height="500"></div>
+                    <div class="carousel-item"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Farm Stay" class="carousel-img" loading="lazy" width="1200" height="500"></div>
+                </div>
+                <div class="carousel-nav" aria-label="Carousel Navigation">
+                    <button class="carousel-dot active" aria-label="Go to slide 1"></button>
+                    <button class="carousel-dot" aria-label="Go to slide 2"></button>
+                    <button class="carousel-dot" aria-label="Go to slide 3"></button>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1542272201-b1ca555f8505?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Farm Activity" loading="lazy"><div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+                    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600566752229-250ed79470a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Organic Farming" loading="lazy"><div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+                    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Farm Dining" loading="lazy"><div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+                    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Farm Animals" loading="lazy"><div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+                    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Farm Food" loading="lazy"><div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+                    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Farm Sunset" loading="lazy"><div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="lightbox" role="dialog" aria-modal="true" aria-label="Image Preview">
+        <div class="lightbox-content">
+            <button class="lightbox-close" aria-label="Close Preview">&times;</button>
+            <img src="" alt="" class="lightbox-img">
+        </div>
     </div>
-  </section>
-
-  <!-- Featured Work -->
-  <section class="section" id="work">
-    <h2>Featured Work</h2>
-    <div class="section-lead">A selection of Palki Sharma's most impactful journalism pieces and interviews</div>
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-media">
-          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/cOZZCWM9QTY" title="Gravitas: India's Global Voice" allowfullscreen></iframe>
+    <section id="testimonials" tabindex="-1">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Guests Say</h2>
+            </div>
+            <div class="testimonials-grid">
+                <blockquote class="testimonial">
+                    <p>"A peaceful paradise! The food was delicious and the farm experience is unforgettable."</p>
+                    <footer>- Rohan S., Pune</footer>
+                </blockquote>
+                <blockquote class="testimonial">
+                    <p>"Perfect weekend getaway. My kids loved the animals and the activities."</p>
+                    <footer>- Priya D., Mumbai</footer>
+                </blockquote>
+                <blockquote class="testimonial">
+                    <p>"The cottages are cozy, and the staff is so welcoming. We can't wait to come back!"</p>
+                    <footer>- Sunil K., Nashik</footer>
+                </blockquote>
+            </div>
         </div>
-        <div class="card-content">
-          <div class="card-title">Gravitas: India's Global Voice</div>
-          <div class="card-meta">2023 · WION</div>
-          <div class="card-desc">
-            In-depth analysis of India's foreign policy under the Modi government and its impact on global geopolitics.
-          </div>
-          <a href="https://youtu.be/cOZZCWM9QTY" class="card-link" target="_blank">Watch <i class="fas fa-external-link-alt"></i></a>
+    </section>
+    <section id="faq" tabindex="-1">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-list">
+                <details>
+                    <summary>Is Kadam Farms suitable for families with children?</summary>
+                    <p>Absolutely! We have special activities designed for kids and families.</p>
+                </details>
+                <details>
+                    <summary>Do you provide vegetarian or vegan food?</summary>
+                    <p>Yes, we offer a variety of vegetarian and vegan options. Let us know your preferences in advance.</p>
+                </details>
+                <details>
+                    <summary>Is there parking available?</summary>
+                    <p>Yes, we offer free and secure parking on the premises.</p>
+                </details>
+                <details>
+                    <summary>How can I book my stay?</summary>
+                    <p>Simply fill out the contact form below or call us directly at the number provided.</p>
+                </details>
+            </div>
         </div>
-      </div>
-      <div class="card">
-        <div class="card-media">
-          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/cIGL52QomiM" title="Interview with PM Modi" allowfullscreen></iframe>
+    </section>
+    <section id="contact" tabindex="-1">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <div class="contact-details">
+                        <div class="contact-item"><i class="fas fa-map-marker-alt"></i><span>Village Road, Near Phaltan, Satara, Maharashtra 415523</span></div>
+                        <div class="contact-item"><i class="fas fa-phone-alt"></i><span>+91 9876543210</span></div>
+                        <div class="contact-item"><i class="fas fa-envelope"></i><span>info@kadamfarms.com</span></div>
+                    </div>
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm" autocomplete="off">
+                        <label for="name">Your Name</label>
+                        <input id="name" name="name" type="text" placeholder="Your Name" required>
+                        <label for="email">Your Email</label>
+                        <input id="email" name="email" type="email" placeholder="Your Email" required>
+                        <label for="phone">Your Phone</label>
+                        <input id="phone" name="phone" type="tel" placeholder="Your Phone">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.441676378516!2d74.4319653153695!3d17.989659987650987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc3962497d9e3e5%3A0x3a7e4b4e3d3a3b7d!2sPhaltan%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin" allowfullscreen loading="lazy" title="Kadam Farms Location"></iframe>
+            </div>
         </div>
-        <div class="card-content">
-          <div class="card-title">Interview with PM Modi</div>
-          <div class="card-meta">2022 · Firstpost</div>
-          <div class="card-desc">
-            Exclusive conversation about India's economic growth, foreign policy, and vision for the future.
-          </div>
-          <a href="https://youtu.be/cIGL52QomiM" class="card-link" target="_blank">Watch <i class="fas fa-external-link-alt"></i></a>
+    </section>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Kadam Farms</h3>
+                    <p>Experience the authentic rural lifestyle with modern comforts at our countryside farmhouse in Phaltan, Satara.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#facilities">Facilities</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Phaltan, Satara, Maharashtra</li>
+                        <li><i class="fas fa-phone-alt"></i> +91 9876543210</li>
+                        <li><i class="fas fa-envelope"></i> info@kadamfarms.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Kadam Farms. All Rights Reserved.</p>
+            </div>
         </div>
-      </div>
-      <div class="card">
-        <div class="card-media">
-          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/fcsmSRMJsRc" title="Vantage: Global Headlines" allowfullscreen></iframe>
-        </div>
-        <div class="card-content">
-          <div class="card-title">Vantage: Global Headlines</div>
-          <div class="card-meta">2023 · Firstpost</div>
-          <div class="card-desc">
-            Breaking down complex international issues with clarity and context for global audiences.
-          </div>
-          <a href="https://youtu.be/fcsmSRMJsRc" class="card-link" target="_blank">Watch <i class="fas fa-external-link-alt"></i></a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Career Timeline -->
-  <section class="section" id="career">
-    <h2>Career Timeline</h2>
-    <div class="section-lead">A journey through India’s top newsrooms</div>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-title">Doordarshan</div>
-        <span class="timeline-period">2002–2005</span>
-        <div class="timeline-desc">Began her journalism career as a news anchor on India’s national broadcaster, developing foundational skills in broadcast journalism.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-title">CNN-IBN</div>
-        <span class="timeline-period">2005–2015</span>
-        <div class="timeline-desc">Prime-time anchor and political reporter, acclaimed for interviews and analytical coverage of major news events.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-title">WION</div>
-        <span class="timeline-period">2016–2022</span>
-        <div class="timeline-desc">Hosted ‘Gravitas’, gaining international recognition for balanced global news analysis.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-title">Firstpost</div>
-        <span class="timeline-period">2023–Present</span>
-        <div class="timeline-desc">Editor-in-Chief and host of “Vantage with Palki Sharma”, continuing her incisive reporting on world affairs.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Tribute Form -->
-  <section class="section" id="tribute">
-    <h2>Share Your Tribute</h2>
-    <div class="section-lead">How has Palki’s journalism inspired you? Share your thoughts below.</div>
-    <div class="tribute-form-wrapper">
-      <form class="tribute-form" id="tributeForm" action="https://formspree.io/f/mwpbwlbq" method="POST">
-        <label for="name">Your Name</label>
-        <input type="text" id="name" name="name" required>
-        <label for="email">Your Email</label>
-        <input type="email" id="email" name="email" required>
-        <label for="message">Your Tribute</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
-        <button type="submit">Submit <i class="fas fa-paper-plane"></i></button>
-        <div id="formMessage" class="form-message"></div>
-      </form>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-col">
-        <h3>About This Tribute</h3>
-        <p>This is a fan-made, Firstpost-inspired tribute page to Palki Sharma Upadhyay. Not affiliated with Firstpost or any media group.</p>
-      </div>
-      <div class="footer-col">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#work">Work</a></li>
-          <li><a href="#career">Career</a></li>
-          <li><a href="#tribute">Tribute</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h3>Follow Palki</h3>
-        <div class="footer-social">
-          <a href="https://twitter.com/palkisu" target="_blank"><i class="fab fa-twitter"></i></a>
-          <a href="https://www.instagram.com/palkisharmaupadhyay/" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://www.youtube.com/c/WION" target="_blank"><i class="fab fa-youtube"></i></a>
-          <a href="https://www.linkedin.com/in/palki-sharma-upadhyay-1a2b3c4d/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-      </div>
-    </div>
-    <div class="copyright">
-      &copy; <span id="year"></span> Tribute to Palki Sharma Upadhyay.
-    </div>
-  </footer>
-  <script>
-    // Update copyright year
-    document.getElementById('year').textContent = new Date().getFullYear();
-    // Tribute form AJAX
-    const form = document.getElementById('tributeForm');
-    const formMessage = document.getElementById('formMessage');
-    form.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const btn = form.querySelector('button[type="submit"]');
-      btn.disabled = true;
-      btn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
-      try {
-        const resp = await fetch(form.action, {
-          method: 'POST',
-          body: new FormData(form),
-          headers: { 'Accept': 'application/json' }
+    </footer>
+    <script>
+    // Show loading spinner on page load
+    window.addEventListener('DOMContentLoaded', () => {
+        const spinner = document.getElementById('loading-spinner');
+        spinner.classList.add('active');
+        setTimeout(() => {
+            spinner.classList.remove('active');
+        }, 1200);
+    });
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    if (mobileMenuBtn && navLinks) {
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ?
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
         });
-        if (resp.ok) {
-          formMessage.textContent = 'Thank you for your tribute!';
-          formMessage.className = 'form-message success';
-          form.reset();
-        } else throw new Error();
-      } catch {
-        formMessage.textContent = 'There was an error. Please try again later.';
-        formMessage.className = 'form-message error';
-      }
-      btn.disabled = false;
-      btn.innerHTML = 'Submit <i class="fas fa-paper-plane"></i>';
-      setTimeout(() => { formMessage.className = 'form-message'; formMessage.textContent = ''; }, 5000);
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+    }
+    // Smooth scroll for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if (targetId.length > 1) {
+                const section = document.querySelector(targetId);
+                if (section) {
+                    e.preventDefault();
+                    section.scrollIntoView({behavior: 'smooth'});
+                    section.focus({preventScroll: true});
+                }
+            }
+        });
     });
-    // Smooth scroll nav
-    document.querySelectorAll('.nav ul li a').forEach(link => {
-      link.addEventListener('click', function(e){
-        if(this.getAttribute('href').startsWith('#')) {
-          e.preventDefault();
-          document.querySelectorAll('.nav ul li a').forEach(a => a.classList.remove('active'));
-          this.classList.add('active');
-          const target = document.querySelector(this.getAttribute('href'));
-          if(target) window.scrollTo({top: target.offsetTop-58, behavior: 'smooth'});
+    // Sticky navigation on scroll
+    window.addEventListener('scroll', () => {
+        const nav = document.querySelector('.sticky-nav');
+        nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+    // Carousel functionality
+    const carousel = document.querySelector('.carousel');
+    const carouselItems = document.querySelectorAll('.carousel-item');
+    const dots = document.querySelectorAll('.carousel-dot');
+    let currentIndex = 0;
+    function updateCarousel() {
+        const width = carouselItems[0].clientWidth;
+        carousel.style.transform = `translateX(-${currentIndex * width}px)`;
+        dots.forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === currentIndex);
+        });
+    }
+    dots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+            currentIndex = idx;
+            updateCarousel();
+        });
+    });
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % carouselItems.length;
+        updateCarousel();
+    }, 5000);
+    updateCarousel();
+    // Gallery lightbox
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const lightbox = document.querySelector('.lightbox');
+    const lightboxImg = document.querySelector('.lightbox-img');
+    const lightboxClose = document.querySelector('.lightbox-close');
+    galleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const imgSrc = item.querySelector('img').src;
+            const imgAlt = item.querySelector('img').alt;
+            lightboxImg.src = imgSrc;
+            lightboxImg.alt = imgAlt + " (preview)";
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            lightboxClose.focus();
+        });
+    });
+    lightboxClose.addEventListener('click', () => {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    });
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
-      });
     });
-    // Highlight nav on scroll
-    window.addEventListener('scroll', function(){
-      let scrollPos = window.scrollY + 70;
-      document.querySelectorAll('.section, .hero').forEach(sec => {
-        if(scrollPos >= sec.offsetTop && scrollPos < sec.offsetTop + sec.offsetHeight){
-          let id = sec.getAttribute('id');
-          document.querySelectorAll('.nav ul li a').forEach(a => {
-            a.classList.toggle('active', a.getAttribute('href') === '#' + id);
-          });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
-      });
     });
-  </script>
+    // Contact Form
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            contactForm.reset();
+        });
+    }
+    // Dark mode functionality
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            darkModeToggle.innerHTML = document.body.classList.contains('dark-mode')
+                ? '<i class="fas fa-sun"></i>'
+                : '<i class="fas fa-moon"></i>';
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        });
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+    }
+    </script>
 </body>
 </html>
