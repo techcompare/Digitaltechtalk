@@ -1,984 +1,222 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TDS Innovation - Innovative Tools for the Modern Creator</title>
-    <meta name="description" content="High-quality digital products for creators, entrepreneurs, and freelancers. Notion templates, AI prompts, website templates, and productivity tools.">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            200: '#bae6fd',
-                            300: '#7dd3fc',
-                            400: '#38bdf8',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                            800: '#075985',
-                            900: '#0c4a6e',
-                        },
-                        secondary: {
-                            50: '#f5f3ff',
-                            100: '#ede9fe',
-                            200: '#ddd6fe',
-                            300: '#c4b5fd',
-                            400: '#a78bfa',
-                            500: '#8b5cf6',
-                            600: '#7c3aed',
-                            700: '#6d28d9',
-                            800: '#5b21b6',
-                            900: '#4c1d95',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['DM Sans', 'sans-serif'],
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 0.5s ease-in',
-                        'float': 'float 3s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        .nav-transparent {
-            background-color: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-        }
-        .hero-gradient {
-            background: linear-gradient(135deg, rgba(14,165,233,0.1) 0%, rgba(139,92,246,0.1) 100%);
-        }
-        .animate-float {
-            animation: float 3s ease-in-out infinite;
-        }
-        .animate-delay-100 {
-            animation-delay: 0.1s;
-        }
-        .animate-delay-200 {
-            animation-delay: 0.2s;
-        }
-        
-        /* Teleport Effects */
-        @keyframes teleportOut {
-            0% { opacity: 1; transform: scale(1);}
-            50% { opacity: 0.5; transform: scale(0.8) rotate(180deg);}
-            100% { opacity: 0; transform: scale(0.1) rotate(360deg);}
-        }
-        
-        @keyframes teleportIn {
-            0% { opacity: 0; transform: scale(0.1) rotate(-360deg);}
-            50% { opacity: 0.5; transform: scale(0.8) rotate(-180deg);}
-            100% { opacity: 1; transform: scale(1) rotate(0deg);}
-        }
-        
-        @keyframes teleportGlow {
-            0% { box-shadow: 0 0 5px rgba(139, 92, 246, 0.3); }
-            50% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.8), 0 0 30px rgba(14, 165, 233, 0.6); }
-            100% { box-shadow: 0 0 5px rgba(139, 92, 246, 0.3); }
-        }
-        
-        @keyframes teleportPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        .teleport-out {
-            animation: teleportOut 0.6s forwards;
-        }
-        
-        .teleport-in {
-            animation: teleportIn 0.6s forwards;
-        }
-        
-        .teleport-glow {
-            animation: teleportGlow 2s ease-in-out infinite;
-        }
-        
-        .teleport-pulse {
-            animation: teleportPulse 1s ease-in-out infinite;
-        }
-        
-        .product-card {
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .product-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-        
-        .product-card:hover::before {
-            left: 100%;
-        }
-        
-        .teleport-button {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .teleport-button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: all 0.3s ease;
-        }
-        
-        .teleport-button:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-        
-        .teleport-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
-        }
-        
-        .floating-particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-        
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: linear-gradient(45deg, #8b5cf6, #0ea5e9);
-            border-radius: 50%;
-            animation: floatParticle 6s ease-in-out infinite;
-        }
-        
-        @keyframes floatParticle {
-            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
-        }
-        
-        .teleport-modal {
-            animation: teleportIn 0.4s ease-out;
-        }
-        
-        .teleport-modal-out {
-            animation: teleportOut 0.4s ease-in forwards;
-        }
-        
-        .interactive-text {
-            background: linear-gradient(45deg, #0ea5e9, #8b5cf6, #0ea5e9);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 3s ease-in-out infinite;
-        }
-        
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-    </style>
-</head>
-<body class="font-sans antialiased text-gray-800 bg-white">
-    <!-- Floating Particles -->
-    <div class="floating-particles" id="particles"></div>
-    
-    <!-- Navigation -->
-    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <div class="flex items-center">
-                    <h1 class="text-2xl font-display font-bold text-primary-600">TDS Innovation</h1>
-                </div>
-                
-                <!-- Desktop Navigation -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="text-gray-700 hover:text-primary-600 transition-colors">Home</a>
-                    <a href="#products" class="text-gray-700 hover:text-primary-600 transition-colors">Products</a>
-                    <a href="#about" class="text-gray-700 hover:text-primary-600 transition-colors">About</a>
-                    <a href="#contact" class="text-gray-700 hover:text-primary-600 transition-colors">Contact</a>
-                </div>
-                
-                <!-- Cart and Wishlist Icons -->
-                <div class="flex items-center space-x-4">
-                    <button id="wishlistBtn" class="relative p-2 text-gray-700 hover:text-primary-600 transition-colors">
-                        <i class="fas fa-heart text-xl"></i>
-                        <span id="wishlistCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
-                    </button>
-                    <button id="cartBtn" class="relative p-2 text-gray-700 hover:text-primary-600 transition-colors">
-                        <i class="fas fa-shopping-cart text-xl"></i>
-                        <span id="cartCount" class="absolute -top-1 -right-1 bg-primary-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
-                    </button>
-                    <button id="mobileMenuBtn" class="md:hidden p-2 text-gray-700 hover:text-primary-600 transition-colors">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </nav>
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800"
+    />
 
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="md:hidden fixed top-0 left-0 right-0 bg-white shadow-lg transform -translate-y-full transition-transform duration-300 z-40">
-        <div class="px-4 py-6 space-y-4">
-            <a href="#home" class="block text-gray-700 hover:text-primary-600 transition-colors">Home</a>
-            <a href="#products" class="block text-gray-700 hover:text-primary-600 transition-colors">Products</a>
-            <a href="#about" class="block text-gray-700 hover:text-primary-600 transition-colors">About</a>
-            <a href="#contact" class="block text-gray-700 hover:text-primary-600 transition-colors">Contact</a>
+    <title>Stitch Design</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  </head>
+  <body>
+    <div class="relative flex size-full min-h-screen flex-col bg-white group/design-root overflow-x-hidden" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
+      <div class="layout-container flex h-full grow flex-col">
+        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f0f3f5] px-10 py-3">
+          <div class="flex items-center gap-8">
+            <div class="flex items-center gap-4 text-[#111518]">
+              <div class="size-4">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+              </div>
+              <h2 class="text-[#111518] text-lg font-bold leading-tight tracking-[-0.015em]">Explore Pune</h2>
+            </div>
+            <div class="flex items-center gap-9">
+              <a class="text-[#111518] text-sm font-medium leading-normal" href="#">Experiences</a>
+              <a class="text-[#111518] text-sm font-medium leading-normal" href="#">Getaways</a>
+              <a class="text-[#111518] text-sm font-medium leading-normal" href="#">Premium</a>
+            </div>
+          </div>
+          <div class="flex flex-1 justify-end gap-8">
+            <label class="flex flex-col min-w-40 !h-10 max-w-64">
+              <div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+                <div
+                  class="text-[#60798a] flex border-none bg-[#f0f3f5] items-center justify-center pl-4 rounded-l-lg border-r-0"
+                  data-icon="MagnifyingGlass"
+                  data-size="24px"
+                  data-weight="regular"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                    <path
+                      d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
+                    ></path>
+                  </svg>
+                </div>
+                <input
+                  placeholder="Search"
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111518] focus:outline-0 focus:ring-0 border-none bg-[#f0f3f5] focus:border-none h-full placeholder:text-[#60798a] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal"
+                  value=""
+                />
+              </div>
+            </label>
+            <div class="flex gap-2">
+              <button
+                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#0c92f2] text-white text-sm font-bold leading-normal tracking-[0.015em]"
+              >
+                <span class="truncate">Sign up</span>
+              </button>
+              <button
+                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#f0f3f5] text-[#111518] text-sm font-bold leading-normal tracking-[0.015em]"
+              >
+                <span class="truncate">Log in</span>
+              </button>
+            </div>
+          </div>
+        </header>
+        <div class="px-40 flex flex-1 justify-center py-5">
+          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+            <div class="@container">
+              <div class="@[480px]:p-4">
+                <div
+                  class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-lg items-center justify-center p-4"
+                  style='background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuA9t63sWgswOPnjkgKofNGHNIYBUx1vMDRU9SFl7YCbyYXLGtyyHNDmQ_ffMfx9OWLpQYWeSKEPPwemOEsCrpOR9x2sdE9yYIzDfbJakUlIwbiQhyQ77Ry0AMUGctzE0BJGx_JwjAU3Oaz1WW4iRzacEisiuloruuVsBCOAObVz6CiDb52yR4b69EbxE1BOEsJVZcVRKO4UOcPucdLtcyy91r9m2A_ejlLL-A5yJh8kagNMPKtfVxLhd4lC3ZeEv8aHVl1MUSnl6urI");'
+                >
+                  <div class="flex flex-col gap-2 text-center">
+                    <h1
+                      class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]"
+                    >
+                      Discover Pune
+                    </h1>
+                    <h2 class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
+                      Find unique experiences and getaways in and around Pune.
+                    </h2>
+                  </div>
+                  <label class="flex flex-col min-w-40 h-14 w-full max-w-[480px] @[480px]:h-16">
+                    <div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+                      <div
+                        class="text-[#60798a] flex border border-[#dbe1e6] bg-white items-center justify-center pl-[15px] rounded-l-lg border-r-0"
+                        data-icon="MagnifyingGlass"
+                        data-size="20px"
+                        data-weight="regular"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                          <path
+                            d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
+                          ></path>
+                        </svg>
+                      </div>
+                      <input
+                        placeholder="Search for experiences or getaways"
+                        class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111518] focus:outline-0 focus:ring-0 border border-[#dbe1e6] bg-white focus:border-[#dbe1e6] h-full placeholder:text-[#60798a] px-[15px] rounded-r-none border-r-0 pr-2 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal"
+                        value=""
+                      />
+                      <div class="flex items-center justify-center rounded-r-lg border-l-0 border border-[#dbe1e6] bg-white pr-[7px]">
+                        <button
+                          class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#0c92f2] text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]"
+                        >
+                          <span class="truncate">Search</span>
+                        </button>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <h2 class="text-[#111518] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Featured Musical Events</h2>
+            <div class="flex overflow-y-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
+              <div class="flex items-stretch p-4 gap-3">
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex flex-col"
+                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBc0FgBBDHl5XpR62jTRhx3MtfOfTA6Ctakin_H4roVfgoGDDiD6F72kEHQ5arZUKqPQkBYeQCwRN41KUAvYPFSAPLLq27PQ5LGOfwdMluHfl8hGxj2JiWtuHf1xJD9G1oRREMGW2qWMmXL7MYPcZIt2T_M-POrMuC2rOirWNlNXSe90msf--mJACZemX2rTtS7kDZOApYW_12r5mJfUr2CBeGPe4YUjEFyqYKjRtawOJ1HuSP1g4Gm7cjPNsgTjf51hD7YvRrpr5Um");'
+                  ></div>
+                  <div>
+                    <p class="text-[#111518] text-base font-medium leading-normal">Live Music Night</p>
+                    <p class="text-[#60798a] text-sm font-normal leading-normal">Enjoy a night of live music with local artists.</p>
+                  </div>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex flex-col"
+                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAplMHJZpmdqkpOUO9WLOjvMomky2Psb8WDAcUhdSWMnAEPBzhCqBPwfTVBsQFSeoZScOj0nM_4J9-aMxj63_4iEHZSBfEbZNQbfjaJquTSYdxUoLotXfJ2m_6xt-RWZ4o5wVZMotycnz9JkH9hCXdxxW_bDUuuFZ3pwXib0BcARZK3T-dBzrxMqkHIamE8YTmTZwQxYlBaYfQhgRnf_IMDiXYzFGtF9HkZURbabFNM1jNiEJ6orQGeJgo9A5WCsBNlkSlEnhUpIOep");'
+                  ></div>
+                  <div>
+                    <p class="text-[#111518] text-base font-medium leading-normal">Jazz &amp; Blues Evening</p>
+                    <p class="text-[#60798a] text-sm font-normal leading-normal">Experience the soulful sounds of jazz and blues.</p>
+                  </div>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex flex-col"
+                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBKBLAEL8L1cyFPhEfuUiNWit4Y2vfOdCENp7-VlzZYd0PSP2R81yvQPrWjfKwsbL6t_ssGjGl6m7U7RKIBJcm1cr70gjzM6yvJGtOhIqwkYxxTX5OSnFCumPzFO3_U3g9BsIbXlT2xDY-3eTcez3iONMdP6ysr1mv_KQs_v4Dy2a87hx4NeKmX3eRzSlFV7faK5j6-h1LJz9AHxTCsv5dpQ7HzmGo_GL4Qzyvi07GzBnuR1jPhORPIER4-kNMv_CvX3U3D-feaudGM");'
+                  ></div>
+                  <div>
+                    <p class="text-[#111518] text-base font-medium leading-normal">Acoustic Sessions</p>
+                    <p class="text-[#60798a] text-sm font-normal leading-normal">Unwind with an evening of acoustic melodies.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h2 class="text-[#111518] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Plan Your Trip</h2>
+            <div class="p-4 @container">
+              <div class="flex flex-col items-stretch justify-start rounded-lg @xl:flex-row @xl:items-start">
+                <div
+                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBbVdhoF7k5lpCmjru7TwCXWyUlLxGH-b2jBPEHBvNwe2XXiyFmW2keytyetuMBVr9jJE6WU1cYe5aKSey2f6K_o6j3wk-s5p5fPtwyy1bDsIHnSwyInTGXB0sZ7FDTP-XY2m2nPjDlknPWlSzxxP5YQahByxLaRlbHS-kOuDgq0SOP_0miE-dBbsfr-YMLNGf1u2lkvc7e9xF1QT9hdeMtUTWcDwVNGxMO4GnyN753Z315KIHDse7YyD2y2FvEPbV_DU1xr26IUbEm");'
+                ></div>
+                <div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-1 py-4 @xl:px-4">
+                  <p class="text-[#111518] text-lg font-bold leading-tight tracking-[-0.015em]">Weekend Getaway</p>
+                  <div class="flex items-end gap-3 justify-between">
+                    <p class="text-[#60798a] text-base font-normal leading-normal">Plan your perfect weekend getaway from Pune.</p>
+                    <button
+                      class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-8 px-4 bg-[#0c92f2] text-white text-sm font-medium leading-normal"
+                    >
+                      <span class="truncate">Plan Now</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <footer class="flex flex-col gap-6 px-5 py-10 text-center @container">
+              <div class="flex flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-around">
+                <a class="text-[#60798a] text-base font-normal leading-normal min-w-40" href="#">About</a>
+                <a class="text-[#60798a] text-base font-normal leading-normal min-w-40" href="#">Contact</a>
+                <a class="text-[#60798a] text-base font-normal leading-normal min-w-40" href="#">Privacy Policy</a>
+                <a class="text-[#60798a] text-base font-normal leading-normal min-w-40" href="#">Terms of Service</a>
+              </div>
+              <div class="flex flex-wrap justify-center gap-4">
+                <a href="#">
+                  <div class="text-[#60798a]" data-icon="InstagramLogo" data-size="24px" data-weight="regular">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"
+                      ></path>
+                    </svg>
+                  </div>
+                </a>
+                <a href="#">
+                  <div class="text-[#60798a]" data-icon="TwitterLogo" data-size="24px" data-weight="regular">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M247.39,68.94A8,8,0,0,0,240,64H209.57A48.66,48.66,0,0,0,168.1,40a46.91,46.91,0,0,0-33.75,13.7A47.9,47.9,0,0,0,120,88v6.09C79.74,83.47,46.81,50.72,46.46,50.37a8,8,0,0,0-13.65,4.92c-4.31,47.79,9.57,79.77,22,98.18a110.93,110.93,0,0,0,21.88,24.2c-15.23,17.53-39.21,26.74-39.47,26.84a8,8,0,0,0-3.85,11.93c.75,1.12,3.75,5.05,11.08,8.72C53.51,229.7,65.48,232,80,232c70.67,0,129.72-54.42,135.75-124.44l29.91-29.9A8,8,0,0,0,247.39,68.94Zm-45,29.41a8,8,0,0,0-2.32,5.14C196,166.58,143.28,216,80,216c-10.56,0-18-1.4-23.22-3.08,11.51-6.25,27.56-17,37.88-32.48A8,8,0,0,0,92,169.08c-.47-.27-43.91-26.34-44-96,16,13,45.25,33.17,78.67,38.79A8,8,0,0,0,136,104V88a32,32,0,0,1,9.6-22.92A30.94,30.94,0,0,1,167.9,56c12.66.16,24.49,7.88,29.44,19.21A8,8,0,0,0,204.67,80h16Z"
+                      ></path>
+                    </svg>
+                  </div>
+                </a>
+                <a href="#">
+                  <div class="text-[#60798a]" data-icon="FacebookLogo" data-size="24px" data-weight="regular">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,191.63V152h24a8,8,0,0,0,0-16H136V112a16,16,0,0,1,16-16h16a8,8,0,0,0,0-16H152a32,32,0,0,0-32,32v24H96a8,8,0,0,0,0,16h24v63.63a88,88,0,1,1,16,0Z"
+                      ></path>
+                    </svg>
+                  </div>
+                </a>
+              </div>
+              <p class="text-[#60798a] text-base font-normal leading-normal">@2024 Explore Pune. All rights reserved.</p>
+            </footer>
+          </div>
         </div>
+      </div>
     </div>
+  </body>
+</html>
 
-    <!-- Hero Section -->
-    <section id="home" class="pt-20 pb-16 hero-gradient">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <h1 class="text-4xl md:text-6xl font-display font-bold text-gray-900 mb-6 animate-float">
-                    Innovative Tools for the 
-                    <span class="interactive-text">Modern Creator</span>
-                </h1>
-                <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto animate-float animate-delay-100">
-                    High-quality digital products designed to boost your productivity and creativity. 
-                    From Notion templates to AI prompts, we've got everything you need to succeed.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center animate-float animate-delay-200">
-                    <a href="#products" class="teleport-button bg-primary-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors">
-                        Explore Products
-                    </a>
-                    <a href="#about" class="teleport-button border-2 border-primary-600 text-primary-600 px-8 py-3 rounded-lg font-semibold hover:bg-primary-600 hover:text-white transition-colors">
-                        Learn More
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Products Section -->
-    <section id="products" class="py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">Our Products</h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Discover our collection of premium digital products designed to enhance your workflow
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Product 1 -->
-                <div class="product-card bg-white rounded-xl shadow-lg p-6 transition-all duration-300">
-                    <div class="w-full h-48 bg-gradient-to-br from-primary-100 to-secondary-100 rounded-lg mb-4 flex items-center justify-center">
-                        <i class="fas fa-file-alt text-4xl text-primary-600"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Notion Productivity Template</h3>
-                    <p class="text-gray-600 mb-4">Complete project management system with task tracking, goal setting, and habit tracking.</p>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="text-2xl font-bold text-primary-600">$29</span>
-                        <div class="flex items-center space-x-1">
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <span class="text-gray-600">4.8 (127)</span>
-                        </div>
-                    </div>
-                    <div class="flex space-x-2">
-                        <button onclick="addToCart('notion-template', 'Notion Productivity Template', 29)" class="teleport-button flex-1 bg-primary-600 text-white py-2 px-4 rounded-lg hover:bg-primary-700 transition-colors">
-                            Add to Cart
-                        </button>
-                        <button onclick="toggleWishlist('notion-template')" class="teleport-button p-2 text-gray-400 hover:text-red-500 transition-colors">
-                            <i class="fas fa-heart"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Product 2 -->
-                <div class="product-card bg-white rounded-xl shadow-lg p-6 transition-all duration-300">
-                    <div class="w-full h-48 bg-gradient-to-br from-secondary-100 to-primary-100 rounded-lg mb-4 flex items-center justify-center">
-                        <i class="fas fa-robot text-4xl text-secondary-600"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">AI Prompt Collection</h3>
-                    <p class="text-gray-600 mb-4">500+ carefully crafted prompts for ChatGPT, Midjourney, and other AI tools.</p>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="text-2xl font-bold text-primary-600">$19</span>
-                        <div class="flex items-center space-x-1">
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <span class="text-gray-600">4.9 (89)</span>
-                        </div>
-                    </div>
-                    <div class="flex space-x-2">
-                        <button onclick="addToCart('ai-prompts', 'AI Prompt Collection', 19)" class="teleport-button flex-1 bg-primary-600 text-white py-2 px-4 rounded-lg hover:bg-primary-700 transition-colors">
-                            Add to Cart
-                        </button>
-                        <button onclick="toggleWishlist('ai-prompts')" class="teleport-button p-2 text-gray-400 hover:text-red-500 transition-colors">
-                            <i class="fas fa-heart"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Product 3 -->
-                <div class="product-card bg-white rounded-xl shadow-lg p-6 transition-all duration-300">
-                    <div class="w-full h-48 bg-gradient-to-br from-green-100 to-blue-100 rounded-lg mb-4 flex items-center justify-center">
-                        <i class="fas fa-code text-4xl text-green-600"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Website Template Bundle</h3>
-                    <p class="text-gray-600 mb-4">5 responsive website templates for portfolios, businesses, and landing pages.</p>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="text-2xl font-bold text-primary-600">$49</span>
-                        <div class="flex items-center space-x-1">
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <span class="text-gray-600">4.7 (156)</span>
-                        </div>
-                    </div>
-                    <div class="flex space-x-2">
-                        <button onclick="addToCart('website-templates', 'Website Template Bundle', 49)" class="teleport-button flex-1 bg-primary-600 text-white py-2 px-4 rounded-lg hover:bg-primary-700 transition-colors">
-                            Add to Cart
-                        </button>
-                        <button onclick="toggleWishlist('website-templates')" class="teleport-button p-2 text-gray-400 hover:text-red-500 transition-colors">
-                            <i class="fas fa-heart"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h2 class="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-6">About TDS Innovation</h2>
-                    <p class="text-lg text-gray-600 mb-6">
-                        We're passionate about creating digital tools that help creators, entrepreneurs, and freelancers 
-                        work smarter, not harder. Our products are designed with real-world use cases in mind.
-                    </p>
-                    <div class="space-y-4">
-                        <div class="flex items-center space-x-3">
-                            <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                            <span class="text-gray-700">Premium quality digital products</span>
-                        </div>
-                        <div class="flex items-center space-x-3">
-                            <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                            <span class="text-gray-700">Instant digital delivery</span>
-                        </div>
-                        <div class="flex items-center space-x-3">
-                            <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                            <span class="text-gray-700">Lifetime updates and support</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-gradient-to-br from-primary-100 to-secondary-100 rounded-2xl p-8">
-                    <div class="text-center">
-                        <i class="fas fa-rocket text-6xl text-primary-600 mb-4"></i>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Join 10,000+ Creators</h3>
-                        <p class="text-gray-600">Start your journey to better productivity today</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-gray-50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-6">Get in Touch</h2>
-            <p class="text-lg text-gray-600 mb-8">
-                Have questions about our products? We'd love to hear from you.
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="text-center">
-                    <i class="fas fa-envelope text-3xl text-primary-600 mb-4"></i>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Email</h3>
-                    <p class="text-gray-600">hello@tdsinnovation.com</p>
-                </div>
-                <div class="text-center">
-                    <i class="fas fa-clock text-3xl text-primary-600 mb-4"></i>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Response Time</h3>
-                    <p class="text-gray-600">Within 24 hours</p>
-                </div>
-                <div class="text-center">
-                    <i class="fas fa-headset text-3xl text-primary-600 mb-4"></i>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Support</h3>
-                    <p class="text-gray-600">24/7 Customer Care</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-xl font-display font-bold mb-4">TDS Innovation</h3>
-                    <p class="text-gray-400">Empowering creators with innovative digital tools.</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Products</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-colors">Notion Templates</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">AI Prompts</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Website Templates</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Support</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">FAQ</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Follow Us</h4>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fab fa-twitter text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fab fa-instagram text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fab fa-linkedin text-xl"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 TDS Innovation. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Cart Modal -->
-    <div id="cartModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
-        <div class="flex items-center justify-center min-h-screen p-4">
-            <div class="bg-white rounded-lg max-w-md w-full max-h-96 overflow-y-auto teleport-modal">
-                <div class="p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-xl font-semibold">Shopping Cart</h3>
-                        <button onclick="closeCart()" class="text-gray-500 hover:text-gray-700">
-                            <i class="fas fa-times text-xl"></i>
-                        </button>
-                    </div>
-                    <div id="cartItems" class="space-y-4 mb-4">
-                        <!-- Cart items will be populated here -->
-                    </div>
-                    <div class="border-t pt-4">
-                        <div class="flex justify-between items-center mb-4">
-                            <span class="font-semibold">Total:</span>
-                            <span id="cartTotal" class="font-bold text-primary-600">$0</span>
-                        </div>
-                        <button onclick="checkout()" class="w-full bg-primary-600 text-white py-2 px-4 rounded-lg hover:bg-primary-700 transition-colors">
-                            Checkout
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Wishlist Modal -->
-    <div id="wishlistModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
-        <div class="flex items-center justify-center min-h-screen p-4">
-            <div class="bg-white rounded-lg max-w-md w-full max-h-96 overflow-y-auto teleport-modal">
-                <div class="p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-xl font-semibold">Wishlist</h3>
-                        <button onclick="closeWishlist()" class="text-gray-500 hover:text-gray-700">
-                            <i class="fas fa-times text-xl"></i>
-                        </button>
-                    </div>
-                    <div id="wishlistItems" class="space-y-4">
-                        <!-- Wishlist items will be populated here -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- JavaScript -->
-    <script>
-        // Global variables
-        let cart = [];
-        let wishlist = [];
-        let cartTotal = 0;
-
-        // Navigation scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('nav-transparent');
-            } else {
-                navbar.classList.remove('nav-transparent');
-            }
-        });
-
-        // Mobile menu toggle
-        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('-translate-y-full');
-        });
-
-        // Close mobile menu when clicking on links
-        document.querySelectorAll('#mobileMenu a').forEach(link => {
-            link.addEventListener('click', function() {
-                const mobileMenu = document.getElementById('mobileMenu');
-                mobileMenu.classList.add('-translate-y-full');
-            });
-        });
-
-        // Cart functionality
-        function addToCart(id, name, price) {
-            const existingItem = cart.find(item => item.id === id);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({ id, name, price, quantity: 1 });
-            }
-            cartTotal += price;
-            updateCartDisplay();
-            showNotification('Item added to cart!');
-        }
-
-        function updateCartDisplay() {
-            const cartCount = document.getElementById('cartCount');
-            const cartItems = document.getElementById('cartItems');
-            const cartTotalElement = document.getElementById('cartTotal');
-            
-            // Update cart count
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            cartCount.textContent = totalItems;
-            
-            // Update cart items display
-            cartItems.innerHTML = '';
-            cart.forEach(item => {
-                const itemElement = document.createElement('div');
-                itemElement.className = 'flex justify-between items-center';
-                itemElement.innerHTML = `
-                    <div>
-                        <h4 class="font-semibold">${item.name}</h4>
-                        <p class="text-gray-600">$${item.price} x ${item.quantity}</p>
-                    </div>
-                    <button onclick="removeFromCart('${item.id}')" class="text-red-500 hover:text-red-700">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                `;
-                cartItems.appendChild(itemElement);
-            });
-            
-            // Update total
-            cartTotalElement.textContent = `$${cartTotal}`;
-        }
-
-        function removeFromCart(id) {
-            const itemIndex = cart.findIndex(item => item.id === id);
-            if (itemIndex > -1) {
-                const item = cart[itemIndex];
-                cartTotal -= item.price * item.quantity;
-                cart.splice(itemIndex, 1);
-                updateCartDisplay();
-                showNotification('Item removed from cart!');
-            }
-        }
-
-        function openCart() {
-            document.getElementById('cartModal').classList.remove('hidden');
-        }
-
-        function closeCart() {
-            document.getElementById('cartModal').classList.add('hidden');
-        }
-
-        // Wishlist functionality
-        function toggleWishlist(id) {
-            const itemIndex = wishlist.indexOf(id);
-            if (itemIndex > -1) {
-                wishlist.splice(itemIndex, 1);
-                showNotification('Removed from wishlist!');
-            } else {
-                wishlist.push(id);
-                showNotification('Added to wishlist!');
-            }
-            updateWishlistDisplay();
-        }
-
-
-
-        // Event listeners
-        const cartBtn = document.getElementById('cartBtn');
-        const wishlistBtn = document.getElementById('wishlistBtn');
-        const cartModal = document.getElementById('cartModal');
-        const wishlistModal = document.getElementById('wishlistModal');
-
-        if (cartBtn) {
-            cartBtn.addEventListener('click', openCart);
-        }
-        if (wishlistBtn) {
-            wishlistBtn.addEventListener('click', openWishlist);
-        }
-
-        // Close modals when clicking outside
-        if (cartModal) {
-            cartModal.addEventListener('click', function(e) {
-                if (e.target === this) {
-                    closeCart();
-                }
-            });
-        }
-
-        if (wishlistModal) {
-            wishlistModal.addEventListener('click', function(e) {
-                if (e.target === this) {
-                    closeWishlist();
-                }
-            });
-        }
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-
-
-        // Particle system
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            if (!particlesContainer) return;
-            
-            const particleCount = 20;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        // Teleport effects for buttons
-        function addTeleportEffect(element) {
-            element.addEventListener('click', function(e) {
-                const ripple = document.createElement('div');
-                ripple.style.position = 'absolute';
-                ripple.style.borderRadius = '50%';
-                ripple.style.background = 'radial-gradient(circle, rgba(139, 92, 246, 0.6) 0%, transparent 70%)';
-                ripple.style.transform = 'translate(-50%, -50%)';
-                ripple.style.pointerEvents = 'none';
-                ripple.style.zIndex = '1000';
-                
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                ripple.style.width = size + 'px';
-                ripple.style.height = size + 'px';
-                ripple.style.left = (e.clientX - rect.left) + 'px';
-                ripple.style.top = (e.clientY - rect.top) + 'px';
-                
-                this.style.position = 'relative';
-                this.appendChild(ripple);
-                
-                setTimeout(() => {
-                    ripple.style.transform = 'translate(-50%, -50%) scale(2)';
-                    ripple.style.opacity = '0';
-                    ripple.style.transition = 'all 0.6s ease-out';
-                }, 10);
-                
-                setTimeout(() => {
-                    if (ripple.parentNode) {
-                        ripple.parentNode.removeChild(ripple);
-                    }
-                }, 600);
-            });
-        }
-
-        // Add teleport effects to all buttons
-        function initializeTeleportEffects() {
-            const buttons = document.querySelectorAll('.teleport-button');
-            buttons.forEach(button => {
-                if (button) {
-                    addTeleportEffect(button);
-                }
-            });
-        }
-
-        // Enhanced notification with teleport effect
-        function showNotification(message) {
-            const notification = document.createElement('div');
-            notification.className = 'fixed top-4 right-4 bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 teleport-in';
-            notification.textContent = message;
-            notification.style.transform = 'scale(0.1) rotate(-360deg)';
-            notification.style.opacity = '0';
-            document.body.appendChild(notification);
-            
-            // Trigger teleport in animation
-            setTimeout(() => {
-                notification.style.transform = 'scale(1) rotate(0deg)';
-                notification.style.opacity = '1';
-                notification.style.transition = 'all 0.6s ease-out';
-            }, 10);
-            
-            setTimeout(() => {
-                notification.classList.add('teleport-out');
-                setTimeout(() => {
-                    if (notification.parentNode) {
-                        document.body.removeChild(notification);
-                    }
-                }, 600);
-            }, 2000);
-        }
-
-        // Enhanced modal functions with teleport effects
-        function openCart() {
-            const modal = document.getElementById('cartModal');
-            if (!modal) return;
-            
-            modal.classList.remove('hidden');
-            const modalContent = modal.querySelector('.teleport-modal');
-            if (modalContent) {
-                modalContent.style.transform = 'scale(0.1) rotate(-360deg)';
-                modalContent.style.opacity = '0';
-                
-                setTimeout(() => {
-                    modalContent.style.transform = 'scale(1) rotate(0deg)';
-                    modalContent.style.opacity = '1';
-                    modalContent.style.transition = 'all 0.4s ease-out';
-                }, 10);
-            }
-        }
-
-        function closeCart() {
-            const modal = document.getElementById('cartModal');
-            if (!modal) return;
-            
-            const modalContent = modal.querySelector('.teleport-modal');
-            if (modalContent) {
-                modalContent.classList.add('teleport-modal-out');
-                
-                setTimeout(() => {
-                    modal.classList.add('hidden');
-                    modalContent.classList.remove('teleport-modal-out');
-                }, 400);
-            }
-        }
-
-        function openWishlist() {
-            const modal = document.getElementById('wishlistModal');
-            if (!modal) return;
-            
-            modal.classList.remove('hidden');
-            const modalContent = modal.querySelector('.teleport-modal');
-            if (modalContent) {
-                modalContent.style.transform = 'scale(0.1) rotate(-360deg)';
-                modalContent.style.opacity = '0';
-                
-                setTimeout(() => {
-                    modalContent.style.transform = 'scale(1) rotate(0deg)';
-                    modalContent.style.opacity = '1';
-                    modalContent.style.transition = 'all 0.4s ease-out';
-                }, 10);
-            }
-            
-            const wishlistItems = document.getElementById('wishlistItems');
-            if (wishlistItems) {
-                wishlistItems.innerHTML = '';
-                if (wishlist.length === 0) {
-                    wishlistItems.innerHTML = '<p class="text-gray-500 text-center">Your wishlist is empty</p>';
-                } else {
-                    wishlist.forEach(id => {
-                        const itemElement = document.createElement('div');
-                        itemElement.className = 'flex justify-between items-center p-3 bg-gray-50 rounded teleport-in';
-                        itemElement.innerHTML = `
-                            <span class="font-semibold">Product ${id}</span>
-                            <button onclick="removeFromWishlist('${id}')" class="text-red-500 hover:text-red-700 teleport-button">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        `;
-                        wishlistItems.appendChild(itemElement);
-                    });
-                }
-            }
-        }
-
-        function closeWishlist() {
-            const modal = document.getElementById('wishlistModal');
-            if (!modal) return;
-            
-            const modalContent = modal.querySelector('.teleport-modal');
-            if (modalContent) {
-                modalContent.classList.add('teleport-modal-out');
-                
-                setTimeout(() => {
-                    modal.classList.add('hidden');
-                    modalContent.classList.remove('teleport-modal-out');
-                }, 400);
-            }
-        }
-
-        // Cart functionality
-        function addToCart(id, name, price) {
-            const existingItem = cart.find(item => item.id === id);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({ id, name, price, quantity: 1 });
-            }
-            cartTotal += price;
-            updateCartDisplay();
-            showNotification('Item added to cart!');
-        }
-
-        function removeFromCart(id) {
-            const itemIndex = cart.findIndex(item => item.id === id);
-            if (itemIndex > -1) {
-                const item = cart[itemIndex];
-                cartTotal -= item.price * item.quantity;
-                cart.splice(itemIndex, 1);
-                updateCartDisplay();
-                showNotification('Item removed from cart!');
-            }
-        }
-
-        function updateCartDisplay() {
-            const cartCount = document.getElementById('cartCount');
-            const cartItems = document.getElementById('cartItems');
-            const cartTotalElement = document.getElementById('cartTotal');
-            
-            // Update cart count
-            if (cartCount) {
-                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-                cartCount.textContent = totalItems;
-            }
-            
-            // Update cart items display
-            if (cartItems) {
-                cartItems.innerHTML = '';
-                cart.forEach(item => {
-                    const itemElement = document.createElement('div');
-                    itemElement.className = 'flex justify-between items-center';
-                    itemElement.innerHTML = `
-                        <div>
-                            <h4 class="font-semibold">${item.name}</h4>
-                            <p class="text-gray-600">$${item.price} x ${item.quantity}</p>
-                        </div>
-                        <button onclick="removeFromCart('${item.id}')" class="text-red-500 hover:text-red-700 teleport-button">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    `;
-                    cartItems.appendChild(itemElement);
-                });
-            }
-            
-            // Update total
-            if (cartTotalElement) {
-                cartTotalElement.textContent = `$${cartTotal}`;
-            }
-        }
-
-        // Wishlist functionality
-        function toggleWishlist(id) {
-            const itemIndex = wishlist.indexOf(id);
-            if (itemIndex > -1) {
-                wishlist.splice(itemIndex, 1);
-                showNotification('Removed from wishlist!');
-            } else {
-                wishlist.push(id);
-                showNotification('Added to wishlist!');
-            }
-            updateWishlistDisplay();
-        }
-
-        function removeFromWishlist(id) {
-            const itemIndex = wishlist.indexOf(id);
-            if (itemIndex > -1) {
-                wishlist.splice(itemIndex, 1);
-                updateWishlistDisplay();
-                openWishlist(); // Refresh the modal
-            }
-        }
-
-        function updateWishlistDisplay() {
-            const wishlistCount = document.getElementById('wishlistCount');
-            if (wishlistCount) {
-                wishlistCount.textContent = wishlist.length;
-            }
-        }
-
-        // Checkout function
-        function checkout() {
-            if (cart.length === 0) {
-                showNotification('Your cart is empty!');
-                return;
-            }
-            showNotification('Redirecting to checkout...');
-            // Here you would typically redirect to a payment processor
-            setTimeout(() => {
-                closeCart();
-                cart = [];
-                cartTotal = 0;
-                updateCartDisplay();
-            }, 2000);
-        }
-
-        // Initialize
-        updateCartDisplay();
-        updateWishlistDisplay();
-        createParticles();
-        initializeTeleportEffects();
-    </script>
-</body>
-</html> 
