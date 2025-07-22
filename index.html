@@ -1,222 +1,827 @@
-<html>
-  <head>
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
-    <link
-      rel="stylesheet"
-      as="style"
-      onload="this.rel='stylesheet'"
-      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800"
-    />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2563eb">
+  <title>Pune Explorer | Official Tourism Portal of Pune</title>
+  <meta name="description" content="Discover Pune's rich heritage, vibrant culture, and modern attractions. Your official guide to tourism in Pune, Maharashtra.">
+  <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Pune_City_Logo.svg/1200px-Pune_City_Logo.svg.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Montserrat', sans-serif; }
+    .heading-font { font-family: 'Playfair Display', serif; }
+    .nav-link { position: relative; }
+    .nav-link:after { 
+      content: ''; 
+      position: absolute; 
+      width: 0; 
+      height: 2px; 
+      bottom: -2px; 
+      left: 0; 
+      background: #2563eb; 
+      transition: width 0.3s ease; 
+    }
+    .nav-link:hover:after { width: 100%; }
+    .card-hover { transition: all 0.3s ease; }
+    .card-hover:hover { 
+      transform: translateY(-5px); 
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+    }
+    .modal-bg { background: rgba(0,0,0,0.7); }
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .section-padding { padding: 5rem 0; }
+    .hero-gradient { 
+      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <!-- Navigation -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Pune_City_Logo.svg/1200px-Pune_City_Logo.svg.png" 
+             alt="Pune City Logo" 
+             class="h-12 mr-3"
+             loading="lazy">
+        <span class="text-2xl font-bold text-blue-800 heading-font">Pune Explorer</span>
+      </div>
+      <div class="hidden lg:flex items-center space-x-8">
+        <a href="#home" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Home</a>
+        <a href="#experiences" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Experiences</a>
+        <a href="#destinations" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Destinations</a>
+        <a href="#culture" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Culture</a>
+        <a href="#events" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Events</a>
+        <a href="#gallery" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Gallery</a>
+        <a href="#contact" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Contact</a>
+        <button id="translateBtn" class="bg-gray-100 text-blue-700 px-4 py-2 rounded-lg hover:bg-blue-50 transition font-medium">मराठी</button>
+        <button id="bookBtn" class="bg-blue-700 text-white px-5 py-2.5 rounded-lg hover:bg-blue-800 transition font-medium shadow-md">Plan Your Visit</button>
+      </div>
+      <button id="mobileMenuBtn" class="lg:hidden text-gray-700 focus:outline-none">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="lg:hidden fixed top-0 left-0 right-0 bg-white shadow-xl transform -translate-y-full transition-transform duration-300 z-40">
+      <div class="px-6 py-8 space-y-6 flex flex-col">
+        <div class="flex justify-between items-center mb-4">
+          <div class="flex items-center">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Pune_City_Logo.svg/1200px-Pune_City_Logo.svg.png" 
+                 alt="Pune City Logo" 
+                 class="h-10 mr-3"
+                 loading="lazy">
+            <span class="text-xl font-bold text-blue-800 heading-font">Pune Explorer</span>
+          </div>
+          <button id="closeMobileMenu" class="text-gray-500 hover:text-gray-700">
+            <i class="fas fa-times text-2xl"></i>
+          </button>
+        </div>
+        <a href="#home" class="nav-link text-gray-700 hover:text-blue-600 font-medium py-2 border-b border-gray-100">Home</a>
+        <a href="#experiences" class="nav-link text-gray-700 hover:text-blue-600 font-medium py-2 border-b border-gray-100">Experiences</a>
+        <a href="#destinations" class="nav-link text-gray-700 hover:text-blue-600 font-medium py-2 border-b border-gray-100">Destinations</a>
+        <a href="#culture" class="nav-link text-gray-700 hover:text-blue-600 font-medium py-2 border-b border-gray-100">Culture</a>
+        <a href="#events" class="nav-link text-gray-700 hover:text-blue-600 font-medium py-2 border-b border-gray-100">Events</a>
+        <a href="#gallery" class="nav-link text-gray-700 hover:text-blue-600 font-medium py-2 border-b border-gray-100">Gallery</a>
+        <a href="#contact" class="nav-link text-gray-700 hover:text-blue-600 font-medium py-2">Contact</a>
+        <div class="pt-4 flex space-x-4">
+          <button id="translateBtnMobile" class="flex-1 bg-gray-100 text-blue-700 px-4 py-2 rounded-lg hover:bg-blue-50 transition font-medium">मराठी</button>
+          <button id="bookBtnMobile" class="flex-1 bg-blue-700 text-white px-4 py-2 rounded-lg hover:bg-blue-800 transition font-medium shadow-md">Plan Visit</button>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-    <title>Stitch Design</title>
-    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+  <!-- Hero Section -->
+  <section id="home" class="hero-gradient text-white py-24 md:py-32 relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-6 text-center relative z-10">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 heading-font">Discover Pune's Rich Heritage</h1>
+      <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto leading-relaxed">
+        Experience the perfect blend of historical grandeur and modern vibrancy in Maharashtra's cultural capital
+      </p>
+      <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-xl overflow-hidden mb-8">
+        <div class="flex">
+          <input id="searchInput" 
+                 type="text" 
+                 placeholder="Search experiences, places, events..." 
+                 class="w-full px-6 py-4 text-gray-700 focus:outline-none placeholder-gray-400">
+          <button class="bg-blue-700 text-white px-8 hover:bg-blue-800 transition">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+      <!-- Weather Widget -->
+      <div id="weatherWidget" class="mx-auto mt-6 mb-4 inline-flex items-center bg-white bg-opacity-90 rounded-full px-6 py-2 shadow text-blue-800 font-semibold text-lg">
+        <span id="weatherLoading" class="flex items-center">
+          <i class="fas fa-spinner fa-spin mr-2"></i> Loading weather...
+        </span>
+        <span id="weatherData" class="hidden items-center">
+          <i class="fas fa-map-marker-alt mr-1"></i> Pune: 
+          <i class="fas fa-cloud-sun mx-2"></i> 
+          <span id="weatherTemp"></span>°C, <span id="weatherDesc" class="ml-1"></span>
+        </span>
+      </div>
+      <div class="flex flex-wrap justify-center gap-3 mt-6">
+        <span class="bg-white bg-opacity-20 px-5 py-2 rounded-full text-base font-medium border border-white border-opacity-30">Heritage Walks</span>
+        <span class="bg-white bg-opacity-20 px-5 py-2 rounded-full text-base font-medium border border-white border-opacity-30">Cultural Events</span>
+        <span class="bg-white bg-opacity-20 px-5 py-2 rounded-full text-base font-medium border border-white border-opacity-30">Adventure Sports</span>
+        <span class="bg-white bg-opacity-20 px-5 py-2 rounded-full text-base font-medium border border-white border-opacity-30">Local Cuisine</span>
+      </div>
+    </div>
+    <div class="absolute inset-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1582972236019-ea9e5d828c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')] bg-cover bg-center"></div>
+  </section>
 
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  </head>
-  <body>
-    <div class="relative flex size-full min-h-screen flex-col bg-white group/design-root overflow-x-hidden" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
-      <div class="layout-container flex h-full grow flex-col">
-        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f0f3f5] px-10 py-3">
-          <div class="flex items-center gap-8">
-            <div class="flex items-center gap-4 text-[#111518]">
-              <div class="size-4">
-                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z"
-                    fill="currentColor"
-                  ></path>
-                </svg>
-              </div>
-              <h2 class="text-[#111518] text-lg font-bold leading-tight tracking-[-0.015em]">Explore Pune</h2>
-            </div>
-            <div class="flex items-center gap-9">
-              <a class="text-[#111518] text-sm font-medium leading-normal" href="#">Experiences</a>
-              <a class="text-[#111518] text-sm font-medium leading-normal" href="#">Getaways</a>
-              <a class="text-[#111518] text-sm font-medium leading-normal" href="#">Premium</a>
+  <!-- Experiences Section -->
+  <section id="experiences" class="section-padding bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 heading-font">Curated Pune Experiences</h2>
+        <p class="text-gray-600 max-w-3xl mx-auto text-lg">
+          Immerse yourself in authentic experiences that showcase Pune's unique character
+        </p>
+      </div>
+      <div id="experiencesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Experience Card 1 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover cursor-pointer border border-gray-100" data-title="Heritage Walk">
+          <div class="relative h-64 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1582972236019-ea9e5d828c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                 alt="Shaniwar Wada - Pune's historic fort" 
+                 class="w-full h-full object-cover rounded-t-xl transition duration-500 hover:scale-105"
+                 loading="lazy">
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+              <span class="text-white text-sm font-medium bg-blue-700 px-3 py-1 rounded-full">Heritage</span>
             </div>
           </div>
-          <div class="flex flex-1 justify-end gap-8">
-            <label class="flex flex-col min-w-40 !h-10 max-w-64">
-              <div class="flex w-full flex-1 items-stretch rounded-lg h-full">
-                <div
-                  class="text-[#60798a] flex border-none bg-[#f0f3f5] items-center justify-center pl-4 rounded-l-lg border-r-0"
-                  data-icon="MagnifyingGlass"
-                  data-size="24px"
-                  data-weight="regular"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                    <path
-                      d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
-                    ></path>
-                  </svg>
-                </div>
-                <input
-                  placeholder="Search"
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111518] focus:outline-0 focus:ring-0 border-none bg-[#f0f3f5] focus:border-none h-full placeholder:text-[#60798a] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal"
-                  value=""
-                />
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Historic Pune Walk</h3>
+            <p class="text-gray-600 mb-4">Explore Pune's royal past through its magnificent forts and palaces with expert guides.</p>
+            <div class="flex justify-between items-center">
+              <div>
+                <span class="text-blue-700 font-bold text-lg">₹500/person</span>
+                <span class="text-gray-500 text-sm ml-2">(3 hours)</span>
               </div>
-            </label>
-            <div class="flex gap-2">
-              <button
-                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#0c92f2] text-white text-sm font-bold leading-normal tracking-[0.015em]"
-              >
-                <span class="truncate">Sign up</span>
-              </button>
-              <button
-                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#f0f3f5] text-[#111518] text-sm font-bold leading-normal tracking-[0.015em]"
-              >
-                <span class="truncate">Log in</span>
+              <button class="text-blue-700 hover:text-blue-900 font-medium flex items-center">
+                Explore <i class="fas fa-chevron-right ml-1 text-sm"></i>
               </button>
             </div>
           </div>
-        </header>
-        <div class="px-40 flex flex-1 justify-center py-5">
-          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
-            <div class="@container">
-              <div class="@[480px]:p-4">
-                <div
-                  class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-lg items-center justify-center p-4"
-                  style='background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuA9t63sWgswOPnjkgKofNGHNIYBUx1vMDRU9SFl7YCbyYXLGtyyHNDmQ_ffMfx9OWLpQYWeSKEPPwemOEsCrpOR9x2sdE9yYIzDfbJakUlIwbiQhyQ77Ry0AMUGctzE0BJGx_JwjAU3Oaz1WW4iRzacEisiuloruuVsBCOAObVz6CiDb52yR4b69EbxE1BOEsJVZcVRKO4UOcPucdLtcyy91r9m2A_ejlLL-A5yJh8kagNMPKtfVxLhd4lC3ZeEv8aHVl1MUSnl6urI");'
-                >
-                  <div class="flex flex-col gap-2 text-center">
-                    <h1
-                      class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]"
-                    >
-                      Discover Pune
-                    </h1>
-                    <h2 class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
-                      Find unique experiences and getaways in and around Pune.
-                    </h2>
-                  </div>
-                  <label class="flex flex-col min-w-40 h-14 w-full max-w-[480px] @[480px]:h-16">
-                    <div class="flex w-full flex-1 items-stretch rounded-lg h-full">
-                      <div
-                        class="text-[#60798a] flex border border-[#dbe1e6] bg-white items-center justify-center pl-[15px] rounded-l-lg border-r-0"
-                        data-icon="MagnifyingGlass"
-                        data-size="20px"
-                        data-weight="regular"
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
-                          <path
-                            d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
-                          ></path>
-                        </svg>
-                      </div>
-                      <input
-                        placeholder="Search for experiences or getaways"
-                        class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111518] focus:outline-0 focus:ring-0 border border-[#dbe1e6] bg-white focus:border-[#dbe1e6] h-full placeholder:text-[#60798a] px-[15px] rounded-r-none border-r-0 pr-2 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal"
-                        value=""
-                      />
-                      <div class="flex items-center justify-center rounded-r-lg border-l-0 border border-[#dbe1e6] bg-white pr-[7px]">
-                        <button
-                          class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#0c92f2] text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]"
-                        >
-                          <span class="truncate">Search</span>
-                        </button>
-                      </div>
-                    </div>
-                  </label>
-                </div>
-              </div>
+        </div>
+        
+        <!-- Experience Card 2 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover cursor-pointer border border-gray-100" data-title="Food Tour">
+          <div class="relative h-64 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                 alt="Pune Food - Local cuisine and eateries" 
+                 class="w-full h-full object-cover rounded-t-xl transition duration-500 hover:scale-105"
+                 loading="lazy">
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+              <span class="text-white text-sm font-medium bg-orange-600 px-3 py-1 rounded-full">Food</span>
             </div>
-            <h2 class="text-[#111518] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Featured Musical Events</h2>
-            <div class="flex overflow-y-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
-              <div class="flex items-stretch p-4 gap-3">
-                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
-                  <div
-                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex flex-col"
-                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBc0FgBBDHl5XpR62jTRhx3MtfOfTA6Ctakin_H4roVfgoGDDiD6F72kEHQ5arZUKqPQkBYeQCwRN41KUAvYPFSAPLLq27PQ5LGOfwdMluHfl8hGxj2JiWtuHf1xJD9G1oRREMGW2qWMmXL7MYPcZIt2T_M-POrMuC2rOirWNlNXSe90msf--mJACZemX2rTtS7kDZOApYW_12r5mJfUr2CBeGPe4YUjEFyqYKjRtawOJ1HuSP1g4Gm7cjPNsgTjf51hD7YvRrpr5Um");'
-                  ></div>
-                  <div>
-                    <p class="text-[#111518] text-base font-medium leading-normal">Live Music Night</p>
-                    <p class="text-[#60798a] text-sm font-normal leading-normal">Enjoy a night of live music with local artists.</p>
-                  </div>
-                </div>
-                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
-                  <div
-                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex flex-col"
-                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAplMHJZpmdqkpOUO9WLOjvMomky2Psb8WDAcUhdSWMnAEPBzhCqBPwfTVBsQFSeoZScOj0nM_4J9-aMxj63_4iEHZSBfEbZNQbfjaJquTSYdxUoLotXfJ2m_6xt-RWZ4o5wVZMotycnz9JkH9hCXdxxW_bDUuuFZ3pwXib0BcARZK3T-dBzrxMqkHIamE8YTmTZwQxYlBaYfQhgRnf_IMDiXYzFGtF9HkZURbabFNM1jNiEJ6orQGeJgo9A5WCsBNlkSlEnhUpIOep");'
-                  ></div>
-                  <div>
-                    <p class="text-[#111518] text-base font-medium leading-normal">Jazz &amp; Blues Evening</p>
-                    <p class="text-[#60798a] text-sm font-normal leading-normal">Experience the soulful sounds of jazz and blues.</p>
-                  </div>
-                </div>
-                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
-                  <div
-                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex flex-col"
-                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBKBLAEL8L1cyFPhEfuUiNWit4Y2vfOdCENp7-VlzZYd0PSP2R81yvQPrWjfKwsbL6t_ssGjGl6m7U7RKIBJcm1cr70gjzM6yvJGtOhIqwkYxxTX5OSnFCumPzFO3_U3g9BsIbXlT2xDY-3eTcez3iONMdP6ysr1mv_KQs_v4Dy2a87hx4NeKmX3eRzSlFV7faK5j6-h1LJz9AHxTCsv5dpQ7HzmGo_GL4Qzyvi07GzBnuR1jPhORPIER4-kNMv_CvX3U3D-feaudGM");'
-                  ></div>
-                  <div>
-                    <p class="text-[#111518] text-base font-medium leading-normal">Acoustic Sessions</p>
-                    <p class="text-[#60798a] text-sm font-normal leading-normal">Unwind with an evening of acoustic melodies.</p>
-                  </div>
-                </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Pune Food Trail</h3>
+            <p class="text-gray-600 mb-4">Taste authentic Maharashtrian cuisine at Pune's legendary eateries and hidden gems.</p>
+            <div class="flex justify-between items-center">
+              <div>
+                <span class="text-blue-700 font-bold text-lg">₹800/person</span>
+                <span class="text-gray-500 text-sm ml-2">(4 hours)</span>
               </div>
+              <button class="text-blue-700 hover:text-blue-900 font-medium flex items-center">
+                Explore <i class="fas fa-chevron-right ml-1 text-sm"></i>
+              </button>
             </div>
-            <h2 class="text-[#111518] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Plan Your Trip</h2>
-            <div class="p-4 @container">
-              <div class="flex flex-col items-stretch justify-start rounded-lg @xl:flex-row @xl:items-start">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBbVdhoF7k5lpCmjru7TwCXWyUlLxGH-b2jBPEHBvNwe2XXiyFmW2keytyetuMBVr9jJE6WU1cYe5aKSey2f6K_o6j3wk-s5p5fPtwyy1bDsIHnSwyInTGXB0sZ7FDTP-XY2m2nPjDlknPWlSzxxP5YQahByxLaRlbHS-kOuDgq0SOP_0miE-dBbsfr-YMLNGf1u2lkvc7e9xF1QT9hdeMtUTWcDwVNGxMO4GnyN753Z315KIHDse7YyD2y2FvEPbV_DU1xr26IUbEm");'
-                ></div>
-                <div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-1 py-4 @xl:px-4">
-                  <p class="text-[#111518] text-lg font-bold leading-tight tracking-[-0.015em]">Weekend Getaway</p>
-                  <div class="flex items-end gap-3 justify-between">
-                    <p class="text-[#60798a] text-base font-normal leading-normal">Plan your perfect weekend getaway from Pune.</p>
-                    <button
-                      class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-8 px-4 bg-[#0c92f2] text-white text-sm font-medium leading-normal"
-                    >
-                      <span class="truncate">Plan Now</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
+          </div>
+        </div>
+        
+        <!-- Experience Card 3 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover cursor-pointer border border-gray-100" data-title="Trekking Adventures">
+          <div class="relative h-64 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                 alt="Trekking in Pune - Sahyadri mountains" 
+                 class="w-full h-full object-cover rounded-t-xl transition duration-500 hover:scale-105"
+                 loading="lazy">
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+              <span class="text-white text-sm font-medium bg-green-600 px-3 py-1 rounded-full">Adventure</span>
             </div>
-            <footer class="flex flex-col gap-6 px-5 py-10 text-center @container">
-              <div class="flex flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-around">
-                <a class="text-[#60798a] text-base font-normal leading-normal min-w-40" href="#">About</a>
-                <a class="text-[#60798a] text-base font-normal leading-normal min-w-40" href="#">Contact</a>
-                <a class="text-[#60798a] text-base font-normal leading-normal min-w-40" href="#">Privacy Policy</a>
-                <a class="text-[#60798a] text-base font-normal leading-normal min-w-40" href="#">Terms of Service</a>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Sahyadri Treks</h3>
+            <p class="text-gray-600 mb-4">Conquer the majestic Sahyadri mountains with certified guides and safety equipment.</p>
+            <div class="flex justify-between items-center">
+              <div>
+                <span class="text-blue-700 font-bold text-lg">₹1200/person</span>
+                <span class="text-gray-500 text-sm ml-2">(Full day)</span>
               </div>
-              <div class="flex flex-wrap justify-center gap-4">
-                <a href="#">
-                  <div class="text-[#60798a]" data-icon="InstagramLogo" data-size="24px" data-weight="regular">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                      <path
-                        d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"
-                      ></path>
-                    </svg>
-                  </div>
-                </a>
-                <a href="#">
-                  <div class="text-[#60798a]" data-icon="TwitterLogo" data-size="24px" data-weight="regular">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                      <path
-                        d="M247.39,68.94A8,8,0,0,0,240,64H209.57A48.66,48.66,0,0,0,168.1,40a46.91,46.91,0,0,0-33.75,13.7A47.9,47.9,0,0,0,120,88v6.09C79.74,83.47,46.81,50.72,46.46,50.37a8,8,0,0,0-13.65,4.92c-4.31,47.79,9.57,79.77,22,98.18a110.93,110.93,0,0,0,21.88,24.2c-15.23,17.53-39.21,26.74-39.47,26.84a8,8,0,0,0-3.85,11.93c.75,1.12,3.75,5.05,11.08,8.72C53.51,229.7,65.48,232,80,232c70.67,0,129.72-54.42,135.75-124.44l29.91-29.9A8,8,0,0,0,247.39,68.94Zm-45,29.41a8,8,0,0,0-2.32,5.14C196,166.58,143.28,216,80,216c-10.56,0-18-1.4-23.22-3.08,11.51-6.25,27.56-17,37.88-32.48A8,8,0,0,0,92,169.08c-.47-.27-43.91-26.34-44-96,16,13,45.25,33.17,78.67,38.79A8,8,0,0,0,136,104V88a32,32,0,0,1,9.6-22.92A30.94,30.94,0,0,1,167.9,56c12.66.16,24.49,7.88,29.44,19.21A8,8,0,0,0,204.67,80h16Z"
-                      ></path>
-                    </svg>
-                  </div>
-                </a>
-                <a href="#">
-                  <div class="text-[#60798a]" data-icon="FacebookLogo" data-size="24px" data-weight="regular">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                      <path
-                        d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,191.63V152h24a8,8,0,0,0,0-16H136V112a16,16,0,0,1,16-16h16a8,8,0,0,0,0-16H152a32,32,0,0,0-32,32v24H96a8,8,0,0,0,0,16h24v63.63a88,88,0,1,1,16,0Z"
-                      ></path>
-                    </svg>
-                  </div>
-                </a>
-              </div>
-              <p class="text-[#60798a] text-base font-normal leading-normal">@2024 Explore Pune. All rights reserved.</p>
-            </footer>
+              <button class="text-blue-700 hover:text-blue-900 font-medium flex items-center">
+                Explore <i class="fas fa-chevron-right ml-1 text-sm"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-16">
+        <button id="viewAllBtn" class="bg-blue-700 text-white px-8 py-3.5 rounded-lg hover:bg-blue-800 transition font-medium shadow-md">
+          View All Experiences <i class="fas fa-arrow-right ml-2"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Destinations Section -->
+  <section id="destinations" class="section-padding bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 heading-font">Must-Visit Destinations</h2>
+        <p class="text-gray-600 max-w-3xl mx-auto text-lg">
+          Discover the iconic landmarks and hidden gems of Pune
+        </p>
+      </div>
+      <div id="destinationsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Destination 1 -->
+        <div class="relative rounded-xl overflow-hidden aspect-w-4 aspect-h-3 card-hover cursor-pointer group" data-title="Sinhagad Fort">
+          <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+               alt="Sinhagad Fort - Historic fort near Pune" 
+               class="object-cover w-full h-full rounded-xl object-center transition duration-500 group-hover:scale-105"
+               loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex items-end p-6">
+            <div>
+              <h3 class="text-white text-xl font-bold mb-1">Sinhagad Fort</h3>
+              <p class="text-gray-200 text-sm">Historic hill fortress with panoramic views</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Destination 2 -->
+        <div class="relative rounded-xl overflow-hidden aspect-w-4 aspect-h-3 card-hover cursor-pointer group" data-title="Aga Khan Palace">
+          <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+               alt="Aga Khan Palace - Historical monument in Pune" 
+               class="object-cover w-full h-full rounded-xl object-center transition duration-500 group-hover:scale-105"
+               loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex items-end p-6">
+            <div>
+              <h3 class="text-white text-xl font-bold mb-1">Aga Khan Palace</h3>
+              <p class="text-gray-200 text-sm">Gandhian memorial with Italian architecture</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Destination 3 -->
+        <div class="relative rounded-xl overflow-hidden aspect-w-4 aspect-h-3 card-hover cursor-pointer group" data-title="Karla Caves">
+          <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+               alt="Karla Caves - Ancient rock-cut caves near Pune" 
+               class="object-cover w-full h-full rounded-xl object-center transition duration-500 group-hover:scale-105"
+               loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex items-end p-6">
+            <div>
+              <h3 class="text-white text-xl font-bold mb-1">Karla Caves</h3>
+              <p class="text-gray-200 text-sm">2nd century BCE Buddhist rock-cut caves</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Destination 4 -->
+        <div class="relative rounded-xl overflow-hidden aspect-w-4 aspect-h-3 card-hover cursor-pointer group" data-title="Lavasa">
+          <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+               alt="Lavasa - Hill station near Pune" 
+               class="object-cover w-full h-full rounded-xl object-center transition duration-500 group-hover:scale-105"
+               loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex items-end p-6">
+            <div>
+              <h3 class="text-white text-xl font-bold mb-1">Lavasa</h3>
+              <p class="text-gray-200 text-sm">Picturesque planned hill city</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </body>
-</html>
+  </section>
 
+  <!-- Culture Section -->
+  <section id="culture" class="section-padding bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col lg:flex-row items-center">
+        <div class="lg:w-1/2 mb-12 lg:mb-0 lg:pr-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 heading-font">Pune's Vibrant Culture</h2>
+          <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+            Pune is a melting pot of traditions, festivals, and artistic expressions. As Maharashtra's cultural capital, 
+            the city seamlessly blends its rich Maratha heritage with contemporary creativity.
+          </p>
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-blue-700 mt-1 mr-3"></i>
+              <span class="text-gray-700">Home to India's largest Ganesh Chaturthi celebrations with over 5,000 community pandals</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-blue-700 mt-1 mr-3"></i>
+              <span class="text-gray-700">Thriving theater scene with venues like Balgandharva Rangmandir and Yashwantrao Chavan Natyagriha</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-blue-700 mt-1 mr-3"></i>
+              <span class="text-gray-700">Center for classical music with Sawai Gandharva Bhimsen Mahotsav attracting top artists</span>
+            </li>
+          </ul>
+          <button class="bg-blue-700 text-white px-6 py-3 rounded-lg hover:bg-blue-800 transition font-medium shadow-md">
+            Explore Cultural Events <i class="fas fa-arrow-right ml-2"></i>
+          </button>
+        </div>
+        <div class="lg:w-1/2">
+          <div class="relative rounded-xl overflow-hidden shadow-xl">
+            <img src="https://images.unsplash.com/photo-1603726573199-9c5c0b6a1c2e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                 alt="Ganesh Chaturthi - Celebrated festival in Pune" 
+                 class="w-full rounded-xl"
+                 loading="lazy">
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
+              <span class="text-white font-medium">Ganesh Chaturthi celebrations at Dagdusheth Halwai Temple</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events Section -->
+  <section id="events" class="section-padding bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 heading-font">Upcoming Events</h2>
+        <p class="text-gray-600 max-w-3xl mx-auto text-lg">
+          Mark your calendar for Pune's most exciting festivals and cultural happenings
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Event 1 -->
+        <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center card-hover border border-gray-100">
+          <div class="bg-blue-100 text-blue-800 p-4 rounded-full mb-6">
+            <i class="fas fa-drum text-3xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-center">Ganesh Chaturthi</h3>
+          <div class="flex items-center text-blue-700 mb-4">
+            <i class="far fa-calendar-alt mr-2"></i>
+            <span>Aug 28 - Sep 6, 2024</span>
+          </div>
+          <p class="text-gray-600 text-center mb-6">
+            Experience the grandeur of Pune's biggest festival with elaborate processions, traditional music, and community celebrations.
+          </p>
+          <button class="text-blue-700 hover:text-blue-900 font-medium flex items-center">
+            Learn More <i class="fas fa-chevron-right ml-1 text-sm"></i>
+          </button>
+        </div>
+        
+        <!-- Event 2 -->
+        <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center card-hover border border-gray-100">
+          <div class="bg-purple-100 text-purple-800 p-4 rounded-full mb-6">
+            <i class="fas fa-music text-3xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-center">NH7 Weekender</h3>
+          <div class="flex items-center text-blue-700 mb-4">
+            <i class="far fa-calendar-alt mr-2"></i>
+            <span>Nov 22-24, 2024</span>
+          </div>
+          <p class="text-gray-600 text-center mb-6">
+            India's happiest music festival returns to Pune with international artists across multiple stages and vibrant crowds.
+          </p>
+          <button class="text-blue-700 hover:text-blue-900 font-medium flex items-center">
+            Learn More <i class="fas fa-chevron-right ml-1 text-sm"></i>
+          </button>
+        </div>
+        
+        <!-- Event 3 -->
+        <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center card-hover border border-gray-100">
+          <div class="bg-amber-100 text-amber-800 p-4 rounded-full mb-6">
+            <i class="fas fa-book-open text-3xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-center">Pune International Literary Festival</h3>
+          <div class="flex items-center text-blue-700 mb-4">
+            <i class="far fa-calendar-alt mr-2"></i>
+            <span>Dec 10-12, 2024</span>
+          </div>
+          <p class="text-gray-600 text-center mb-6">
+            Engage with renowned authors, attend thought-provoking workshops, and celebrate literature at this premier event.
+          </p>
+          <button class="text-blue-700 hover:text-blue-900 font-medium flex items-center">
+            Learn More <i class="fas fa-chevron-right ml-1 text-sm"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="section-padding bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 heading-font">Gallery</h2>
+        <p class="text-gray-600 max-w-3xl mx-auto text-lg">
+          Visual stories capturing Pune's beauty, culture, and people
+        </p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="aspect-w-4 aspect-h-3 rounded-xl overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+               alt="Pune cityscape at sunset" 
+               class="rounded-xl object-cover w-full h-full object-center transition duration-500 hover:scale-105"
+               loading="lazy">
+        </div>
+        <div class="aspect-w-4 aspect-h-3 rounded-xl overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+               alt="Pune riverside view" 
+               class="rounded-xl object-cover w-full h-full object-center transition duration-500 hover:scale-105"
+               loading="lazy">
+        </div>
+        <div class="aspect-w-4 aspect-h-3 rounded-xl overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+               alt="Pune street life" 
+               class="rounded-xl object-cover w-full h-full object-center transition duration-500 hover:scale-105"
+               loading="lazy">
+        </div>
+        <div class="aspect-w-4 aspect-h-3 rounded-xl overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+               alt="Pune festival crowd" 
+               class="rounded-xl object-cover w-full h-full object-center transition duration-500 hover:scale-105"
+               loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recommendations Section -->
+  <section id="recommendations" class="section-padding bg-blue-50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4 heading-font">Local Recommendations</h2>
+        <p class="text-blue-700 max-w-3xl mx-auto text-lg">
+          Handpicked experiences from Pune residents you shouldn't miss
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Recommendation 1 -->
+        <div class="bg-white rounded-xl shadow-lg p-8 card-hover border border-blue-100">
+          <div class="flex items-center mb-4">
+            <div class="bg-blue-100 text-blue-800 p-3 rounded-full mr-4">
+              <i class="fas fa-utensils text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-blue-800">Evening at FC Road</h3>
+          </div>
+          <p class="text-gray-600 mb-6">
+            Experience the youthful energy of Fergusson College Road with its eclectic mix of street food, bookstores, and vibrant cafes.
+          </p>
+          <div class="flex items-center text-sm text-gray-500">
+            <i class="fas fa-map-marker-alt mr-2"></i>
+            <span>Fergusson College Road, Shivajinagar</span>
+          </div>
+        </div>
+        
+        <!-- Recommendation 2 -->
+        <div class="bg-white rounded-xl shadow-lg p-8 card-hover border border-blue-100">
+          <div class="flex items-center mb-4">
+            <div class="bg-blue-100 text-blue-800 p-3 rounded-full mr-4">
+              <i class="fas fa-spa text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-blue-800">Osho Garden Meditation</h3>
+          </div>
+          <p class="text-gray-600 mb-6">
+            Find tranquility in the serene Osho Teerth Park, perfect for morning meditation or an evening stroll amidst nature.
+          </p>
+                   <div class="flex items-center text-sm text-gray-500">
+            <i class="fas fa-map-marker-alt mr-2"></i>
+            <span>Koregaon Park</span>
+          </div>
+        </div>
+        
+        <!-- Recommendation 3 -->
+        <div class="bg-white rounded-xl shadow-lg p-8 card-hover border border-blue-100">
+          <div class="flex items-center mb-4">
+            <div class="bg-blue-100 text-blue-800 p-3 rounded-full mr-4">
+              <i class="fas fa-shopping-bag text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-blue-800">Tulsi Baug Market</h3>
+          </div>
+          <p class="text-gray-600 mb-6">
+            Shop for traditional Maharashtrian goods, spices, and handicrafts at this bustling local market with authentic Pune flavor.
+          </p>
+          <div class="flex items-center text-sm text-gray-500">
+            <i class="fas fa-map-marker-alt mr-2"></i>
+            <span>Tulsi Baug, Sadashiv Peth</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section id="newsletter" class="py-16 bg-blue-700 text-white">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6 heading-font">Stay Updated on Pune</h2>
+      <p class="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">
+        Subscribe to our newsletter for monthly updates on events, new attractions, and special offers in Pune.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
+        <input type="email" 
+               placeholder="Your email address" 
+               class="flex-grow px-6 py-3.5 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <button class="bg-white text-blue-800 px-8 py-3.5 rounded-lg hover:bg-blue-50 transition font-medium shadow-md">
+          Subscribe
+        </button>
+      </div>
+      <p class="text-blue-200 text-sm mt-4">We respect your privacy. Unsubscribe at any time.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section-padding bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col lg:flex-row">
+        <div class="lg:w-1/2 mb-12 lg:mb-0 lg:pr-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 heading-font">Contact Pune Tourism</h2>
+          <p class="text-gray-600 mb-8 text-lg leading-relaxed">
+            Have questions about visiting Pune? Our tourism experts are here to help you plan your perfect trip to the city.
+          </p>
+          <div class="space-y-6">
+            <div class="flex items-start">
+              <div class="bg-blue-100 text-blue-800 p-3 rounded-lg mr-4">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-800 mb-1">Tourism Office</h4>
+                <p class="text-gray-600">Pune Municipal Corporation, Main Building, Shivajinagar, Pune - 411005</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div class="bg-blue-100 text-blue-800 p-3 rounded-lg mr-4">
+                <i class="fas fa-phone-alt"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-800 mb-1">Phone</h4>
+                <p class="text-gray-600">+91 20 2550 1234 (Tourism Helpline)</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div class="bg-blue-100 text-blue-800 p-3 rounded-lg mr-4">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-800 mb-1">Email</h4>
+                <p class="text-gray-600">tourism@pune.gov.in</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="lg:w-1/2">
+          <div class="bg-gray-50 rounded-xl p-8 shadow-lg border border-gray-100">
+            <h3 class="text-2xl font-bold text-gray-800 mb-6">Send us a message</h3>
+            <form>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
+                  <input type="text" id="name" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                </div>
+                <div>
+                  <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                  <input type="email" id="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                </div>
+              </div>
+              <div class="mb-6">
+                <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+                <input type="text" id="subject" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+              </div>
+              <div class="mb-6">
+                <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                <textarea id="message" rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+              </div>
+              <button type="submit" class="bg-blue-700 text-white px-8 py-3.5 rounded-lg hover:bg-blue-800 transition font-medium shadow-md w-full">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 py-16">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+        <div>
+          <div class="flex items-center mb-6">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Pune_City_Logo.svg/1200px-Pune_City_Logo.svg.png" 
+                 alt="Pune City Logo" 
+                 class="h-10 mr-3"
+                 loading="lazy">
+            <span class="text-xl font-bold text-white heading-font">Pune Explorer</span>
+          </div>
+          <p class="mb-6">
+            The official tourism portal of Pune, showcasing the city's heritage, culture, and modern attractions.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-white font-bold text-lg mb-6">Quick Links</h4>
+          <ul class="space-y-3">
+            <li><a href="#" class="hover:text-white transition">About Pune</a></li>
+            <li><a href="#" class="hover:text-white transition">Tourist Guide</a></li>
+            <li><a href="#" class="hover:text-white transition">Getting Around</a></li>
+            <li><a href="#" class="hover:text-white transition">Accessibility</a></li>
+            <li><a href="#" class="hover:text-white transition">FAQs</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-bold text-lg mb-6">Resources</h4>
+          <ul class="space-y-3">
+            <li><a href="#" class="hover:text-white transition">Brochures & Maps</a></li>
+            <li><a href="#" class="hover:text-white transition">Travel Tips</a></li>
+            <li><a href="#" class="hover:text-white transition">Emergency Contacts</a></li>
+            <li><a href="#" class="hover:text-white transition">Tour Operators</a></li>
+            <li><a href="#" class="hover:text-white transition">Media Center</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-bold text-lg mb-6">Legal</h4>
+          <ul class="space-y-3">
+            <li><a href="#" class="hover:text-white transition">Terms of Use</a></li>
+            <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+            <li><a href="#" class="hover:text-white transition">Cookie Policy</a></li>
+            <li><a href="#" class="hover:text-white transition">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p>© 2023 Pune Municipal Corporation. All rights reserved.</p>
+        <div class="flex space-x-6 mt-4 md:mt-0">
+          <a href="#" class="hover:text-white transition">Sitemap</a>
+          <a href="#" class="hover:text-white transition">Accessibility</a>
+          <a href="#" class="hover:text-white transition">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Booking Modal -->
+  <div id="bookingModal" class="fixed inset-0 z-50 hidden items-center justify-center modal-bg">
+    <div class="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto scrollbar-hide relative">
+      <button id="closeBookingModal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+        <i class="fas fa-times text-2xl"></i>
+      </button>
+      <div class="p-8">
+        <h3 class="text-2xl font-bold text-gray-800 mb-6 heading-font">Plan Your Pune Visit</h3>
+        <form>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label for="bookingName" class="block text-gray-700 font-medium mb-2">Full Name</label>
+              <input type="text" id="bookingName" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            </div>
+            <div>
+              <label for="bookingEmail" class="block text-gray-700 font-medium mb-2">Email</label>
+              <input type="email" id="bookingEmail" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label for="bookingPhone" class="block text-gray-700 font-medium mb-2">Phone</label>
+              <input type="tel" id="bookingPhone" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            </div>
+            <div>
+              <label for="bookingDate" class="block text-gray-700 font-medium mb-2">Visit Date</label>
+              <input type="date" id="bookingDate" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            </div>
+          </div>
+          <div class="mb-6">
+            <label for="bookingInterests" class="block text-gray-700 font-medium mb-2">Interests (Select multiple)</label>
+            <select id="bookingInterests" multiple class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent h-auto">
+              <option value="heritage">Heritage & History</option>
+              <option value="food">Food & Culinary</option>
+              <option value="adventure">Adventure & Trekking</option>
+              <option value="culture">Cultural Experiences</option>
+              <option value="shopping">Shopping</option>
+              <option value="nature">Nature & Wildlife</option>
+            </select>
+          </div>
+          <div class="mb-6">
+            <label for="bookingNotes" class="block text-gray-700 font-medium mb-2">Special Requirements</label>
+            <textarea id="bookingNotes" rows="3" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+          </div>
+          <button type="submit" class="bg-blue-700 text-white px-8 py-3.5 rounded-lg hover:bg-blue-800 transition font-medium shadow-md w-full">
+            Submit Request
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const closeMobileMenu = document.getElementById('closeMobileMenu');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.remove('-translate-y-full');
+      mobileMenu.classList.add('translate-y-0');
+    });
+    
+    closeMobileMenu.addEventListener('click', () => {
+      mobileMenu.classList.remove('translate-y-0');
+      mobileMenu.classList.add('-translate-y-full');
+    });
+
+    // Booking Modal
+    const bookBtns = [document.getElementById('bookBtn'), document.getElementById('bookBtnMobile')];
+    const bookingModal = document.getElementById('bookingModal');
+    const closeBookingModal = document.getElementById('closeBookingModal');
+    
+    bookBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        bookingModal.classList.remove('hidden');
+        bookingModal.classList.add('flex');
+      });
+    });
+    
+    closeBookingModal.addEventListener('click', () => {
+      bookingModal.classList.remove('flex');
+      bookingModal.classList.add('hidden');
+    });
+
+    // Language Toggle
+    const translateBtns = [document.getElementById('translateBtn'), document.getElementById('translateBtnMobile')];
+    let isMarathi = false;
+    
+    translateBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        isMarathi = !isMarathi;
+        // This would be replaced with actual translation logic in a real implementation
+        btn.textContent = isMarathi ? 'English' : 'मराठी';
+        console.log('Language toggled to:', isMarathi ? 'Marathi' : 'English');
+      });
+    });
+
+    // Weather Widget
+    document.addEventListener('DOMContentLoaded', () => {
+      // Mock weather data - in a real app, this would come from an API
+      setTimeout(() => {
+        document.getElementById('weatherLoading').classList.add('hidden');
+        document.getElementById('weatherData').classList.remove('hidden');
+        document.getElementById('weatherTemp').textContent = '28';
+        document.getElementById('weatherDesc').textContent = 'Partly Cloudy';
+      }, 1500);
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+          
+          // Close mobile menu if open
+          if (!mobileMenu.classList.contains('-translate-y-full')) {
+            mobileMenu.classList.remove('translate-y-0');
+            mobileMenu.classList.add('-translate-y-full');
+          }
+        }
+      });
+    });
+
+    // Search functionality placeholder
+    document.getElementById('searchInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        const query = e.target.value.trim();
+        if (query) {
+          console.log('Searching for:', query);
+          // In a real implementation, this would trigger a search
+          alert(`Search functionality would show results for: ${query}`);
+        }
+      }
+    });
+
+    // View All Experiences button
+    document.getElementById('viewAllBtn').addEventListener('click', () => {
+      // In a real implementation, this would load more experiences
+      console.log('View all experiences clicked');
+      alert('This would show all available experiences in a real implementation');
+    });
+  </script>
+</body>
+</html>
