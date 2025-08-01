@@ -3,591 +3,1369 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TDS Innovation | Free Discord Services</title>
+    <title>AIfitwear - AI-Powered Virtual Try-On | Coming Soon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@google/model-viewer@2.1.1/dist/model-viewer.min.js" type="module"></script>
     <style>
         :root {
-            --primary: #5865F2; /* Discord Blurple */
-            --secondary: #404EED;
-            --accent: #57F287; /* Discord Green */
-            --light-bg: #FFFFFF;
-            --light-text: #2C2F33;
-            --gray-bg: #F6F6F6;
-            --border: #E3E5E8;
+            --primary: #6e48aa;
+            --secondary: #9d50bb;
+            --dark: #2E2E3A;
+            --light: #F8F9FA;
+            --gray: #6C757D;
+            --success: #4CAF50;
         }
-
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
-
+        
         body {
-            background: var(--light-bg);
-            color: var(--light-text);
             overflow-x: hidden;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
         }
-
-        /* Smooth scroll behavior */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Header & Navigation */
-        header {
+        
+        /* Navigation */
+        nav {
             position: fixed;
             top: 0;
-            left: 0;
             width: 100%;
-            padding: 1.5rem 5%;
+            background: white;
+            padding: 1.2rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 30px rgba(0,0,0,0.08);
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
-
-        header.scrolled {
-            padding: 1rem 5%;
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+        
+        nav.scrolled {
+            padding: 0.8rem 5%;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.9);
         }
-
+        
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--primary);
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
-
-        .logo i {
-            font-size: 1.5rem;
+        
+        .logo-badge {
+            font-size: 0.7rem;
+            background: var(--dark);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 2rem;
+            margin-left: 0.5rem;
         }
-
-        nav ul {
+        
+        .nav-links {
             display: flex;
             gap: 2rem;
-            list-style: none;
         }
-
-        nav ul li a {
-            color: var(--light-text);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
+        
+        .nav-link {
             position: relative;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--dark);
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            text-decoration: none;
         }
-
-        nav ul li a:hover {
-            color: var(--primary);
-        }
-
-        nav ul li a::after {
+        
+        .nav-link:after {
             content: '';
             position: absolute;
+            bottom: 0;
+            left: 0;
             width: 0;
             height: 2px;
             background: var(--primary);
-            bottom: -5px;
-            left: 0;
             transition: width 0.3s ease;
         }
-
-        nav ul li a:hover::after {
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary);
+        }
+        
+        .nav-link:hover:after, .nav-link.active:after {
             width: 100%;
         }
-
-        .btn {
-            display: inline-block;
+        
+        .cta-button {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
             padding: 0.8rem 1.8rem;
-            border-radius: 50px;
+            border-radius: 2rem;
             font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
             cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(110, 72, 170, 0.3);
+            text-decoration: none;
+            display: inline-block;
         }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3);
-        }
-
-        .btn-primary:hover {
+        
+        .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(88, 101, 242, 0.4);
-            background: var(--secondary);
+            box-shadow: 0 8px 25px rgba(110, 72, 170, 0.4);
         }
-
-        .btn-outline {
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            background: transparent;
-        }
-
-        .btn-outline:hover {
-            background: var(--primary);
+        
+        .coming-soon-badge {
+            background: var(--success);
             color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 1rem;
+            display: inline-block;
         }
-
-        /* Hero Section */
-        .hero {
+        
+        /* Sections */
+        section {
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 0 5%;
-            background: linear-gradient(135deg, rgba(88, 101, 242, 0.05) 0%, rgba(255, 255, 255, 1) 100%);
+            padding: 6rem 5% 4rem;
             position: relative;
             overflow: hidden;
         }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(88, 101, 242, 0.1) 0%, rgba(88, 101, 242, 0) 70%);
-            top: -200px;
-            right: -200px;
-            z-index: -1;
-            animation: pulse 8s infinite alternate;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.8; }
-            100% { transform: scale(1.1); opacity: 0.4; }
-        }
-
-        .hero-content {
-            max-width: 600px;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            color: var(--primary);
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            animation: fadeInUp 1s ease 0.2s forwards;
-            opacity: 0;
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 1rem;
-            animation: fadeInUp 1s ease 0.4s forwards;
-            opacity: 0;
-        }
-
-        .hero-img {
-            position: absolute;
-            right: 5%;
-            width: 40%;
-            max-width: 600px;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Features Section */
-        .features {
-            padding: 6rem 5%;
-            background: var(--gray-bg);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 4rem;
-            color: var(--primary);
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 4px;
-            background: var(--accent);
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 2px;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+        
+        .container {
             max-width: 1200px;
             margin: 0 auto;
+            width: 100%;
         }
-
-        .feature-card {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            text-align: center;
-            border: 1px solid var(--border);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            border-color: var(--primary);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover .feature-icon {
-            transform: scale(1.1);
-            color: var(--accent);
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card p {
-            opacity: 0.8;
-        }
-
-        /* CTA Section */
-        .cta {
-            padding: 6rem 5%;
-            text-align: center;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--light-text);
-            color: white;
-            padding: 4rem 5% 2rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto 3rem;
-        }
-
-        .footer-logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .footer-links h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
+        
+        .section-heading {
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
             position: relative;
             display: inline-block;
+            font-weight: 700;
         }
-
-        .footer-links h3::after {
+        
+        .section-heading:after {
             content: '';
             position: absolute;
-            width: 40px;
-            height: 3px;
-            background: var(--accent);
-            bottom: -8px;
+            width: 50%;
+            height: 4px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            bottom: -1rem;
             left: 0;
+            border-radius: 2px;
         }
-
-        .footer-links ul {
-            list-style: none;
+        
+        .section-subheading {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin-bottom: 3rem;
         }
-
-        .footer-links ul li {
-            margin-bottom: 0.8rem;
+        
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(135deg, #fff, #f8f8f8);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
         }
-
-        .footer-links ul li a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: all 0.3s ease;
+        
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
         }
-
-        .footer-links ul li a:hover {
-            color: white;
-            padding-left: 5px;
+        
+        .hero-heading {
+            font-size: 3.2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--dark), #444);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-
-        .social-links {
+        
+        .hero-subtext {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+        
+        .hero-image {
+            flex: 1;
+            position: relative;
+            max-width: 600px;
+        }
+        
+        .hero-image img {
+            width: 100%;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+            transform: perspective(1000px) rotateY(-15deg);
+            transition: transform 0.5s ease;
+        }
+        
+        .hero-image:hover img {
+            transform: perspective(1000px) rotateY(-5deg);
+        }
+        
+        .app-badges {
             display: flex;
             gap: 1rem;
-            margin-top: 1.5rem;
+            margin-top: 2rem;
         }
-
-        .social-links a {
-            color: white;
-            background: rgba(255, 255, 255, 0.1);
+        
+        .app-badge {
+            height: 50px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .app-badge:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* 3D Product Viewer */
+        #product-viewer {
+            background: white;
+            text-align: center;
+        }
+        
+        model-viewer {
+            width: 100%;
+            height: 500px;
+            background: #f8f8f8;
+            border-radius: 16px;
+            margin: 2rem 0;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .viewer-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .viewer-btn {
             width: 40px;
             height: 40px;
             border-radius: 50%;
+            background: white;
+            border: 1px solid rgba(0,0,0,0.1);
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
         }
-
-        .social-links a:hover {
+        
+        .viewer-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Style Quiz */
+        #style-quiz {
+            background: linear-gradient(135deg, #f9f9f9, #f0f0f0);
+        }
+        
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.05);
+        }
+        
+        .quiz-step {
+            display: none;
+        }
+        
+        .quiz-step.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .quiz-question {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        
+        .quiz-option {
+            padding: 1.5rem;
+            background: white;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .quiz-option:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(110, 72, 170, 0.1);
+        }
+        
+        .quiz-option.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .quiz-progress {
+            height: 6px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 3px;
+            margin-top: 2rem;
+            overflow: hidden;
+        }
+        
+        .quiz-progress-bar {
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        /* Quiz Results */
+        .quiz-results {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .style-recommendation {
+            background: #f5f5f5;
+            padding: 2rem;
+            border-radius: 0.8rem;
+            margin: 1rem 0;
+        }
+        
+        .style-image {
+            max-width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Virtual Dressing Room */
+        #dressing-room {
+            background: white;
+        }
+        
+        .dressing-room-container {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .outfit-selector {
+            width: 300px;
+            background: #f9f9f9;
+            border-radius: 1rem;
+            padding: 1.5rem;
+        }
+        
+        .outfit-category {
+            margin-bottom: 1.5rem;
+        }
+        
+        .category-title {
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+        }
+        
+        .outfit-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.8rem;
+        }
+        
+        .outfit-option {
+            width: 100%;
+            aspect-ratio: 1;
+            background: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .outfit-option:hover {
+            border-color: var(--primary);
+        }
+        
+        .outfit-option.selected {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+        
+        .outfit-option img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .outfit-preview {
+            flex: 1;
+            background: #f5f5f5;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .preview-image {
+            max-width: 100%;
+            max-height: 500px;
+            border-radius: 0.5rem;
+        }
+        
+        /* Brand Collaboration */
+        #brands {
+            background: linear-gradient(135deg, #f9f9f9, #f0f0f0);
+            text-align: center;
+        }
+        
+        .brand-carousel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .brand-logo {
+            height: 60px;
+            width: auto;
+            max-width: 150px;
+            object-fit: contain;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        
+        .brand-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        
+        /* Testimonials */
+        #testimonials {
+            background: white;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(110, 72, 170, 0.1);
+        }
+        
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .author-info p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        /* Color Picker */
+        .color-picker {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .color-options {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+        
+        .color-option.selected {
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+        
+        /* Sustainability */
+        #sustainability {
+            background: linear-gradient(135deg, #6e48aa, #9d50bb);
+            color: white;
+        }
+        
+        .eco-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .eco-score {
+            font-size: 4rem;
+            font-weight: 700;
+            background: white;
+            color: var(--primary);
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+        }
+        
+        /* Contact Form */
+        #contact {
+            background: linear-gradient(135deg, #f9f9f9, #f0f0f0);
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(110, 72, 170, 0.2);
+        }
+        
+        textarea.form-input {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(110, 72, 170, 0.3);
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(110, 72, 170, 0.4);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 5rem 5% 3rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+        
+        .footer-about {
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
             background: var(--primary);
             transform: translateY(-3px);
         }
-
-        .copyright {
-            text-align: center;
+        
+        .footer-heading {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .footer-bottom {
+            margin-top: 4rem;
             padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0.7;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .copyright {
+            color: rgba(255,255,255,0.5);
             font-size: 0.9rem;
         }
-
-        /* Responsive Design */
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .animate-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        .delay-5 { transition-delay: 0.5s; }
+        
+        /* Responsive */
         @media (max-width: 992px) {
-            .hero-img {
+            .hero-heading {
+                font-size: 2.5rem;
+            }
+            
+            .section-heading {
+                font-size: 2.2rem;
+            }
+            
+            nav {
+                padding: 1rem 5%;
+            }
+            
+            .nav-links {
                 display: none;
             }
-            .hero-content {
-                max-width: 100%;
+            
+            #hero {
+                flex-direction: column;
                 text-align: center;
             }
-            .hero-btns {
+            
+            .hero-content {
+                max-width: 100%;
+                margin-bottom: 3rem;
+            }
+            
+            .app-badges {
                 justify-content: center;
             }
-        }
-
-        @media (max-width: 768px) {
-            nav ul {
-                display: none;
+            
+            .dressing-room-container {
+                flex-direction: column;
             }
-            .hero h1 {
-                font-size: 2.5rem;
+            
+            .outfit-selector {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header id="header">
-        <a href="#" class="logo">
-            <i class="fab fa-discord"></i>
-            <span>TDS Innovation</span>
-        </a>
-        <nav>
-            <ul>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#" class="btn btn-primary">Join Discord</a></li>
-            </ul>
-        </nav>
-    </header>
-
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">
+            AIfitwear <span class="logo-badge">AI</span>
+        </div>
+        <div class="nav-links">
+            <a href="#hero" class="nav-link active">Home</a>
+            <a href="#product-viewer" class="nav-link">3D Try-On</a>
+            <a href="#style-quiz" class="nav-link">Style Quiz</a>
+            <a href="#dressing-room" class="nav-link">Dressing Room</a>
+            <a href="#testimonials" class="nav-link">Testimonials</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+        <a href="#sustainability" class="cta-button">Coming Soon</a>
+    </nav>
+    
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Free Premium Discord Services</h1>
-            <p>Enhance your Discord server with our custom bots, security tools, and professional setups—completely free!</p>
-            <div class="hero-btns">
-                <a href="#" class="btn btn-primary">Get Started</a>
-                <a href="#" class="btn btn-outline">Learn More</a>
-            </div>
-        </div>
-        <img src="https://cdn.discordapp.com/attachments/1036958026241175554/1234567890123456789/discord-illustration.png" alt="Discord Illustration" class="hero-img">
-    </section>
-
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <h2 class="section-title">Our Services</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-robot"></i>
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-heading animate-in visible">Revolutionary AI Virtual Fitting Room</h1>
+                <p class="hero-subtext animate-in visible delay-1">Try on any outfit instantly with our cutting-edge AI technology. See how clothes fit before you buy - no more guessing or returns!</p>
+                <div class="app-badges animate-in visible delay-2">
+                    <div class="cta-button">Coming Soon <span class="coming-soon-badge">New</span></div>
                 </div>
-                <h3>Custom Bots</h3>
-                <p>Tailored Discord bots with moderation, music, games, and automation.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-server"></i>
-                </div>
-                <h3>Server Setup</h3>
-                <p>Professional server configuration with roles, channels, and permissions.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3>Security</h3>
-                <p>Advanced anti-raid and anti-spam protection for your community.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-paint-brush"></i>
-                </div>
-                <h3>Branding</h3>
-                <p>Custom logos, banners, and emojis to make your server unique.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <h3>Analytics</h3>
-                <p>Track server growth, member activity, and engagement metrics.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-headset"></i>
-                </div>
-                <h3>24/7 Support</h3>
-                <p>Dedicated help for any issues with your server or bots.</p>
+            <div class="hero-image animate-in visible delay-3">
+                <img src="https://i.ibb.co/hFY52Rwn/20250628-1052-Futuristic-Techwear-Mannequin-simple-compose-01jytfpe5rf7vvqn7hnjnqn699.png" alt="AIfitwear Virtual Try-On">
             </div>
         </div>
     </section>
-
-    <!-- CTA Section -->
-    <section class="cta">
-        <h2>Ready to Boost Your Discord Server?</h2>
-        <p>Join thousands of communities using TDS Innovation's free services today.</p>
-        <a href="#" class="btn btn-primary">Get Started Now</a>
+    
+    <!-- 3D Product Viewer -->
+    <section id="product-viewer">
+        <div class="container">
+            <h2 class="section-heading animate-in">Interactive 3D Try-On</h2>
+            <p class="section-subheading animate-in delay-1">Rotate, zoom, and explore outfits in stunning 3D detail</p>
+            
+            <model-viewer 
+                src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+                alt="3D Outfit Model"
+                auto-rotate
+                camera-controls
+                ar
+                class="animate-in delay-2">
+            </model-viewer>
+            
+            <div class="viewer-controls animate-in delay-3">
+                <button class="viewer-btn" onclick="document.querySelector('model-viewer').cameraOrbit = '0deg 75deg 105%'">
+                    <i class="fas fa-undo"></i>
+                </button>
+                <button class="viewer-btn" onclick="document.querySelector('model-viewer').zoom(-0.5)">
+                    <i class="fas fa-search-minus"></i>
+                </button>
+                <button class="viewer-btn" onclick="document.querySelector('model-viewer').zoom(0.5)">
+                    <i class="fas fa-search-plus"></i>
+                </button>
+            </div>
+        </div>
     </section>
-
+    
+    <!-- Style Quiz -->
+    <section id="style-quiz">
+        <div class="container">
+            <h2 class="section-heading animate-in">Find Your Perfect Style</h2>
+            <p class="section-subheading animate-in delay-1">Take our AI-powered style quiz to get personalized recommendations</p>
+            
+            <div class="quiz-container animate-in delay-2">
+                <div class="quiz-step active" id="step1">
+                    <h3 class="quiz-question">How would you describe your daily style?</h3>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="nextQuizStep('casual')">
+                            <i class="fas fa-tshirt"></i>
+                            <p>Casual Comfort</p>
+                        </div>
+                        <div class="quiz-option" onclick="nextQuizStep('professional')">
+                            <i class="fas fa-suitcase"></i>
+                            <p>Professional</p>
+                        </div>
+                        <div class="quiz-option" onclick="nextQuizStep('athleisure')">
+                            <i class="fas fa-running"></i>
+                            <p>Athleisure</p>
+                        </div>
+                        <div class="quiz-option" onclick="nextQuizStep('trendy')">
+                            <i class="fas fa-star"></i>
+                            <p>Trendy/Fashion-forward</p>
+                        </div>
+                    </div>
+                    <div class="quiz-progress">
+                        <div class="quiz-progress-bar" style="width: 25%"></div>
+                    </div>
+                </div>
+                
+                <div class="quiz-step" id="step2">
+                    <h3 class="quiz-question">What colors do you typically wear?</h3>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="nextQuizStep('neutral')">
+                            <div style="background: #2E2E3A; width: 30px; height: 30px; border-radius: 50%; margin: 0 auto;"></div>
+                            <p>Neutrals</p>
+                        </div>
+                        <div class="quiz-option" onclick="nextQuizStep('bright')">
+                            <div style="background: #FF3E6C; width: 30px; height: 30px; border-radius: 50%; margin: 0 auto;"></div>
+                            <p>Bright Colors</p>
+                        </div>
+                        <div class="quiz-option" onclick="nextQuizStep('pastel')">
+                            <div style="background: #9d50bb; width: 30px; height: 30px; border-radius: 50%; margin: 0 auto;"></div>
+                            <p>Pastels</p>
+                        </div>
+                        <div class="quiz-option" onclick="nextQuizStep('mixed')">
+                            <div style="background: linear-gradient(45deg, #6e48aa, #9d50bb); width: 30px; height: 30px; border-radius: 50%; margin: 0 auto;"></div>
+                            <p>Mixed</p>
+                        </div>
+                    </div>
+                    <div class="quiz-progress">
+                        <div class="quiz-progress-bar" style="width: 50%"></div>
+                    </div>
+                </div>
+                
+                <div class="quiz-step" id="step3">
+                    <h3 class="quiz-question">What's your typical budget for clothing?</h3>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="nextQuizStep('budget')">
+                            <i class="fas fa-dollar-sign"></i>
+                            <p>Budget Friendly</p>
+                        </div>
+                        <div class="quiz-option" onclick="nextQuizStep('midrange')">
+                            <i class="fas fa-dollar-sign"></i><i class="fas fa-dollar-sign"></i>
+                            <p>Mid-Range</p>
+                        </div>
+                        <div class="quiz-option" onclick="nextQuizStep('premium')">
+                            <i class="fas fa-dollar-sign"></i><i class="fas fa-dollar-sign"></i><i class="fas fa-dollar-sign"></i>
+                            <p>Premium</p>
+                        </div>
+                        <div class="quiz-option" onclick="nextQuizStep('luxury')">
+                            <i class="fas fa-gem"></i>
+                            <p>Luxury</p>
+                        </div>
+                    </div>
+                    <div class="quiz-progress">
+                        <div class="quiz-progress-bar" style="width: 75%"></div>
+                    </div>
+                </div>
+                
+                <div class="quiz-step" id="step4">
+                    <h3 class="quiz-question">Where do you shop most often?</h3>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="completeQuiz('fastfashion')">
+                            <p>Fast Fashion Retailers</p>
+                        </div>
+                        <div class="quiz-option" onclick="completeQuiz('department')">
+                            <p>Department Stores</p>
+                        </div>
+                        <div class="quiz-option" onclick="completeQuiz('boutique')">
+                            <p>Local Boutiques</p>
+                        </div>
+                        <div class="quiz-option" onclick="completeQuiz('online')">
+                            <p>Online Only</p>
+                        </div>
+                    </div>
+                    <div class="quiz-progress">
+                        <div class="quiz-progress-bar" style="width: 100%"></div>
+                    </div>
+                </div>
+                
+                <div class="quiz-step" id="results" style="text-align: center;">
+                    <h3 class="quiz-question">Your Personalized Style Profile</h3>
+                    <div class="quiz-results">
+                        <p>Based on your answers, we recommend:</p>
+                        <div class="style-recommendation">
+                            <h4 id="style-name">Modern Classic</h4>
+                            <p id="style-desc">Timeless pieces with contemporary fits</p>
+                            <img src="https://i.ibb.co/PZ99skhX/20250628-1049-Floral-Summer-Elegance-simple-compose-01jytfj91nfjavjcxp6j2vcdke.png" alt="Style Recommendation" class="style-image" id="style-img">
+                            <p id="style-details">Clean lines, neutral colors, and versatile pieces that work for any occasion.</p>
+                        </div>
+                        <button class="cta-button" style="margin-top: 1rem;" onclick="resetQuiz()">Try Again</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Virtual Dressing Room -->
+    <section id="dressing-room">
+        <div class="container">
+            <h2 class="section-heading animate-in">Virtual Dressing Room</h2>
+            <p class="section-subheading animate-in delay-1">Mix and match clothing items to create your perfect outfit</p>
+            
+            <div class="dressing-room-container animate-in delay-2">
+                <div class="outfit-selector">
+                    <div class="outfit-category">
+                        <h4 class="category-title">Tops</h4>
+                        <div class="outfit-options">
+                            <div class="outfit-option selected" onclick="selectOutfit('top1')">
+                                <img src="https://i.ibb.co/PZ99skhX/20250628-1049-Floral-Summer-Elegance-simple-compose-01jytfj91nfjavjcxp6j2vcdke.png" alt="Top 1">
+                            </div>
+                            <div class="outfit-option" onclick="selectOutfit('top2')">
+                                <img src="https://i.ibb.co/1YXLyqBT/20250628-1049-Ethnic-Elegance-simple-compose-01jytfhepders8b628seype6jv.png" alt="Top 2">
+                            </div>
+                            <div class="outfit-option" onclick="selectOutfit('top3')">
+                                <img src="https://i.ibb.co/V0Yzh9pr/20250628-1049-Ethnic-Elegance-simple-compose-01jytfhepcekmtxc7wc432rapm.png" alt="Top 3">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="outfit-category">
+                        <h4 class="category-title">Bottoms</h4>
+                        <div class="outfit-options">
+                            <div class="outfit-option selected" onclick="selectOutfit('bottom1')">
+                                <img src="https://i.ibb.co/xq9bwVmR/20250628-1045-Urban-Street-Style-simple-compose-01jytf9gx6f02tygh88yzjhteh.png" alt="Bottom 1">
+                            </div>
+                            <div class="outfit-option" onclick="selectOutfit('bottom2')">
+                                <img src="https://i.ibb.co/W4yTyGcR/20250628-1045-Urban-Street-Style-simple-compose-01jytf9gx5fdg915qx9mfggnyg.png" alt="Bottom 2">
+                            </div>
+                            <div class="outfit-option" onclick="selectOutfit('bottom3')">
+                                <img src="https://i.ibb.co/hFY52Rwn/20250628-1052-Futuristic-Techwear-Mannequin-simple-compose-01jytfpe5rf7vvqn7hnjnqn699.png" alt="Bottom 3">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="color-picker">
+                        <label>Color:</label>
+                        <div class="color-options">
+                            <div class="color-option selected" style="background-color: #6e48aa;" onclick="changeColor('#6e48aa')"></div>
+                            <div class="color-option" style="background-color: #2E2E3A;" onclick="changeColor('#2E2E3A')"></div>
+                            <div class="color-option" style="background-color: #FF3E6C;" onclick="changeColor('#FF3E6C')"></div>
+                            <div class="color-option" style="background-color: #4CAF50;" onclick="changeColor('#4CAF50')"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="outfit-preview">
+                    <img src="https://i.ibb.co/PZ99skhX/20250628-1049-Floral-Summer-Elegance-simple-compose-01jytfj91nfjavjcxp6j2vcdke.png" alt="Outfit Preview" class="preview-image" id="outfit-preview">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Brand Collaboration -->
+    <section id="brands">
+        <div class="container">
+            <h2 class="section-heading animate-in">Partner Brands</h2>
+            <p class="section-subheading animate-in delay-1">Try on outfits from your favorite brands</p>
+            
+            <div class="brand-carousel animate-in delay-2">
+                <img src="https://i.ibb.co/G4phwLhZ/002-nike-logos-swoosh-white.jpg" alt="Nike" class="brand-logo">
+                <img src="https://i.ibb.co/L4DNFB0/zara-popular-clothing-brand-and-logo-illustration-free-vector.jpg" alt="Zara" class="brand-logo">
+                <img src="https://i.ibb.co/DgzgqDsv/images.png" alt="Levi's" class="brand-logo">
+                <img src="https://i.ibb.co/nNG8dGcy/HM-Share-Image.jpg" alt="H&M" class="brand-logo">
+                <img src="https://i.ibb.co/5hMtLPCr/images-1.png" alt="Adidas" class="brand-logo">
+                <img src="https://i.ibb.co/Bm87tZ8/images-2.png" alt="Gucci" class="brand-logo">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials -->
+    <section id="testimonials">
+        <div class="container">
+            <h2 class="section-heading animate-in">What Our Users Say</h2>
+            <p class="section-subheading animate-in delay-1">Join thousands of satisfied fashion lovers</p>
+            
+            <div class="testimonial-grid animate-in delay-2">
+                <div class="testimonial-card">
+                    <p class="testimonial-content">"AIfitwear completely changed how I shop online. The virtual try-on was so accurate I knew exactly how everything would fit!"</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah J." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Sarah J.</h4>
+                            <p>Fashion Blogger</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-content">"The AI recommendations are scarily accurate. It knows my style better than I do!"</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michael T." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Michael T.</h4>
+                            <p>Tech Entrepreneur</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-content">"I've reduced my return rate by 90% since using AIfitwear. The sizing predictions are perfect every time."</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Priya K." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Priya K.</h4>
+                            <p>Frequent Shopper</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Form -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-heading animate-in">Contact Us</h2>
+            <p class="section-subheading animate-in delay-1">Have questions? Get in touch with our team</p>
+            
+            <form class="contact-form animate-in delay-2" action="https://formspree.io/f/mwpbwlbq" method="POST">
+                <div class="form-group">
+                    <label for="name" class="form-label">Your Name</label>
+                    <input type="text" id="name" name="name" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" id="email" name="email" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject" class="form-label">Subject</label>
+                    <input type="text" id="subject" name="subject" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea id="message" name="message" class="form-input" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+    
+    <!-- Sustainability -->
+    <section id="sustainability">
+        <div class="container">
+            <h2 class="section-heading animate-in" style="color: white;">Sustainable Shopping</h2>
+            <p class="section-subheading animate-in delay-1" style="color: rgba(255,255,255,0.8);">Reducing fashion's environmental impact</p>
+            
+            <div class="eco-card animate-in delay-2">
+                <div class="eco-score">87%</div>
+                <h3>Reduction in Return Rates</h3>
+                <p>Virtual try-ons significantly decrease unnecessary shipping and packaging waste</p>
+                <button class="cta-button" style="margin-top: 1.5rem;">Learn More</button>
+            </div>
+        </div>
+    </section>
+    
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <div class="footer-logo">
-                    <i class="fab fa-discord"></i> TDS Innovation
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">AIfitwear</div>
+                    <p class="footer-about">
+                        Revolutionizing online fashion with AI-powered virtual try-ons and personalized recommendations.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/welcometopunecity" class="social-link" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://x.com/PalkiSharmaFP" class="social-link" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/anchor_palkisharma/" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/channel/UCsT0YIqwnpJCM-mx7-gSA4Q" class="social-link" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
-                <p>Providing free, high-quality Discord services since 2023.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-discord"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
+                <div class="footer-column">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#product-viewer">3D Try-On</a></li>
+                        <li><a href="#style-quiz">Style Quiz</a></li>
+                        <li><a href="#dressing-room">Dressing Room</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-heading">Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">GDPR Compliance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-heading">Contact</h3>
+                    <ul class="footer-links">
+                        <li><a href="mailto:hello@aifitwear.com">hello@aifitwear.com</a></li>
+                        <li><a href="tel:+18005551234">+1 (800) 555-1234</a></li>
+                        <li><a href="#">Press Inquiries</a></li>
+                        <li><a href="#">Brand Partnerships</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="footer-links">
-                <h3>Services</h3>
-                <ul>
-                    <li><a href="#">Custom Bots</a></li>
-                    <li><a href="#">Server Setup</a></li>
-                    <li><a href="#">Security</a></li>
-                    <li><a href="#">Branding</a></li>
-                </ul>
+            <div class="footer-bottom">
+                <div class="copyright">© 2023 AIfitwear. All rights reserved.</div>
+                <div class="copyright">Developed by TDS Innovation</div>
             </div>
-            <div class="footer-links">
-                <h3>Company</h3>
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Pricing</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Blog</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h3>Legal</h3>
-                <ul>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Cookie Policy</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="copyright">
-            &copy; 2023 TDS Innovation. Not affiliated with Discord Inc.
         </div>
     </footer>
-
-    <!-- JavaScript for Interactive Elements -->
+    
     <script>
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
-                header.classList.add('scrolled');
+                navbar.classList.add('scrolled');
             } else {
-                header.classList.remove('scrolled');
+                navbar.classList.remove('scrolled');
             }
         });
-
-        // Smooth scroll for anchor links
+        
+        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
+                
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
+                
+                // Update active nav link
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
             });
         });
-
-        // Animate elements on scroll (Intersection Observer)
-        const animateOnScroll = () => {
-            const elements = document.querySelectorAll('.feature-card, .section-title');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            elements.forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'all 0.6s ease';
-                observer.observe(el);
-            });
+        
+        // Style Quiz
+        let currentStep = 1;
+        const totalSteps = 4;
+        const userSelections = {};
+        
+        // Style recommendations data
+        const styleRecommendations = {
+            casual: {
+                name: "Casual Comfort",
+                desc: "Relaxed and comfortable everyday wear",
+                img: "https://i.ibb.co/W4yTyGcR/20250628-1045-Urban-Street-Style-simple-compose-01jytf9gx5fdg915qx9mfggnyg.png",
+                details: "Easy-going outfits perfect for daily wear with a focus on comfort and versatility."
+            },
+            professional: {
+                name: "Professional Chic",
+                desc: "Polished looks for the workplace",
+                img: "https://i.ibb.co/V0Yzh9pr/20250628-1049-Ethnic-Elegance-simple-compose-01jytfhepcekmtxc7wc432rapm.png",
+                details: "Tailored pieces that balance professionalism with modern style."
+            },
+            athleisure: {
+                name: "Athleisure Trend",
+                desc: "Sporty meets stylish",
+                img: "https://i.ibb.co/hFY52Rwn/20250628-1052-Futuristic-Techwear-Mannequin-simple-compose-01jytfpe5rf7vvqn7hnjnqn699.png",
+                details: "Performance fabrics with streetwear aesthetics for all-day comfort."
+            },
+            trendy: {
+                name: "Fashion Forward",
+                desc: "Cutting-edge contemporary styles",
+                img: "https://i.ibb.co/1YXLyqBT/20250628-1049-Ethnic-Elegance-simple-compose-01jytfhepders8b628seype6jv.png",
+                details: "Bold statement pieces and the latest trends for those who love to stand out."
+            }
         };
-
-        window.addEventListener('load', animateOnScroll);
+        
+        function nextQuizStep(selection) {
+            userSelections[`step${currentStep}`] = selection;
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            currentStep++;
+            
+            if (currentStep <= totalSteps) {
+                document.getElementById(`step${currentStep}`).classList.add('active');
+                document.querySelector('.quiz-progress-bar').style.width = `${(currentStep/totalSteps)*100}%`;
+            }
+        }
+        
+        function completeQuiz(selection) {
+            userSelections[`step${currentStep}`] = selection;
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            
+            // Determine style recommendation based on first answer
+            const styleKey = userSelections.step1 || 'casual';
+            const recommendation = styleRecommendations[styleKey] || styleRecommendations.casual;
+            
+            // Update results display
+            document.getElementById('style-name').textContent = recommendation.name;
+            document.getElementById('style-desc').textContent = recommendation.desc;
+            document.getElementById('style-img').src = recommendation.img;
+            document.getElementById('style-img').alt = recommendation.name + " Style";
+            document.getElementById('style-details').textContent = recommendation.details;
+            
+            document.getElementById('results').classList.add('active');
+        }
+        
+        function resetQuiz() {
+            currentStep = 1;
+            document.getElementById('results').classList.remove('active');
+            document.getElementById('step1').classList.add('active');
+            document.querySelector('.quiz-progress-bar').style.width = '25%';
+        }
+        
+        // Virtual Dressing Room
+        function selectOutfit(item) {
+            // Remove selected class from all options in this category
+            const category = item.includes('top') ? 'top' : 'bottom';
+            document.querySelectorAll(`.outfit-option[onclick*="${category}"]`).forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked option
+            event.target.closest('.outfit-option').classList.add('selected');
+            
+            // Update preview (simplified for demo)
+            if (category === 'top') {
+                document.getElementById('outfit-preview').src = event.target.closest('.outfit-option').querySelector('img').src;
+            }
+        }
+        
+        function changeColor(color) {
+            // Remove selected class from all color options
+            document.querySelectorAll('.color-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked color
+            event.target.classList.add('selected');
+            
+            // In a real implementation, this would change the outfit color
+            console.log(`Changed color to: ${color}`);
+        }
+        
+        // Scroll animation
+        function checkScroll() {
+            const elements = document.querySelectorAll('.animate-in');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
     </script>
 </body>
 </html>
