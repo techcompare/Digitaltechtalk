@@ -1,1371 +1,631 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIfitwear - AI-Powered Virtual Try-On | Coming Soon</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/@google/model-viewer@2.1.1/dist/model-viewer.min.js" type="module"></script>
-    <style>
-        :root {
-            --primary: #6e48aa;
-            --secondary: #9d50bb;
-            --dark: #2E2E3A;
-            --light: #F8F9FA;
-            --gray: #6C757D;
-            --success: #4CAF50;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-        }
-        
-        body {
-            overflow-x: hidden;
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-        }
-        
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: white;
-            padding: 1.2rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 30px rgba(0,0,0,0.08);
-            z-index: 1000;
-            transition: all 0.4s ease;
-        }
-        
-        nav.scrolled {
-            padding: 0.8rem 5%;
-            backdrop-filter: blur(10px);
-            background: rgba(255,255,255,0.9);
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .logo-badge {
-            font-size: 0.7rem;
-            background: var(--dark);
-            color: white;
-            padding: 0.2rem 0.6rem;
-            border-radius: 2rem;
-            margin-left: 0.5rem;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-        
-        .nav-link {
-            position: relative;
-            cursor: pointer;
-            font-weight: 500;
-            color: var(--dark);
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
-            text-decoration: none;
-        }
-        
-        .nav-link:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover, .nav-link.active {
-            color: var(--primary);
-        }
-        
-        .nav-link:hover:after, .nav-link.active:after {
-            width: 100%;
-        }
-        
-        .cta-button {
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            padding: 0.8rem 1.8rem;
-            border-radius: 2rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(110, 72, 170, 0.3);
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(110, 72, 170, 0.4);
-        }
-        
-        .coming-soon-badge {
-            background: var(--success);
-            color: white;
-            padding: 0.3rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-left: 1rem;
-            display: inline-block;
-        }
-        
-        /* Sections */
-        section {
-            min-height: 100vh;
-            padding: 6rem 5% 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-        }
-        
-        .section-heading {
-            font-size: 2.8rem;
-            margin-bottom: 3rem;
-            position: relative;
-            display: inline-block;
-            font-weight: 700;
-        }
-        
-        .section-heading:after {
-            content: '';
-            position: absolute;
-            width: 50%;
-            height: 4px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            bottom: -1rem;
-            left: 0;
-            border-radius: 2px;
-        }
-        
-        .section-subheading {
-            font-size: 1.2rem;
-            color: var(--gray);
-            max-width: 700px;
-            margin-bottom: 3rem;
-        }
-        
-        /* Hero Section */
-        #hero {
-            background: linear-gradient(135deg, #fff, #f8f8f8);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 3rem;
-        }
-        
-        .hero-content {
-            flex: 1;
-            max-width: 600px;
-        }
-        
-        .hero-heading {
-            font-size: 3.2rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            font-weight: 800;
-            background: linear-gradient(45deg, var(--dark), #444);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .hero-subtext {
-            font-size: 1.2rem;
-            margin-bottom: 2.5rem;
-            color: var(--gray);
-            line-height: 1.6;
-        }
-        
-        .hero-image {
-            flex: 1;
-            position: relative;
-            max-width: 600px;
-        }
-        
-        .hero-image img {
-            width: 100%;
-            border-radius: 1rem;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
-            transform: perspective(1000px) rotateY(-15deg);
-            transition: transform 0.5s ease;
-        }
-        
-        .hero-image:hover img {
-            transform: perspective(1000px) rotateY(-5deg);
-        }
-        
-        .app-badges {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-        
-        .app-badge {
-            height: 50px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        
-        .app-badge:hover {
-            transform: translateY(-5px);
-        }
-        
-        /* 3D Product Viewer */
-        #product-viewer {
-            background: white;
-            text-align: center;
-        }
-        
-        model-viewer {
-            width: 100%;
-            height: 500px;
-            background: #f8f8f8;
-            border-radius: 16px;
-            margin: 2rem 0;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-        
-        .viewer-controls {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .viewer-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: white;
-            border: 1px solid rgba(0,0,0,0.1);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-        
-        .viewer-btn:hover {
-            background: var(--primary);
-            color: white;
-        }
-        
-        /* Style Quiz */
-        #style-quiz {
-            background: linear-gradient(135deg, #f9f9f9, #f0f0f0);
-        }
-        
-        .quiz-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 1rem;
-            padding: 2rem;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.05);
-        }
-        
-        .quiz-step {
-            display: none;
-        }
-        
-        .quiz-step.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        .quiz-question {
-            font-size: 1.4rem;
-            margin-bottom: 2rem;
-            font-weight: 600;
-            color: var(--dark);
-        }
-        
-        .quiz-options {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-        }
-        
-        .quiz-option {
-            padding: 1.5rem;
-            background: white;
-            border: 1px solid rgba(0,0,0,0.1);
-            border-radius: 0.8rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-        
-        .quiz-option:hover {
-            border-color: var(--primary);
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(110, 72, 170, 0.1);
-        }
-        
-        .quiz-option.selected {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-        
-        .quiz-progress {
-            height: 6px;
-            background: rgba(0,0,0,0.1);
-            border-radius: 3px;
-            margin-top: 2rem;
-            overflow: hidden;
-        }
-        
-        .quiz-progress-bar {
-            height: 100%;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            width: 0%;
-            transition: width 0.5s ease;
-        }
-        
-        /* Quiz Results */
-        .quiz-results {
-            text-align: center;
-            padding: 2rem;
-        }
-        
-        .style-recommendation {
-            background: #f5f5f5;
-            padding: 2rem;
-            border-radius: 0.8rem;
-            margin: 1rem 0;
-        }
-        
-        .style-image {
-            max-width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 0.5rem;
-            margin: 1rem 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        /* Virtual Dressing Room */
-        #dressing-room {
-            background: white;
-        }
-        
-        .dressing-room-container {
-            display: flex;
-            gap: 2rem;
-        }
-        
-        .outfit-selector {
-            width: 300px;
-            background: #f9f9f9;
-            border-radius: 1rem;
-            padding: 1.5rem;
-        }
-        
-        .outfit-category {
-            margin-bottom: 1.5rem;
-        }
-        
-        .category-title {
-            font-weight: 600;
-            margin-bottom: 0.8rem;
-            color: var(--dark);
-        }
-        
-        .outfit-options {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.8rem;
-        }
-        
-        .outfit-option {
-            width: 100%;
-            aspect-ratio: 1;
-            background: white;
-            border-radius: 0.5rem;
-            overflow: hidden;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-        
-        .outfit-option:hover {
-            border-color: var(--primary);
-        }
-        
-        .outfit-option.selected {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 2px var(--primary);
-        }
-        
-        .outfit-option img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .outfit-preview {
-            flex: 1;
-            background: #f5f5f5;
-            border-radius: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-        
-        .preview-image {
-            max-width: 100%;
-            max-height: 500px;
-            border-radius: 0.5rem;
-        }
-        
-        /* Brand Collaboration */
-        #brands {
-            background: linear-gradient(135deg, #f9f9f9, #f0f0f0);
-            text-align: center;
-        }
-        
-        .brand-carousel {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-        
-        .brand-logo {
-            height: 60px;
-            width: auto;
-            max-width: 150px;
-            object-fit: contain;
-            filter: grayscale(100%);
-            opacity: 0.7;
-            transition: all 0.3s ease;
-        }
-        
-        .brand-logo:hover {
-            filter: grayscale(0%);
-            opacity: 1;
-            transform: scale(1.1);
-        }
-        
-        /* Testimonials */
-        #testimonials {
-            background: white;
-        }
-        
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .testimonial-card {
-            background: white;
-            border-radius: 1rem;
-            padding: 2rem;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-        }
-        
-        .testimonial-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(110, 72, 170, 0.1);
-        }
-        
-        .testimonial-content {
-            font-style: italic;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-        
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        
-        .author-info h4 {
-            font-weight: 600;
-            color: var(--dark);
-        }
-        
-        .author-info p {
-            font-size: 0.9rem;
-            color: var(--gray);
-        }
-        
-        /* Color Picker */
-        .color-picker {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-        
-        .color-options {
-            display: flex;
-            gap: 0.5rem;
-        }
-        
-        .color-option {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 2px solid white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .color-option:hover {
-            transform: scale(1.1);
-        }
-        
-        .color-option.selected {
-            box-shadow: 0 0 0 2px var(--primary);
-        }
-        
-        /* Sustainability */
-        #sustainability {
-            background: linear-gradient(135deg, #6e48aa, #9d50bb);
-            color: white;
-        }
-        
-        .eco-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 1rem;
-            padding: 2rem;
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .eco-score {
-            font-size: 4rem;
-            font-weight: 700;
-            background: white;
-            color: var(--primary);
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 2rem;
-        }
-        
-        /* Contact Form */
-        #contact {
-            background: linear-gradient(135deg, #f9f9f9, #f0f0f0);
-        }
-        
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            padding: 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.05);
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-        
-        .form-input {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border: 1px solid rgba(0,0,0,0.1);
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .form-input:focus {
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(110, 72, 170, 0.2);
-        }
-        
-        textarea.form-input {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        .submit-btn {
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 2rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(110, 72, 170, 0.3);
-            width: 100%;
-        }
-        
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(110, 72, 170, 0.4);
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 5rem 5% 3rem;
-            text-align: center;
-        }
-        
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: left;
-        }
-        
-        .footer-column {
-            flex: 1;
-            min-width: 250px;
-        }
-        
-        .footer-logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 1.5rem;
-            display: inline-block;
-        }
-        
-        .footer-about {
-            color: rgba(255,255,255,0.7);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .social-link {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            transition: all 0.3s ease;
-        }
-        
-        .social-link:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
-        }
-        
-        .footer-heading {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            color: white;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 1rem;
-        }
-        
-        .footer-links a {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-        
-        .footer-links a:hover {
-            color: white;
-            transform: translateX(5px);
-        }
-        
-        .footer-bottom {
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        
-        .copyright {
-            color: rgba(255,255,255,0.5);
-            font-size: 0.9rem;
-        }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-        
-        .animate-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .delay-1 { transition-delay: 0.1s; }
-        .delay-2 { transition-delay: 0.2s; }
-        .delay-3 { transition-delay: 0.3s; }
-        .delay-4 { transition-delay: 0.4s; }
-        .delay-5 { transition-delay: 0.5s; }
-        
-        /* Responsive */
-        @media (max-width: 992px) {
-            .hero-heading {
-                font-size: 2.5rem;
-            }
-            
-            .section-heading {
-                font-size: 2.2rem;
-            }
-            
-            nav {
-                padding: 1rem 5%;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            #hero {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .hero-content {
-                max-width: 100%;
-                margin-bottom: 3rem;
-            }
-            
-            .app-badges {
-                justify-content: center;
-            }
-            
-            .dressing-room-container {
-                flex-direction: column;
-            }
-            
-            .outfit-selector {
-                width: 100%;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreshBake Delights | Artisanal Bakery</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Base Styles */
+    :root {
+      --primary: #e67e22;
+      --secondary: #d35400;
+      --light: #fff8f0;
+      --dark: #333;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--light);
+      color: var(--dark);
+    }
+    
+    /* Header */
+    header {
+      background: white;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .logo span {
+      color: var(--secondary);
+    }
+    
+    /* Navigation */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+    .nav-links a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      transition: all 0.3s;
+      position: relative;
+    }
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: var(--primary);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                  url('https://images.unsplash.com/photo-1608198093002-ad4e005484ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 120px 20px;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      animation: fadeIn 1s ease;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
+      animation: fadeIn 1.5s ease;
+    }
+    
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 12px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: var(--secondary);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid white;
+      margin-left: 15px;
+    }
+    .btn-outline:hover {
+      background: white;
+      color: var(--primary);
+    }
+    
+    /* Products Section */
+    .section-title {
+      text-align: center;
+      margin: 60px 0 40px;
+      position: relative;
+    }
+    .section-title h2 {
+      font-size: 2.5rem;
+      color: var(--secondary);
+      margin-bottom: 15px;
+    }
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: var(--primary);
+      margin: 0 auto;
+    }
+    
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+    .product-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+    }
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+    .product-img {
+      height: 250px;
+      overflow: hidden;
+    }
+    .product-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    .product-card:hover .product-img img {
+      transform: scale(1.1);
+    }
+    .product-info {
+      padding: 20px;
+    }
+    .product-info h3 {
+      margin: 0 0 10px;
+      font-size: 1.25rem;
+    }
+    .product-info p {
+      color: #666;
+      margin-bottom: 15px;
+    }
+    .price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: block;
+      margin-bottom: 15px;
+    }
+    .tags {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    .tag {
+      background: #f0f0f0;
+      padding: 5px 10px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .tag.veg {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+    .tag.gf {
+      background: #fff8e1;
+      color: #ff8f00;
+    }
+    
+    /* Testimonials */
+    .testimonials {
+      background: #f9f9f9;
+      padding: 80px 0;
+    }
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    .testimonial-card {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .testimonial-text::before {
+      content: '"';
+      font-size: 4rem;
+      color: rgba(230, 126, 34, 0.1);
+      position: absolute;
+      top: -20px;
+      left: -10px;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+    .author-img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 15px;
+    }
+    .author-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .author-info h4 {
+      margin: 0 0 5px;
+    }
+    .author-info p {
+      margin: 0;
+      color: #666;
+      font-size: 0.875rem;
+    }
+    .stars {
+      color: #ffc107;
+      margin-bottom: 15px;
+    }
+    
+    /* CTA Section */
+    .cta {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+      position: relative;
+    }
+    .cta h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    .cta p {
+      max-width: 700px;
+      margin: 0 auto 30px;
+      font-size: 1.125rem;
+    }
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    
+    /* Footer */
+    footer {
+      background: #222;
+      color: white;
+      padding: 60px 0 20px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-col h3 {
+      color: white;
+      margin-bottom: 20px;
+      font-size: 1.25rem;
+    }
+    .footer-col p {
+      color: #bbb;
+      line-height: 1.6;
+    }
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    .footer-links a {
+      color: #bbb;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover {
+      color: white;
+    }
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      color: white;
+      transition: all 0.3s;
+    }
+    .social-links a:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+    .copyright {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #bbb;
+      font-size: 0.875rem;
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      .btn-outline {
+        margin-left: 0;
+        margin-top: 15px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="logo">
-            AIfitwear <span class="logo-badge">AI</span>
-        </div>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="index.html" class="logo">Fresh<span>Bake</span> Delights</a>
         <div class="nav-links">
-            <a href="#hero" class="nav-link active">Home</a>
-            <a href="#product-viewer" class="nav-link">3D Try-On</a>
-            <a href="#style-quiz" class="nav-link">Style Quiz</a>
-            <a href="#dressing-room" class="nav-link">Dressing Room</a>
-            <a href="#testimonials" class="nav-link">Testimonials</a>
-            <a href="#contact" class="nav-link">Contact</a>
+          <a href="index.html">Home</a>
+          <a href="products.html">Products</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="order.html" class="btn">Order Now</a>
         </div>
-        <a href="#sustainability" class="cta-button">Coming Soon</a>
-    </nav>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Artisanal Bakery Delivered to Your Doorstep</h1>
+      <p>Handcrafted with love using premium ingredients since 2015. Freshly baked daily with no preservatives.</p>
+      <div style="display: flex; justify-content: center; gap: 15px;">
+        <a href="products.html" class="btn">Explore Menu</a>
+        <a href="order.html" class="btn btn-outline">Custom Order</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="container">
+    <div class="section-title">
+      <h2>Our Signature Creations</h2>
+      <p>Baked fresh every morning by our master pastry chefs</p>
+    </div>
     
-    <!-- Hero Section -->
-    <section id="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-heading animate-in visible">Revolutionary AI Virtual Fitting Room</h1>
-                <p class="hero-subtext animate-in visible delay-1">Try on any outfit instantly with our cutting-edge AI technology. See how clothes fit before you buy - no more guessing or returns!</p>
-                <div class="app-badges animate-in visible delay-2">
-                    <div class="cta-button">Coming Soon <span class="coming-soon-badge">New</span></div>
-                </div>
-            </div>
-            <div class="hero-image animate-in visible delay-3">
-                <img src="https://i.ibb.co/hFY52Rwn/20250628-1052-Futuristic-Techwear-Mannequin-simple-compose-01jytfpe5rf7vvqn7hnjnqn699.png" alt="AIfitwear Virtual Try-On">
-            </div>
+    <div class="product-grid">
+      <!-- Product 1 -->
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Chocolate Truffle Cake">
         </div>
-    </section>
-    
-    <!-- 3D Product Viewer -->
-    <section id="product-viewer">
-        <div class="container">
-            <h2 class="section-heading animate-in">Interactive 3D Try-On</h2>
-            <p class="section-subheading animate-in delay-1">Rotate, zoom, and explore outfits in stunning 3D detail</p>
-            
-            <model-viewer 
-                src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
-                alt="3D Outfit Model"
-                auto-rotate
-                camera-controls
-                ar
-                class="animate-in delay-2">
-            </model-viewer>
-            
-            <div class="viewer-controls animate-in delay-3">
-                <button class="viewer-btn" onclick="document.querySelector('model-viewer').cameraOrbit = '0deg 75deg 105%'">
-                    <i class="fas fa-undo"></i>
-                </button>
-                <button class="viewer-btn" onclick="document.querySelector('model-viewer').zoom(-0.5)">
-                    <i class="fas fa-search-minus"></i>
-                </button>
-                <button class="viewer-btn" onclick="document.querySelector('model-viewer').zoom(0.5)">
-                    <i class="fas fa-search-plus"></i>
-                </button>
-            </div>
+        <div class="product-info">
+          <h3>Chocolate Truffle Cake</h3>
+          <div class="tags">
+            <span class="tag veg">Vegetarian</span>
+            <span class="tag">Best Seller</span>
+          </div>
+          <p>Rich dark chocolate cake with layers of ganache</p>
+          <span class="price">₹850</span>
+          <a href="order.html" class="btn" style="display: block; text-align: center;">Add to Cart</a>
         </div>
-    </section>
-    
-    <!-- Style Quiz -->
-    <section id="style-quiz">
-        <div class="container">
-            <h2 class="section-heading animate-in">Find Your Perfect Style</h2>
-            <p class="section-subheading animate-in delay-1">Take our AI-powered style quiz to get personalized recommendations</p>
-            
-            <div class="quiz-container animate-in delay-2">
-                <div class="quiz-step active" id="step1">
-                    <h3 class="quiz-question">How would you describe your daily style?</h3>
-                    <div class="quiz-options">
-                        <div class="quiz-option" onclick="nextQuizStep('casual')">
-                            <i class="fas fa-tshirt"></i>
-                            <p>Casual Comfort</p>
-                        </div>
-                        <div class="quiz-option" onclick="nextQuizStep('professional')">
-                            <i class="fas fa-suitcase"></i>
-                            <p>Professional</p>
-                        </div>
-                        <div class="quiz-option" onclick="nextQuizStep('athleisure')">
-                            <i class="fas fa-running"></i>
-                            <p>Athleisure</p>
-                        </div>
-                        <div class="quiz-option" onclick="nextQuizStep('trendy')">
-                            <i class="fas fa-star"></i>
-                            <p>Trendy/Fashion-forward</p>
-                        </div>
-                    </div>
-                    <div class="quiz-progress">
-                        <div class="quiz-progress-bar" style="width: 25%"></div>
-                    </div>
-                </div>
-                
-                <div class="quiz-step" id="step2">
-                    <h3 class="quiz-question">What colors do you typically wear?</h3>
-                    <div class="quiz-options">
-                        <div class="quiz-option" onclick="nextQuizStep('neutral')">
-                            <div style="background: #2E2E3A; width: 30px; height: 30px; border-radius: 50%; margin: 0 auto;"></div>
-                            <p>Neutrals</p>
-                        </div>
-                        <div class="quiz-option" onclick="nextQuizStep('bright')">
-                            <div style="background: #FF3E6C; width: 30px; height: 30px; border-radius: 50%; margin: 0 auto;"></div>
-                            <p>Bright Colors</p>
-                        </div>
-                        <div class="quiz-option" onclick="nextQuizStep('pastel')">
-                            <div style="background: #9d50bb; width: 30px; height: 30px; border-radius: 50%; margin: 0 auto;"></div>
-                            <p>Pastels</p>
-                        </div>
-                        <div class="quiz-option" onclick="nextQuizStep('mixed')">
-                            <div style="background: linear-gradient(45deg, #6e48aa, #9d50bb); width: 30px; height: 30px; border-radius: 50%; margin: 0 auto;"></div>
-                            <p>Mixed</p>
-                        </div>
-                    </div>
-                    <div class="quiz-progress">
-                        <div class="quiz-progress-bar" style="width: 50%"></div>
-                    </div>
-                </div>
-                
-                <div class="quiz-step" id="step3">
-                    <h3 class="quiz-question">What's your typical budget for clothing?</h3>
-                    <div class="quiz-options">
-                        <div class="quiz-option" onclick="nextQuizStep('budget')">
-                            <i class="fas fa-dollar-sign"></i>
-                            <p>Budget Friendly</p>
-                        </div>
-                        <div class="quiz-option" onclick="nextQuizStep('midrange')">
-                            <i class="fas fa-dollar-sign"></i><i class="fas fa-dollar-sign"></i>
-                            <p>Mid-Range</p>
-                        </div>
-                        <div class="quiz-option" onclick="nextQuizStep('premium')">
-                            <i class="fas fa-dollar-sign"></i><i class="fas fa-dollar-sign"></i><i class="fas fa-dollar-sign"></i>
-                            <p>Premium</p>
-                        </div>
-                        <div class="quiz-option" onclick="nextQuizStep('luxury')">
-                            <i class="fas fa-gem"></i>
-                            <p>Luxury</p>
-                        </div>
-                    </div>
-                    <div class="quiz-progress">
-                        <div class="quiz-progress-bar" style="width: 75%"></div>
-                    </div>
-                </div>
-                
-                <div class="quiz-step" id="step4">
-                    <h3 class="quiz-question">Where do you shop most often?</h3>
-                    <div class="quiz-options">
-                        <div class="quiz-option" onclick="completeQuiz('fastfashion')">
-                            <p>Fast Fashion Retailers</p>
-                        </div>
-                        <div class="quiz-option" onclick="completeQuiz('department')">
-                            <p>Department Stores</p>
-                        </div>
-                        <div class="quiz-option" onclick="completeQuiz('boutique')">
-                            <p>Local Boutiques</p>
-                        </div>
-                        <div class="quiz-option" onclick="completeQuiz('online')">
-                            <p>Online Only</p>
-                        </div>
-                    </div>
-                    <div class="quiz-progress">
-                        <div class="quiz-progress-bar" style="width: 100%"></div>
-                    </div>
-                </div>
-                
-                <div class="quiz-step" id="results" style="text-align: center;">
-                    <h3 class="quiz-question">Your Personalized Style Profile</h3>
-                    <div class="quiz-results">
-                        <p>Based on your answers, we recommend:</p>
-                        <div class="style-recommendation">
-                            <h4 id="style-name">Modern Classic</h4>
-                            <p id="style-desc">Timeless pieces with contemporary fits</p>
-                            <img src="https://i.ibb.co/PZ99skhX/20250628-1049-Floral-Summer-Elegance-simple-compose-01jytfj91nfjavjcxp6j2vcdke.png" alt="Style Recommendation" class="style-image" id="style-img">
-                            <p id="style-details">Clean lines, neutral colors, and versatile pieces that work for any occasion.</p>
-                        </div>
-                        <button class="cta-button" style="margin-top: 1rem;" onclick="resetQuiz()">Try Again</button>
-                    </div>
-                </div>
-            </div>
+      </div>
+      
+      <!-- Product 2 -->
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Sourdough Bread">
         </div>
-    </section>
-    
-    <!-- Virtual Dressing Room -->
-    <section id="dressing-room">
-        <div class="container">
-            <h2 class="section-heading animate-in">Virtual Dressing Room</h2>
-            <p class="section-subheading animate-in delay-1">Mix and match clothing items to create your perfect outfit</p>
-            
-            <div class="dressing-room-container animate-in delay-2">
-                <div class="outfit-selector">
-                    <div class="outfit-category">
-                        <h4 class="category-title">Tops</h4>
-                        <div class="outfit-options">
-                            <div class="outfit-option selected" onclick="selectOutfit('top1')">
-                                <img src="https://i.ibb.co/PZ99skhX/20250628-1049-Floral-Summer-Elegance-simple-compose-01jytfj91nfjavjcxp6j2vcdke.png" alt="Top 1">
-                            </div>
-                            <div class="outfit-option" onclick="selectOutfit('top2')">
-                                <img src="https://i.ibb.co/1YXLyqBT/20250628-1049-Ethnic-Elegance-simple-compose-01jytfhepders8b628seype6jv.png" alt="Top 2">
-                            </div>
-                            <div class="outfit-option" onclick="selectOutfit('top3')">
-                                <img src="https://i.ibb.co/V0Yzh9pr/20250628-1049-Ethnic-Elegance-simple-compose-01jytfhepcekmtxc7wc432rapm.png" alt="Top 3">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="outfit-category">
-                        <h4 class="category-title">Bottoms</h4>
-                        <div class="outfit-options">
-                            <div class="outfit-option selected" onclick="selectOutfit('bottom1')">
-                                <img src="https://i.ibb.co/xq9bwVmR/20250628-1045-Urban-Street-Style-simple-compose-01jytf9gx6f02tygh88yzjhteh.png" alt="Bottom 1">
-                            </div>
-                            <div class="outfit-option" onclick="selectOutfit('bottom2')">
-                                <img src="https://i.ibb.co/W4yTyGcR/20250628-1045-Urban-Street-Style-simple-compose-01jytf9gx5fdg915qx9mfggnyg.png" alt="Bottom 2">
-                            </div>
-                            <div class="outfit-option" onclick="selectOutfit('bottom3')">
-                                <img src="https://i.ibb.co/hFY52Rwn/20250628-1052-Futuristic-Techwear-Mannequin-simple-compose-01jytfpe5rf7vvqn7hnjnqn699.png" alt="Bottom 3">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="color-picker">
-                        <label>Color:</label>
-                        <div class="color-options">
-                            <div class="color-option selected" style="background-color: #6e48aa;" onclick="changeColor('#6e48aa')"></div>
-                            <div class="color-option" style="background-color: #2E2E3A;" onclick="changeColor('#2E2E3A')"></div>
-                            <div class="color-option" style="background-color: #FF3E6C;" onclick="changeColor('#FF3E6C')"></div>
-                            <div class="color-option" style="background-color: #4CAF50;" onclick="changeColor('#4CAF50')"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="outfit-preview">
-                    <img src="https://i.ibb.co/PZ99skhX/20250628-1049-Floral-Summer-Elegance-simple-compose-01jytfj91nfjavjcxp6j2vcdke.png" alt="Outfit Preview" class="preview-image" id="outfit-preview">
-                </div>
-            </div>
+        <div class="product-info">
+          <h3>Artisan Sourdough</h3>
+          <div class="tags">
+            <span class="tag gf">Gluten Free</span>
+            <span class="tag">New</span>
+          </div>
+          <p>Traditional 48-hour fermented sourdough loaf</p>
+          <span class="price">₹320</span>
+          <a href="order.html" class="btn" style="display: block; text-align: center;">Add to Cart</a>
         </div>
-    </section>
-    
-    <!-- Brand Collaboration -->
-    <section id="brands">
-        <div class="container">
-            <h2 class="section-heading animate-in">Partner Brands</h2>
-            <p class="section-subheading animate-in delay-1">Try on outfits from your favorite brands</p>
-            
-            <div class="brand-carousel animate-in delay-2">
-                <img src="https://i.ibb.co/G4phwLhZ/002-nike-logos-swoosh-white.jpg" alt="Nike" class="brand-logo">
-                <img src="https://i.ibb.co/L4DNFB0/zara-popular-clothing-brand-and-logo-illustration-free-vector.jpg" alt="Zara" class="brand-logo">
-                <img src="https://i.ibb.co/DgzgqDsv/images.png" alt="Levi's" class="brand-logo">
-                <img src="https://i.ibb.co/nNG8dGcy/HM-Share-Image.jpg" alt="H&M" class="brand-logo">
-                <img src="https://i.ibb.co/5hMtLPCr/images-1.png" alt="Adidas" class="brand-logo">
-                <img src="https://i.ibb.co/Bm87tZ8/images-2.png" alt="Gucci" class="brand-logo">
-            </div>
+      </div>
+      
+      <!-- Product 3 -->
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Macaron Box">
         </div>
-    </section>
-    
-    <!-- Testimonials -->
-    <section id="testimonials">
-        <div class="container">
-            <h2 class="section-heading animate-in">What Our Users Say</h2>
-            <p class="section-subheading animate-in delay-1">Join thousands of satisfied fashion lovers</p>
-            
-            <div class="testimonial-grid animate-in delay-2">
-                <div class="testimonial-card">
-                    <p class="testimonial-content">"AIfitwear completely changed how I shop online. The virtual try-on was so accurate I knew exactly how everything would fit!"</p>
-                    <div class="testimonial-author">
-                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah J." class="author-avatar">
-                        <div class="author-info">
-                            <h4>Sarah J.</h4>
-                            <p>Fashion Blogger</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <p class="testimonial-content">"The AI recommendations are scarily accurate. It knows my style better than I do!"</p>
-                    <div class="testimonial-author">
-                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michael T." class="author-avatar">
-                        <div class="author-info">
-                            <h4>Michael T.</h4>
-                            <p>Tech Entrepreneur</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <p class="testimonial-content">"I've reduced my return rate by 90% since using AIfitwear. The sizing predictions are perfect every time."</p>
-                    <div class="testimonial-author">
-                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Priya K." class="author-avatar">
-                        <div class="author-info">
-                            <h4>Priya K.</h4>
-                            <p>Frequent Shopper</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="product-info">
+          <h3>French Macaron Box</h3>
+          <div class="tags">
+            <span class="tag veg">Vegetarian</span>
+          </div>
+          <p>12-piece assortment of delicate French macarons</p>
+          <span class="price">₹650</span>
+          <a href="order.html" class="btn" style="display: block; text-align: center;">Add to Cart</a>
         </div>
-    </section>
-    
-    <!-- Contact Form -->
-    <section id="contact">
-        <div class="container">
-            <h2 class="section-heading animate-in">Contact Us</h2>
-            <p class="section-subheading animate-in delay-1">Have questions? Get in touch with our team</p>
-            
-            <form class="contact-form animate-in delay-2" action="https://formspree.io/f/mwpbwlbq" method="POST">
-                <div class="form-group">
-                    <label for="name" class="form-label">Your Name</label>
-                    <input type="text" id="name" name="name" class="form-input" required>
-                </div>
-                <div class="form-group">
-                    <label for="email" class="form-label">Email Address</label>
-                    <input type="email" id="email" name="email" class="form-input" required>
-                </div>
-                <div class="form-group">
-                    <label for="subject" class="form-label">Subject</label>
-                    <input type="text" id="subject" name="subject" class="form-input" required>
-                </div>
-                <div class="form-group">
-                    <label for="message" class="form-label">Message</label>
-                    <textarea id="message" name="message" class="form-input" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
-        </div>
-    </section>
-    
-    <!-- Sustainability -->
-    <section id="sustainability">
-        <div class="container">
-            <h2 class="section-heading animate-in" style="color: white;">Sustainable Shopping</h2>
-            <p class="section-subheading animate-in delay-1" style="color: rgba(255,255,255,0.8);">Reducing fashion's environmental impact</p>
-            
-            <div class="eco-card animate-in delay-2">
-                <div class="eco-score">87%</div>
-                <h3>Reduction in Return Rates</h3>
-                <p>Virtual try-ons significantly decrease unnecessary shipping and packaging waste</p>
-                <button class="cta-button" style="margin-top: 1.5rem;">Learn More</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-title">
+        <h2>Sweet Words From Our Customers</h2>
+        <p>Don't just take our word for it</p>
+      </div>
+      
+      <div class="testimonial-grid">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <div class="testimonial-text">
+            The chocolate cake was the highlight of our anniversary! Perfectly moist and rich. Will definitely order again.
+          </div>
+          <div class="testimonial-author">
+            <div class="author-img">
+              <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Priya K.">
             </div>
-        </div>
-    </section>
-    
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <div class="footer-logo">AIfitwear</div>
-                    <p class="footer-about">
-                        Revolutionizing online fashion with AI-powered virtual try-ons and personalized recommendations.
-                    </p>
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/welcometopunecity" class="social-link" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://x.com/PalkiSharmaFP" class="social-link" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.instagram.com/anchor_palkisharma/" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/channel/UCsT0YIqwnpJCM-mx7-gSA4Q" class="social-link" target="_blank"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3 class="footer-heading">Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#hero">Home</a></li>
-                        <li><a href="#product-viewer">3D Try-On</a></li>
-                        <li><a href="#style-quiz">Style Quiz</a></li>
-                        <li><a href="#dressing-room">Dressing Room</a></li>
-                        <li><a href="#testimonials">Testimonials</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3 class="footer-heading">Legal</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Cookie Policy</a></li>
-                        <li><a href="#">GDPR Compliance</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3 class="footer-heading">Contact</h3>
-                    <ul class="footer-links">
-                        <li><a href="mailto:hello@aifitwear.com">hello@aifitwear.com</a></li>
-                        <li><a href="tel:+18005551234">+1 (800) 555-1234</a></li>
-                        <li><a href="#">Press Inquiries</a></li>
-                        <li><a href="#">Brand Partnerships</a></li>
-                    </ul>
-                </div>
+            <div class="author-info">
+              <h4>Priya K.</h4>
+              <p>Mumbai</p>
             </div>
-            <div class="footer-bottom">
-                <div class="copyright">© 2023 AIfitwear. All rights reserved.</div>
-                <div class="copyright">Developed by TDS Innovation</div>
-            </div>
+          </div>
         </div>
-    </footer>
-    
-    <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
         
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-                
-                // Update active nav link
-                document.querySelectorAll('.nav-link').forEach(link => {
-                    link.classList.remove('active');
-                });
-                this.classList.add('active');
-            });
-        });
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <div class="testimonial-text">
+            Ordered cupcakes for my daughter's birthday. They were not only beautiful but delicious too! Great service.
+          </div>
+          <div class="testimonial-author">
+            <div class="author-img">
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Rahul S.">
+            </div>
+            <div class="author-info">
+              <h4>Rahul S.</h4>
+              <p>Thane</p>
+            </div>
+          </div>
+        </div>
         
-        // Style Quiz
-        let currentStep = 1;
-        const totalSteps = 4;
-        const userSelections = {};
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card">
+          <div class="stars">★★★★☆</div>
+          <div class="testimonial-text">
+            The sourdough bread is now a weekly staple in our home. Fresh, crusty, and full of flavor. Highly recommend!
+          </div>
+          <div class="testimonial-author">
+            <div class="author-img">
+              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Ananya P.">
+            </div>
+            <div class="author-info">
+              <h4>Ananya P.</h4>
+              <p>Navi Mumbai</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="container">
+      <h2>Ready to Taste the Difference?</h2>
+      <p>Join our community of happy customers and experience artisanal baking at its finest</p>
+      <div class="cta-buttons">
+        <a href="order.html" class="btn">Order Now</a>
+        <a href="tel:+919876543210" class="btn btn-outline">Call Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <!-- About Column -->
+        <div class="footer-col">
+          <h3>About FreshBake</h3>
+          <p>Founded in 2015, we're a family-owned artisanal bakery committed to bringing you the finest baked goods using traditional techniques and premium ingredients.</p>
+          <div class="social-links">
+            <a href="https://wa.me/919876543210" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://instagram.com/freshbake_delights" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://facebook.com/freshbakedelights" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/freshbake_mum" target="_blank"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
         
-        // Style recommendations data
-        const styleRecommendations = {
-            casual: {
-                name: "Casual Comfort",
-                desc: "Relaxed and comfortable everyday wear",
-                img: "https://i.ibb.co/W4yTyGcR/20250628-1045-Urban-Street-Style-simple-compose-01jytf9gx5fdg915qx9mfggnyg.png",
-                details: "Easy-going outfits perfect for daily wear with a focus on comfort and versatility."
-            },
-            professional: {
-                name: "Professional Chic",
-                desc: "Polished looks for the workplace",
-                img: "https://i.ibb.co/V0Yzh9pr/20250628-1049-Ethnic-Elegance-simple-compose-01jytfhepcekmtxc7wc432rapm.png",
-                details: "Tailored pieces that balance professionalism with modern style."
-            },
-            athleisure: {
-                name: "Athleisure Trend",
-                desc: "Sporty meets stylish",
-                img: "https://i.ibb.co/hFY52Rwn/20250628-1052-Futuristic-Techwear-Mannequin-simple-compose-01jytfpe5rf7vvqn7hnjnqn699.png",
-                details: "Performance fabrics with streetwear aesthetics for all-day comfort."
-            },
-            trendy: {
-                name: "Fashion Forward",
-                desc: "Cutting-edge contemporary styles",
-                img: "https://i.ibb.co/1YXLyqBT/20250628-1049-Ethnic-Elegance-simple-compose-01jytfhepders8b628seype6jv.png",
-                details: "Bold statement pieces and the latest trends for those who love to stand out."
-            }
-        };
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Our Menu</a></li>
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
         
-        function nextQuizStep(selection) {
-            userSelections[`step${currentStep}`] = selection;
-            document.getElementById(`step${currentStep}`).classList.remove('active');
-            currentStep++;
-            
-            if (currentStep <= totalSteps) {
-                document.getElementById(`step${currentStep}`).classList.add('active');
-                document.querySelector('.quiz-progress-bar').style.width = `${(currentStep/totalSteps)*100}%`;
-            }
+        <!-- Contact Info -->
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <p><i class="fas fa-map-marker-alt"></i> 123 Baker Street, Bandra West, Mumbai 400050</p>
+          <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+          <p><i class="fas fa-envelope"></i> hello@freshbakedelights.com</p>
+          <p><i class="fas fa-clock"></i> Mon-Sat: 8AM - 8PM<br>Sun: 9AM - 6PM</p>
+        </div>
+        
+        <!-- Newsletter -->
+        <div class="footer-col">
+          <h3>Newsletter</h3>
+          <p>Subscribe to get updates on new products and special offers!</p>
+          <form style="margin-top: 15px;">
+            <input type="email" placeholder="Your email address" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: none;">
+            <button type="submit" class="btn" style="width: 100%;">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        <p>&copy; 2023 FreshBake Delights. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: #e67e22;"></i> in Mumbai</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple animation for elements when they come into view
+    const animateOnScroll = () => {
+      const elements = document.querySelectorAll('.product-card, .testimonial-card');
+      
+      elements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+        
+        if (elementPosition < screenPosition) {
+          element.style.opacity = '1';
+          element.style.transform = 'translateY(0)';
         }
-        
-        function completeQuiz(selection) {
-            userSelections[`step${currentStep}`] = selection;
-            document.getElementById(`step${currentStep}`).classList.remove('active');
-            
-            // Determine style recommendation based on first answer
-            const styleKey = userSelections.step1 || 'casual';
-            const recommendation = styleRecommendations[styleKey] || styleRecommendations.casual;
-            
-            // Update results display
-            document.getElementById('style-name').textContent = recommendation.name;
-            document.getElementById('style-desc').textContent = recommendation.desc;
-            document.getElementById('style-img').src = recommendation.img;
-            document.getElementById('style-img').alt = recommendation.name + " Style";
-            document.getElementById('style-details').textContent = recommendation.details;
-            
-            document.getElementById('results').classList.add('active');
-        }
-        
-        function resetQuiz() {
-            currentStep = 1;
-            document.getElementById('results').classList.remove('active');
-            document.getElementById('step1').classList.add('active');
-            document.querySelector('.quiz-progress-bar').style.width = '25%';
-        }
-        
-        // Virtual Dressing Room
-        function selectOutfit(item) {
-            // Remove selected class from all options in this category
-            const category = item.includes('top') ? 'top' : 'bottom';
-            document.querySelectorAll(`.outfit-option[onclick*="${category}"]`).forEach(opt => {
-                opt.classList.remove('selected');
-            });
-            
-            // Add selected class to clicked option
-            event.target.closest('.outfit-option').classList.add('selected');
-            
-            // Update preview (simplified for demo)
-            if (category === 'top') {
-                document.getElementById('outfit-preview').src = event.target.closest('.outfit-option').querySelector('img').src;
-            }
-        }
-        
-        function changeColor(color) {
-            // Remove selected class from all color options
-            document.querySelectorAll('.color-option').forEach(opt => {
-                opt.classList.remove('selected');
-            });
-            
-            // Add selected class to clicked color
-            event.target.classList.add('selected');
-            
-            // In a real implementation, this would change the outfit color
-            console.log(`Changed color to: ${color}`);
-        }
-        
-        // Scroll animation
-        function checkScroll() {
-            const elements = document.querySelectorAll('.animate-in');
-            
-            elements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementPosition < windowHeight - 100) {
-                    element.classList.add('visible');
-                }
-            });
-        }
-        
-        window.addEventListener('scroll', checkScroll);
-        window.addEventListener('load', checkScroll);
-    </script>
+      });
+    };
+    
+    // Set initial state
+    document.querySelectorAll('.product-card, .testimonial-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'all 0.6s ease';
+    });
+    
+    window.addEventListener('scroll', animateOnScroll);
+    window.addEventListener('load', animateOnScroll);
+  </script>
 </body>
 </html>
