@@ -1,1 +1,206 @@
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Brand | Professional Website Coming December 2024</title>
+    <style>
+        /* Modern Clean Style */
+        :root {
+            --primary: #3498db;  /* Change to your brand color */
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .logo {
+            max-width: 150px;
+            margin-bottom: 2rem;
+        }
+        h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        p.lead {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--dark);
+        }
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        .countdown-box {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            min-width: 70px;
+        }
+        .countdown-box span {
+            display: block;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .subscribe {
+            margin: 2rem 0;
+        }
+        input[type="email"] {
+            padding: 0.8rem;
+            width: 300px;
+            max-width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-right: 0.5rem;
+        }
+        button {
+            padding: 0.8rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: var(--dark);
+        }
+        .social-links {
+            margin-top: 2rem;
+        }
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: var(--dark);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        .social-links a:hover {
+            color: var(--primary);
+        }
+        footer {
+            margin-top: 3rem;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .countdown-box {
+                min-width: 60px;
+            }
+            .countdown-box span {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Replace with your logo -->
+        <img src="https://via.placeholder.com/150x50?text=Your+Logo" alt="Company Logo" class="logo">
+
+        <h1>Our New Website Is Coming Soon</h1>
+        <p class="lead">We're launching a professional platform this December. Stay tuned for exciting updates!</p>
+        
+        <!-- Countdown Timer -->
+        <div class="countdown">
+            <div class="countdown-box">
+                <span id="days">00</span>
+                Days
+            </div>
+            <div class="countdown-box">
+                <span id="hours">00</span>
+                Hours
+            </div>
+            <div class="countdown-box">
+                <span id="minutes">00</span>
+                Minutes
+            </div>
+            <div class="countdown-box">
+                <span id="seconds">00</span>
+                Seconds
+            </div>
+        </div>
+
+        <!-- Email Signup -->
+        <div class="subscribe">
+            <p>Get notified when we launch:</p>
+            <form id="signup-form">
+                <input type="email" placeholder="Your email address" required>
+                <button type="submit">Notify Me</button>
+            </form>
+        </div>
+
+        <!-- Social Links -->
+        <div class="social-links">
+            <p>Connect with us:</p>
+            <a href="#" aria-label="Facebook"><i>FB</i></a> <!-- Replace with icon -->
+            <a href="#" aria-label="Twitter"><i>TW</i></a>
+            <a href="#" aria-label="LinkedIn"><i>IN</i></a>
+            <a href="#" aria-label="Instagram"><i>IG</i></a>
+        </div>
+
+        <footer>
+            &copy; 2024 Your Company Name. All Rights Reserved.
+        </footer>
+    </div>
+
+    <script>
+        // Countdown Timer (Set to December 1, 2024)
+        const countdown = () => {
+            const launchDate = new Date("December 1, 2024 00:00:00").getTime();
+            const now = new Date().getTime();
+            const gap = launchDate - now;
+
+            const second = 1000;
+            const minute = second * 60;
+            const hour = minute * 60;
+            const day = hour * 24;
+
+            const d = Math.floor(gap / day);
+            const h = Math.floor((gap % day) / hour);
+            const m = Math.floor((gap % hour) / minute);
+            const s = Math.floor((gap % minute) / second);
+
+            document.getElementById("days").innerText = d.toString().padStart(2, "0");
+            document.getElementById("hours").innerText = h.toString().padStart(2, "0");
+            document.getElementById("minutes").innerText = m.toString().padStart(2, "0");
+            document.getElementById("seconds").innerText = s.toString().padStart(2, "0");
+        };
+
+        setInterval(countdown, 1000);
+
+        // Simple Form Handler (Replace with your backend)
+        document.getElementById("signup-form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const email = e.target.querySelector("input").value;
+            alert(`Thank you! We'll notify you at ${email} when we launch.`);
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>
