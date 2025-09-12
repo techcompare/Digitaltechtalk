@@ -1,206 +1,837 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Brand | Professional Website Coming December 2024</title>
+    <title>TechPulse | Technology News and Reviews</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Modern Clean Style */
-        :root {
-            --primary: #3498db;  /* Change to your brand color */
-            --dark: #2c3e50;
-            --light: #ecf0f1;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            background-color: #f9f9f9;
-            color: #333;
+        /* Reset and Base Styles */
+        * {
             margin: 0;
             padding: 0;
-            text-align: center;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        
+        :root {
+            --primary: #000;
+            --secondary: #fff;
+            --accent: #f9423a;
+            --gray-light: #f2f2f2;
+            --gray: #757575;
+            --gray-dark: #333;
+            --transition: all 0.3s ease;
         }
-        .logo {
-            max-width: 150px;
-            margin-bottom: 2rem;
-        }
-        h1 {
+        
+        body {
+            background-color: var(--secondary);
             color: var(--primary);
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            line-height: 1.6;
         }
-        p.lead {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: var(--dark);
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
         }
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-        .countdown-box {
-            background: var(--primary);
-            color: white;
-            padding: 1rem;
-            border-radius: 5px;
-            min-width: 70px;
-        }
-        .countdown-box span {
-            display: block;
-            font-size: 2rem;
-            font-weight: bold;
-        }
-        .subscribe {
-            margin: 2rem 0;
-        }
-        input[type="email"] {
-            padding: 0.8rem;
-            width: 300px;
+        
+        img {
             max-width: 100%;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            margin-right: 0.5rem;
+            height: auto;
+            display: block;
         }
-        button {
-            padding: 0.8rem 1.5rem;
-            background: var(--primary);
-            color: white;
+        
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: var(--secondary);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            padding: 8px 15px;
+            width: 300px;
+        }
+        
+        .search-bar input {
+            background: transparent;
             border: none;
+            color: var(--secondary);
+            width: 100%;
+            padding: 5px;
+            outline: none;
+        }
+        
+        .search-bar i {
+            color: var(--secondary);
+            cursor: pointer;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .sign-in-btn {
+            background: transparent;
+            border: 1px solid var(--gray);
+            color: var(--secondary);
+            padding: 8px 15px;
             border-radius: 4px;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: var(--transition);
         }
-        button:hover {
-            background: var(--dark);
+        
+        .sign-in-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
         }
-        .social-links {
-            margin-top: 2rem;
+        
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
         }
-        .social-links a {
+        
+        nav {
+            padding: 15px 0;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        .nav-menu li a {
+            font-weight: 500;
+            font-size: 16px;
+            padding: 8px 0;
+            position: relative;
+        }
+        
+        .nav-menu li a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-menu li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+        
+        .nav-menu li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 40px 0;
+            border-bottom: 1px solid var(--gray-light);
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+        
+        .main-story {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .main-story img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        
+        .story-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: var(--secondary);
+        }
+        
+        .category-tag {
+            background: var(--accent);
+            color: var(--secondary);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
             display: inline-block;
-            margin: 0 10px;
-            color: var(--dark);
-            font-size: 1.5rem;
-            transition: color 0.3s;
+            margin-bottom: 10px;
         }
-        .social-links a:hover {
-            color: var(--primary);
+        
+        .story-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.3;
         }
+        
+        .story-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .side-stories {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .side-story {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .side-story img {
+            width: 100px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+        
+        .side-story-content h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        /* Latest News */
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            padding: 30px 0 20px;
+            border-bottom: 2px solid var(--accent);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .news-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .news-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card-content h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .card-content p {
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--gray);
+        }
+        
+        /* Reviews Section */
+        .reviews {
+            background-color: var(--gray-light);
+            padding: 40px 0;
+        }
+        
+        /* Trending Section */
+        .trending-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .trending-card {
+            background: var(--secondary);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .trending-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .trending-content {
+            padding: 15px;
+        }
+        
+        .trending-content h3 {
+            font-size: 16px;
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            background: var(--primary);
+            color: var(--secondary);
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .newsletter h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+        
+        .newsletter-form button {
+            background: var(--accent);
+            color: var(--secondary);
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .newsletter-form button:hover {
+            background: #e03129;
+        }
+        
+        /* Footer */
         footer {
-            margin-top: 3rem;
-            color: #777;
-            font-size: 0.9rem;
+            background: var(--gray-dark);
+            color: var(--secondary);
+            padding: 60px 0 30px;
         }
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2rem;
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .news-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
-            .countdown-box {
-                min-width: 60px;
+            
+            .trending-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
-            .countdown-box span {
-                font-size: 1.5rem;
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-top {
+                padding: 10px 0;
+            }
+            
+            .search-bar {
+                width: 200px;
+            }
+            
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--primary);
+                flex-direction: column;
+                padding: 40px 20px;
+                transition: 0.5s;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .search-bar {
+                display: none;
+            }
+            
+            .header-actions {
+                gap: 10px;
+            }
+            
+            .trending-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-form input {
+                border-radius: 4px;
+                margin-bottom: 10px;
+            }
+            
+            .newsletter-form button {
+                border-radius: 4px;
+                padding: 15px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Replace with your logo -->
-        <img src="https://via.placeholder.com/150x50?text=Your+Logo" alt="Company Logo" class="logo">
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">Tech<span>Pulse</span></div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="header-actions">
+                    <button class="sign-in-btn">Sign In</button>
+                    <div class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#">Tech</a></li>
+                    <li><a href="#">Reviews</a></li>
+                    <li><a href="#">Science</a></li>
+                    <li><a href="#">AI</a></li>
+                    <li><a href="#">Gadgets</a></li>
+                    <li><a href="#">Apps</a></li>
+                    <li><a href="#">Podcasts</a></li>
+                    <li><a href="#">More</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-        <h1>Our New Website Is Coming Soon</h1>
-        <p class="lead">We're launching a professional platform this December. Stay tuned for exciting updates!</p>
-        
-        <!-- Countdown Timer -->
-        <div class="countdown">
-            <div class="countdown-box">
-                <span id="days">00</span>
-                Days
-            </div>
-            <div class="countdown-box">
-                <span id="hours">00</span>
-                Hours
-            </div>
-            <div class="countdown-box">
-                <span id="minutes">00</span>
-                Minutes
-            </div>
-            <div class="countdown-box">
-                <span id="seconds">00</span>
-                Seconds
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="main-story">
+                    <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Tech News">
+                    <div class="story-content">
+                        <span class="category-tag">Tech</span>
+                        <h2 class="story-title">Apple Announces New iPhone With Revolutionary Camera System</h2>
+                        <div class="story-meta">
+                            <span>By John Smith</span>
+                            <span>2 hours ago</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="side-stories">
+                    <div class="side-story">
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80" alt="AI News">
+                        <div class="side-story-content">
+                            <h3>OpenAI Releases New Language Model That Can Generate Video</h3>
+                            <div class="story-meta">
+                                <span>45 min ago</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="side-story">
+                        <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1032&q=80" alt="Laptop News">
+                        <div class="side-story-content">
+                            <h3>Microsoft Surface Laptop 5 Gets Major Performance Upgrade</h3>
+                            <div class="story-meta">
+                                <span>3 hours ago</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="side-story">
+                        <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Electric Car">
+                        <div class="side-story-content">
+                            <h3>Tesla Announces Full Self-Driving Available in Europe by 2024</h3>
+                            <div class="story-meta">
+                                <span>5 hours ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 
-        <!-- Email Signup -->
-        <div class="subscribe">
-            <p>Get notified when we launch:</p>
-            <form id="signup-form">
-                <input type="email" placeholder="Your email address" required>
-                <button type="submit">Notify Me</button>
+    <!-- Latest News -->
+    <section class="latest-news">
+        <div class="container">
+            <h2 class="section-title">Latest News</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <img src="https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80" alt="VR News">
+                    <div class="card-content">
+                        <span class="category-tag">Virtual Reality</span>
+                        <h3>Meta's New VR Headset Promises Photorealistic Avatars</h3>
+                        <p>The next-generation Quest Pro will feature eye and face tracking for more expressive virtual interactions.</p>
+                        <div class="card-meta">
+                            <span>By Sarah Johnson</span>
+                            <span>Sept 15, 2023</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Drone News">
+                    <div class="card-content">
+                        <span class="category-tag">Drones</span>
+                        <h3>DJI Unveils Autonomous Delivery Drone With 20km Range</h3>
+                        <p>The new drone can carry packages up to 5kg and navigate complex urban environments.</p>
+                        <div class="card-meta">
+                            <span>By Mike Thompson</span>
+                            <span>Sept 14, 2023</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Web Development">
+                    <div class="card-content">
+                        <span class="category-tag">Development</span>
+                        <h3>New JavaScript Framework Promises 10x Faster Rendering</h3>
+                        <p>LightJS claims to revolutionize web development with its innovative compilation approach.</p>
+                        <div class="card-meta">
+                            <span>By Alex Chen</span>
+                            <span>Sept 14, 2023</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews">
+        <div class="container">
+            <h2 class="section-title">Latest Reviews</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <img src="https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="MacBook Review">
+                    <div class="card-content">
+                        <span class="category-tag">Laptops</span>
+                        <h3>MacBook Pro 16-inch (2023) Review: Power Overkill</h3>
+                        <p>Apple's latest professional laptop offers incredible performance, but is it too much for most users?</p>
+                        <div class="card-meta">
+                            <span>By Emma Wilson</span>
+                            <span>Sept 13, 2023</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Sneakers Tech">
+                    <div class="card-content">
+                        <span class="category-tag">Wearables</span>
+                        <h3>Nike Self-Lacing Sneakers: Future or Gimmick?</h3>
+                        <p>We tested the adaptive fit technology that automatically adjusts to your foot shape.</p>
+                        <div class="card-meta">
+                            <span>By David Lee</span>
+                            <span>Sept 12, 2023</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <img src="https://images.unsplash.com/photo-1605236453806-6ff36851218e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80" alt="Smart TV">
+                    <div class="card-content">
+                        <span class="category-tag">Home Tech</span>
+                        <h3>Samsung 8K QLED TV Review: Is 8K Worth It Yet?</h3>
+                        <p>We examine whether the stunning picture quality justifies the premium price tag.</p>
+                        <div class="card-meta">
+                            <span>By Sophia Martinez</span>
+                            <span>Sept 11, 2023</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trending Section -->
+    <section class="trending">
+        <div class="container">
+            <h2 class="section-title">Trending Now</h2>
+            <div class="trending-grid">
+                <div class="trending-card">
+                    <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=812&q=80" alt="Smart Home">
+                    <div class="trending-content">
+                        <h3>Smart Home Security Flaw Exposes Thousands of Homes</h3>
+                    </div>
+                </div>
+                <div class="trending-card">
+                    <img src="https://images.unsplash.com/photo-1593113630400-ea4288922497?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Cyber Security">
+                    <div class="trending-content">
+                        <h3>Major Password Manager Hacked: What You Need to Do</h3>
+                    </div>
+                </div>
+                <div class="trending-card">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Data Analysis">
+                    <div class="trending-content">
+                        <h3>How AI is Revolutionizing Data Analysis in Healthcare</h3>
+                    </div>
+                </div>
+                <div class="trending-card">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Robotics">
+                    <div class="trending-content">
+                        <h3>Boston Dynamics Announces New Consumer Robot</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Stay Updated with Tech News</h2>
+            <p>Subscribe to our newsletter and get the latest tech news, reviews, and exclusive content delivered to your inbox daily.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">Subscribe</button>
             </form>
         </div>
+    </section>
 
-        <!-- Social Links -->
-        <div class="social-links">
-            <p>Connect with us:</p>
-            <a href="#" aria-label="Facebook"><i>FB</i></a> <!-- Replace with icon -->
-            <a href="#" aria-label="Twitter"><i>TW</i></a>
-            <a href="#" aria-label="LinkedIn"><i>IN</i></a>
-            <a href="#" aria-label="Instagram"><i>IG</i></a>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>TechPulse</h3>
+                    <p>Delivering the latest technology news, reviews, and insights to help you stay ahead in the digital world.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Tech News</a></li>
+                        <li><a href="#">Reviews</a></li>
+                        <li><a href="#">Science</a></li>
+                        <li><a href="#">Artificial Intelligence</a></li>
+                        <li><a href="#">Gadgets</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Advertise</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Tech Street, San Francisco, CA</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@techpulse.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 TechPulse. All rights reserved.</p>
+            </div>
         </div>
-
-        <footer>
-            &copy; 2024 Your Company Name. All Rights Reserved.
-        </footer>
-    </div>
+    </footer>
 
     <script>
-        // Countdown Timer (Set to December 1, 2024)
-        const countdown = () => {
-            const launchDate = new Date("December 1, 2024 00:00:00").getTime();
-            const now = new Date().getTime();
-            const gap = launchDate - now;
+        // Mobile Menu Toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
 
-            const second = 1000;
-            const minute = second * 60;
-            const hour = minute * 60;
-            const day = hour * 24;
-
-            const d = Math.floor(gap / day);
-            const h = Math.floor((gap % day) / hour);
-            const m = Math.floor((gap % hour) / minute);
-            const s = Math.floor((gap % minute) / second);
-
-            document.getElementById("days").innerText = d.toString().padStart(2, "0");
-            document.getElementById("hours").innerText = h.toString().padStart(2, "0");
-            document.getElementById("minutes").innerText = m.toString().padStart(2, "0");
-            document.getElementById("seconds").innerText = s.toString().padStart(2, "0");
-        };
-
-        setInterval(countdown, 1000);
-
-        // Simple Form Handler (Replace with your backend)
-        document.getElementById("signup-form").addEventListener("submit", (e) => {
+        // Simple Newsletter Form Validation
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            const email = e.target.querySelector("input").value;
-            alert(`Thank you! We'll notify you at ${email} when we launch.`);
-            e.target.reset();
+            const email = this.querySelector('input').value;
+            if (email) {
+                alert('Thank you for subscribing to our newsletter!');
+                this.querySelector('input').value = '';
+            }
         });
     </script>
 </body>
 </html>
+
