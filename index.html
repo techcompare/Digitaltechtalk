@@ -1,47 +1,82 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TDS Innovation Labs</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Coming Soon | TDS Innovation</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      background: #0a0a0a;
-      color: #00ffcc;
-      font-family: Arial, sans-serif;
+      height: 100vh;
+      background: linear-gradient(135deg, #111827, #1f2937);
+      color: white;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      font-family: "Poppins", sans-serif;
+      text-align: center;
     }
+
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5em;
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+      color: #00c3ff;
+      text-shadow: 0 0 10px #00c3ff55;
     }
+
     p {
-      color: #ddd;
+      font-size: 1.2rem;
+      color: #d1d5db;
+      margin-bottom: 2rem;
     }
-    button {
-      margin-top: 1em;
-      background: #00ffcc;
-      border: none;
-      color: #000;
-      padding: 0.75em 1.5em;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
+
+    .loader {
+      width: 60px;
+      height: 60px;
+      border: 5px solid rgba(255,255,255,0.2);
+      border-top-color: #00c3ff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
     }
-    button:hover {
-      background: #00cfa6;
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.9rem;
+      color: #9ca3af;
+    }
+
+    footer a {
+      color: #00c3ff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <h1>Welcome to TDS Innovation Labs</h1>
-  <p>Your trusted partner in cybersecurity and AI-driven digital innovation.</p>
-  <button onclick="alert('This site is working perfectly!')">Test Site</button>
+  <h1>🚀 TDS Innovation</h1>
+  <p>Something amazing is coming soon.<br>Stay tuned!</p>
+  <div class="loader"></div>
+
+  <footer>
+    © 2025 TDS Innovation | Built with ❤️ by <a href="#">Your Team</a>
+  </footer>
 </body>
 </html>
-
