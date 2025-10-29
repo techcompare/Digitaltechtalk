@@ -1,40 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Not Found | FreshBake Delights</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #fff8f0;
-            text-align: center;
-            padding: 50px;
-        }
-        h1 {
-            color: #e67e22;
-            font-size: 3em;
-        }
-        .logo {
-            font-size: 2em;
-            font-weight: bold;
-            color: #e67e22;
-            margin-bottom: 30px;
-        }
-        .logo span {
-            color: #d35400;
-        }
-        a {
-            color: #e67e22;
-            text-decoration: none;
-            font-weight: bold;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 | Coming Soon | TDS Innovation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: white;
+      font-family: "Poppins", sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 5rem;
+      color: #00c3ff;
+      text-shadow: 0 0 10px #00c3ff55;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: #38bdf8;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #cbd5e1;
+      margin-bottom: 2rem;
+    }
+
+    .loader {
+      width: 60px;
+      height: 60px;
+      border: 5px solid rgba(255,255,255,0.2);
+      border-top-color: #00c3ff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.9rem;
+      color: #9ca3af;
+    }
+
+    footer a {
+      color: #00c3ff;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-    <div class="logo">Fresh<span>Bake</span> Delights</div>
-    <h1>404 - Page Not Found</h1>
-    <p>Oops! The page you're looking for doesn't exist.</p>
-    <p>Return to our <a href="index.html">homepage</a> to continue browsing our delicious treats!</p>
+  <h1>404</h1>
+  <h2>Coming Soon</h2>
+  <p>The page you’re looking for isn’t ready yet.<br>Our digital lab is still working on it 🚀</p>
+  <div class="loader"></div>
+
+  <footer>
+    © 2025 TDS Innovation | Built with ❤️ by <a href="#">Your Team</a>
+  </footer>
 </body>
 </html>
