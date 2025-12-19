@@ -832,8 +832,10 @@
             div.innerHTML = avatar + bubble;
             history.appendChild(div);
             
-            // Only create icons for the new element, not the entire document
-            lucide.createIcons({ icons: div.querySelectorAll('[data-lucide]') });
+            // Initialize icons only in the newly added message div
+            if (role === 'user') {
+                lucide.createIcons();
+            }
             history.scrollTop = history.scrollHeight;
         }
 
