@@ -49,6 +49,162 @@
             font-size: 12px;
             font-weight: bold;
         }
+        
+        /* Chatbot Styles */
+        .chatbot-button {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .chatbot-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .chatbot-container {
+            position: fixed;
+            bottom: 100px;
+            right: 24px;
+            width: 380px;
+            max-width: calc(100vw - 48px);
+            height: 550px;
+            max-height: calc(100vh - 150px);
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+            transform: scale(0);
+            transform-origin: bottom right;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-container.active {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        .chatbot-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px 20px;
+            border-radius: 16px 16px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chatbot-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .chat-message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            word-wrap: break-word;
+        }
+        
+        .chat-message.bot {
+            background: #f3f4f6;
+            align-self: flex-start;
+        }
+        
+        .chat-message.user {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            align-self: flex-end;
+        }
+        
+        .chatbot-input-container {
+            padding: 16px;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            gap: 8px;
+        }
+        
+        .chatbot-input {
+            flex: 1;
+            padding: 10px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+        
+        .chatbot-input:focus {
+            border-color: #667eea;
+        }
+        
+        .chatbot-send-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+        
+        .chatbot-send-btn:hover {
+            opacity: 0.9;
+        }
+        
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 12px 16px;
+            background: #f3f4f6;
+            border-radius: 12px;
+            width: fit-content;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #9ca3af;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+        
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-10px);
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -158,186 +314,9 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" id="products-grid">
-                <!-- Product 1 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=400&fit=crop" 
-                             alt="Product" 
-                             class="w-full h-64 object-cover">
-                        <span class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                            Sale
-                        </span>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-semibold text-lg text-gray-900 mb-2">Wireless Headphones</h3>
-                        <p class="text-gray-600 text-sm mb-4">Premium sound quality with noise cancellation</p>
-                        <div class="flex items-center justify-between mb-4">
-                            <div>
-                                <span class="text-2xl font-bold text-purple-600">₹2,999</span>
-                                <span class="text-gray-400 line-through ml-2">₹4,999</span>
-                            </div>
-                        </div>
-                        <button onclick="addToCart('Wireless Headphones', 2999)" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-medium">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Product 2 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400&h=400&fit=crop" 
-                             alt="Product" 
-                             class="w-full h-64 object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-semibold text-lg text-gray-900 mb-2">Smart Watch Pro</h3>
-                        <p class="text-gray-600 text-sm mb-4">Track your fitness and stay connected</p>
-                        <div class="flex items-center justify-between mb-4">
-                            <div>
-                                <span class="text-2xl font-bold text-purple-600">₹5,999</span>
-                            </div>
-                        </div>
-                        <button onclick="addToCart('Smart Watch Pro', 5999)" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-medium">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Product 3 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=400&h=400&fit=crop" 
-                             alt="Product" 
-                             class="w-full h-64 object-cover">
-                        <span class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                            New
-                        </span>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-semibold text-lg text-gray-900 mb-2">Laptop Stand</h3>
-                        <p class="text-gray-600 text-sm mb-4">Ergonomic design for better posture</p>
-                        <div class="flex items-center justify-between mb-4">
-                            <div>
-                                <span class="text-2xl font-bold text-purple-600">₹1,499</span>
-                            </div>
-                        </div>
-                        <button onclick="addToCart('Laptop Stand', 1499)" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-medium">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Product 4 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1625948515291-69613efd103f?w=400&h=400&fit=crop" 
-                             alt="Product" 
-                             class="w-full h-64 object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-semibold text-lg text-gray-900 mb-2">Wireless Keyboard</h3>
-                        <p class="text-gray-600 text-sm mb-4">Mechanical keys with RGB lighting</p>
-                        <div class="flex items-center justify-between mb-4">
-                            <div>
-                                <span class="text-2xl font-bold text-purple-600">₹3,499</span>
-                            </div>
-                        </div>
-                        <button onclick="addToCart('Wireless Keyboard', 3499)" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-medium">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Product 5 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=400&fit=crop" 
-                             alt="Product" 
-                             class="w-full h-64 object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-semibold text-lg text-gray-900 mb-2">Webcam HD</h3>
-                        <p class="text-gray-600 text-sm mb-4">Crystal clear video calls and streaming</p>
-                        <div class="flex items-center justify-between mb-4">
-                            <div>
-                                <span class="text-2xl font-bold text-purple-600">₹2,299</span>
-                            </div>
-                        </div>
-                        <button onclick="addToCart('Webcam HD', 2299)" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-medium">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Product 6 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1624705002806-5d72df19c3ad?w=400&h=400&fit=crop" 
-                             alt="Product" 
-                             class="w-full h-64 object-cover">
-                        <span class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                            -30%
-                        </span>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-semibold text-lg text-gray-900 mb-2">USB-C Hub</h3>
-                        <p class="text-gray-600 text-sm mb-4">Multi-port adapter for connectivity</p>
-                        <div class="flex items-center justify-between mb-4">
-                            <div>
-                                <span class="text-2xl font-bold text-purple-600">₹999</span>
-                                <span class="text-gray-400 line-through ml-2">₹1,499</span>
-                            </div>
-                        </div>
-                        <button onclick="addToCart('USB-C Hub', 999)" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-medium">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Product 7 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=400&fit=crop" 
-                             alt="Product" 
-                             class="w-full h-64 object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-semibold text-lg text-gray-900 mb-2">Wireless Mouse</h3>
-                        <p class="text-gray-600 text-sm mb-4">Precision tracking and comfort</p>
-                        <div class="flex items-center justify-between mb-4">
-                            <div>
-                                <span class="text-2xl font-bold text-purple-600">₹899</span>
-                            </div>
-                        </div>
-                        <button onclick="addToCart('Wireless Mouse', 899)" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-medium">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Product 8 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1589492477829-5e65395b66cc?w=400&h=400&fit=crop" 
-                             alt="Product" 
-                             class="w-full h-64 object-cover">
-                        <span class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                            New
-                        </span>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-semibold text-lg text-gray-900 mb-2">Portable SSD</h3>
-                        <p class="text-gray-600 text-sm mb-4">Fast storage with 1TB capacity</p>
-                        <div class="flex items-center justify-between mb-4">
-                            <div>
-                                <span class="text-2xl font-bold text-purple-600">₹7,999</span>
-                            </div>
-                        </div>
-                        <button onclick="addToCart('Portable SSD', 7999)" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-medium">
-                            Add to Cart
-                        </button>
-                    </div>
+                <!-- Products will be loaded dynamically from API -->
+                <div class="col-span-full text-center py-8">
+                    <p class="text-gray-500">Loading products...</p>
                 </div>
             </div>
         </div>
@@ -502,12 +481,207 @@
     <!-- Cart Overlay -->
     <div id="cart-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40" onclick="toggleCart()"></div>
 
+    <!-- Chatbot Widget -->
+    <button class="chatbot-button" onclick="toggleChatbot()" id="chatbot-button">
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    </button>
+
+    <div class="chatbot-container" id="chatbot-container">
+        <div class="chatbot-header">
+            <div>
+                <div class="font-bold text-lg">TDS Assistant</div>
+                <div class="text-xs text-purple-100">Always here to help</div>
+            </div>
+            <button onclick="toggleChatbot()" class="hover:bg-white/20 p-1 rounded">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+        
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="chat-message bot">
+                👋 Hi! Welcome to TDS Innovation Store. I'm here to help you find the perfect tech products. How can I assist you today?
+            </div>
+        </div>
+        
+        <div class="chatbot-input-container">
+            <input 
+                type="text" 
+                class="chatbot-input" 
+                id="chatbot-input" 
+                placeholder="Type your message..."
+                onkeypress="if(event.key === 'Enter') sendChatMessage()"
+            >
+            <button class="chatbot-send-btn" onclick="sendChatMessage()">
+                Send
+            </button>
+        </div>
+    </div>
+
+    <!-- Marketplace Modal -->
+    <div id="marketplace-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4" onclick="closeMarketplaceModal()">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900" id="modal-product-name">Product Name</h3>
+                <button onclick="closeMarketplaceModal()" class="text-gray-500 hover:text-gray-700">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            
+            <p class="text-gray-600 mb-6">Choose where to buy this product:</p>
+            
+            <div class="space-y-3">
+                <button onclick="openMarketplace('amazon')" class="w-full flex items-center gap-3 p-4 border-2 border-gray-200 rounded-lg hover:border-orange-500 hover:bg-orange-50 transition">
+                    <div class="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center text-white">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39-.046.525.13.12.174.09.336-.12.48-.256.19-.6.41-1.006.654-1.244.743-2.64 1.316-4.185 1.726-1.548.41-3.146.616-4.792.616-2.64 0-5.154-.585-7.545-1.757-1.103-.54-2.11-1.148-3.018-1.826-.12-.09-.18-.18-.16-.285zm23.71-5.394c-.192-.193-.42-.29-.68-.29-.263 0-.487.097-.673.29-.188.192-.28.42-.28.683 0 .263.092.49.28.683.186.192.41.29.673.29.26 0 .488-.098.68-.29.19-.192.286-.42.286-.683 0-.264-.096-.49-.286-.683z"/>
+                        </svg>
+                    </div>
+                    <div class="text-left flex-1">
+                        <div class="font-semibold text-gray-900">Amazon India</div>
+                        <div class="text-sm text-gray-500">Fast delivery & great deals</div>
+                    </div>
+                    <i data-lucide="external-link" class="w-5 h-5 text-gray-400"></i>
+                </button>
+                
+                <button onclick="openMarketplace('flipkart')" class="w-full flex items-center gap-3 p-4 border-2 border-gray-200 rounded-lg hover:border-yellow-500 hover:bg-yellow-50 transition">
+                    <div class="w-12 h-12 bg-yellow-500 rounded-lg flex items-center justify-center text-white">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M3.833 2.667h16.334C21.803 2.667 23 3.863 23 5.5v13c0 1.637-1.197 2.833-2.833 2.833H3.833C2.197 21.333 1 20.137 1 18.5v-13c0-1.637 1.197-2.833 2.833-2.833zM19 12l-4-4v2.5H9V13h6v2.5l4-4z"/>
+                        </svg>
+                    </div>
+                    <div class="text-left flex-1">
+                        <div class="font-semibold text-gray-900">Flipkart</div>
+                        <div class="text-sm text-gray-500">India's favorite shopping site</div>
+                    </div>
+                    <i data-lucide="external-link" class="w-5 h-5 text-gray-400"></i>
+                </button>
+                
+                <button onclick="openMarketplace('snapdeal')" class="w-full flex items-center gap-3 p-4 border-2 border-gray-200 rounded-lg hover:border-red-500 hover:bg-red-50 transition">
+                    <div class="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                    </div>
+                    <div class="text-left flex-1">
+                        <div class="font-semibold text-gray-900">Snapdeal</div>
+                        <div class="text-sm text-gray-500">Unbelievable deals</div>
+                    </div>
+                    <i data-lucide="external-link" class="w-5 h-5 text-gray-400"></i>
+                </button>
+                
+                <button onclick="openMarketplace('meesho')" class="w-full flex items-center gap-3 p-4 border-2 border-gray-200 rounded-lg hover:border-pink-500 hover:bg-pink-50 transition">
+                    <div class="w-12 h-12 bg-pink-500 rounded-lg flex items-center justify-center text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div class="text-left flex-1">
+                        <div class="font-semibold text-gray-900">Meesho</div>
+                        <div class="text-sm text-gray-500">Lowest prices guaranteed</div>
+                    </div>
+                    <i data-lucide="external-link" class="w-5 h-5 text-gray-400"></i>
+                </button>
+            </div>
+            
+            <div class="mt-6 text-center text-sm text-gray-500">
+                <p>🔗 We'll redirect you to your chosen marketplace</p>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Initialize Lucide Icons
         lucide.createIcons();
 
+        // API Configuration
+        const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:3000' : '';
+
         // Shopping Cart
         let cart = [];
+        let products = [];
+        
+        // Chatbot state
+        let chatbotOpen = false;
+
+        // Load products from API
+        async function loadProducts() {
+            try {
+                const response = await fetch(`${API_URL}/api/products/featured/list`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    products = result.data;
+                    renderProducts();
+                }
+            } catch (error) {
+                console.error('Error loading products:', error);
+            }
+        }
+
+        function renderProducts() {
+            const productsGrid = document.getElementById('products-grid');
+            
+            productsGrid.innerHTML = products.map(product => `
+                <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                    <div class="relative">
+                        <img src="${product.image_url}" 
+                             alt="${product.name}" 
+                             class="w-full h-64 object-cover">
+                        ${product.is_sale ? `
+                            <span class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                                Sale
+                            </span>
+                        ` : ''}
+                        ${product.is_new ? `
+                            <span class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                                New
+                            </span>
+                        ` : ''}
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-semibold text-lg text-gray-900 mb-2">${product.name}</h3>
+                        <p class="text-gray-600 text-sm mb-4">${product.description}</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-2xl font-bold text-purple-600">₹${product.price.toLocaleString()}</span>
+                                ${product.original_price ? `
+                                    <span class="text-gray-400 line-through ml-2">₹${product.original_price.toLocaleString()}</span>
+                                ` : ''}
+                            </div>
+                        </div>
+                        <button onclick="addToCart('${product.name}', ${product.price}, ${product.id})" 
+                                class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-medium mb-3">
+                            Add to Cart
+                        </button>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button onclick="buyOnMarketplace(${product.id}, 'amazon')" 
+                                    class="flex items-center justify-center gap-1 bg-orange-500 text-white text-xs py-2 rounded hover:bg-orange-600 transition">
+                                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39-.046.525.13.12.174.09.336-.12.48-.256.19-.6.41-1.006.654-1.244.743-2.64 1.316-4.185 1.726-1.548.41-3.146.616-4.792.616-2.64 0-5.154-.585-7.545-1.757-1.103-.54-2.11-1.148-3.018-1.826-.12-.09-.18-.18-.16-.285zm23.71-5.394c-.192-.193-.42-.29-.68-.29-.263 0-.487.097-.673.29-.188.192-.28.42-.28.683 0 .263.092.49.28.683.186.192.41.29.673.29.26 0 .488-.098.68-.29.19-.192.286-.42.286-.683 0-.264-.096-.49-.286-.683zm.157 11.394l-.005-.002c-1.038-.75-2.32-1.304-3.875-1.674.105-.01.185-.03.24-.06.08-.04.16-.08.23-.14.18-.16.27-.35.27-.58-.02-.24-.12-.43-.3-.58-.18-.14-.39-.2-.64-.2h-5.73v.58c0 .34.12.63.36.87.25.24.54.36.88.36h3.46c-.19.24-.48.52-.86.82-.39.3-.8.53-1.24.67-.45.14-.9.21-1.37.21-.88 0-1.67-.22-2.38-.67s-1.27-1.03-1.67-1.77c-.4-.73-.6-1.53-.6-2.38 0-.87.2-1.66.6-2.4.4-.73.95-1.31 1.65-1.74.7-.43 1.47-.65 2.32-.65.5 0 .98.08 1.44.25.46.17.85.4 1.18.7l.42-.46c-.43-.39-.94-.7-1.52-.92-.58-.23-1.2-.34-1.85-.34-1.02 0-1.95.25-2.78.74-.83.5-1.49 1.17-1.97 2.02-.48.85-.72 1.78-.72 2.8 0 1.02.24 1.95.72 2.8.48.84 1.13 1.51 1.95 2 .82.5 1.74.74 2.75.74.68 0 1.33-.13 1.95-.38.62-.26 1.16-.6 1.62-1.03.46-.43.82-.9 1.07-1.42h.96c.3 0 .56.1.77.3.21.2.32.45.32.75 0 .26-.09.49-.26.67 1.48.34 2.65.84 3.51 1.5z"/>
+                                </svg>
+                                Amazon
+                            </button>
+                            <button onclick="buyOnMarketplace(${product.id}, 'flipkart')" 
+                                    class="flex items-center justify-center gap-1 bg-yellow-500 text-white text-xs py-2 rounded hover:bg-yellow-600 transition">
+                                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M3.833 2.667h16.334C21.803 2.667 23 3.863 23 5.5v13c0 1.637-1.197 2.833-2.833 2.833H3.833C2.197 21.333 1 20.137 1 18.5v-13c0-1.637 1.197-2.833 2.833-2.833zM19 12l-4-4v2.5H9V13h6v2.5l4-4z"/>
+                                </svg>
+                                Flipkart
+                            </button>
+                            <button onclick="showMoreStores(${product.id})" 
+                                    class="flex items-center justify-center gap-1 bg-gray-600 text-white text-xs py-2 rounded hover:bg-gray-700 transition">
+                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"/>
+                                </svg>
+                                More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            lucide.createIcons();
+        }
 
         function toggleCart() {
             const sidebar = document.getElementById('cart-sidebar');
@@ -522,13 +696,14 @@
             }
         }
 
-        function addToCart(productName, price) {
-            const existingItem = cart.find(item => item.name === productName);
+        function addToCart(productName, price, productId) {
+            const existingItem = cart.find(item => item.id === productId);
             
             if (existingItem) {
                 existingItem.quantity++;
             } else {
                 cart.push({
+                    id: productId,
                     name: productName,
                     price: price,
                     quantity: 1
@@ -536,6 +711,7 @@
             }
             
             updateCart();
+            saveCart();
             
             // Show success message
             alert(`${productName} added to cart!`);
@@ -544,6 +720,7 @@
         function removeFromCart(index) {
             cart.splice(index, 1);
             updateCart();
+            saveCart();
         }
 
         function updateQuantity(index, change) {
@@ -552,6 +729,7 @@
                 removeFromCart(index);
             } else {
                 updateCart();
+                saveCart();
             }
         }
 
@@ -598,25 +776,216 @@
             lucide.createIcons();
         }
 
+        function saveCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        function loadCart() {
+            const savedCart = localStorage.getItem('cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCart();
+            }
+        }
+
         function checkout() {
             if (cart.length === 0) {
                 alert('Your cart is empty!');
                 return;
             }
             
-            alert('Thank you for your order! You will be redirected to checkout.');
-            // In a real application, this would redirect to a checkout page
-            cart = [];
-            updateCart();
-            toggleCart();
+            // Store cart in session storage for checkout page
+            sessionStorage.setItem('checkoutCart', JSON.stringify(cart));
+            window.location.href = '/checkout';
         }
 
         // Contact Form
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
+        document.getElementById('contact-form').addEventListener('submit', async function(e) {
             e.preventDefault();
-            alert('Thank you for your message! We will get back to you soon.');
-            this.reset();
+            
+            const formData = {
+                name: this.elements[0].value,
+                email: this.elements[1].value,
+                subject: this.elements[2].value,
+                message: this.elements[3].value
+            };
+            
+            try {
+                const response = await fetch(`${API_URL}/api/contact`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert(result.message);
+                    this.reset();
+                } else {
+                    alert('Error: ' + result.error);
+                }
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                alert('An error occurred. Please try again later.');
+            }
         });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProducts();
+            loadCart();
+        });
+
+        // Marketplace Integration
+        let currentProduct = { name: '', price: 0 };
+
+        function getProductById(productId) {
+            return products.find(p => p.id === productId);
+        }
+
+        function buyOnMarketplace(productId, marketplace) {
+            const product = getProductById(productId);
+            if (!product) return;
+            
+            const marketplaceUrls = {
+                amazon: `https://www.amazon.in/s?k=${encodeURIComponent(product.name)}`,
+                flipkart: `https://www.flipkart.com/search?q=${encodeURIComponent(product.name)}`
+            };
+            
+            // Show confirmation
+            if (confirm(`You will be redirected to ${marketplace.charAt(0).toUpperCase() + marketplace.slice(1)} to search for "${product.name}". Continue?`)) {
+                window.open(marketplaceUrls[marketplace], '_blank');
+            }
+        }
+
+        function showMoreStores(productId) {
+            const product = getProductById(productId);
+            if (!product) return;
+            
+            currentProduct = { name: product.name, price: product.price };
+            document.getElementById('modal-product-name').textContent = product.name;
+            document.getElementById('marketplace-modal').classList.remove('hidden');
+            
+            // Reinitialize icons after modal is shown
+            setTimeout(() => {
+                lucide.createIcons();
+            }, 100);
+        }
+
+        function closeMarketplaceModal() {
+            document.getElementById('marketplace-modal').classList.add('hidden');
+        }
+
+        function openMarketplace(marketplace) {
+            const productName = currentProduct.name;
+            const marketplaceUrls = {
+                amazon: `https://www.amazon.in/s?k=${encodeURIComponent(productName)}`,
+                flipkart: `https://www.flipkart.com/search?q=${encodeURIComponent(productName)}`,
+                snapdeal: `https://www.snapdeal.com/search?keyword=${encodeURIComponent(productName)}`,
+                meesho: `https://www.meesho.com/search?q=${encodeURIComponent(productName)}`
+            };
+            
+            if (marketplaceUrls[marketplace]) {
+                window.open(marketplaceUrls[marketplace], '_blank');
+                closeMarketplaceModal();
+            }
+        }
+
+        // Chatbot functionality
+        function toggleChatbot() {
+            const container = document.getElementById('chatbot-container');
+            const button = document.getElementById('chatbot-button');
+            chatbotOpen = !chatbotOpen;
+            
+            if (chatbotOpen) {
+                container.classList.add('active');
+                button.style.transform = 'rotate(180deg)';
+            } else {
+                container.classList.remove('active');
+                button.style.transform = 'rotate(0deg)';
+            }
+            
+            lucide.createIcons();
+        }
+
+        function addChatMessage(message, isBot = false) {
+            const messagesContainer = document.getElementById('chatbot-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${isBot ? 'bot' : 'user'}`;
+            messageDiv.textContent = message;
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const messagesContainer = document.getElementById('chatbot-messages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'typing-indicator';
+            typingDiv.id = 'typing-indicator';
+            typingDiv.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+            messagesContainer.appendChild(typingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const indicator = document.getElementById('typing-indicator');
+            if (indicator) {
+                indicator.remove();
+            }
+        }
+
+        async function sendChatMessage() {
+            const input = document.getElementById('chatbot-input');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message
+            addChatMessage(message, false);
+            input.value = '';
+            
+            // Show typing indicator
+            showTypingIndicator();
+            
+            // Simulate AI response (you can replace this with actual AI API)
+            setTimeout(() => {
+                removeTypingIndicator();
+                
+                const lowerMessage = message.toLowerCase();
+                let response = '';
+                
+                if (lowerMessage.includes('price') || lowerMessage.includes('cost')) {
+                    response = 'Our products range from ₹899 to ₹7,999. We offer competitive pricing with regular discounts. Check out our featured products section for current deals!';
+                } else if (lowerMessage.includes('shipping') || lowerMessage.includes('delivery')) {
+                    response = 'We offer FREE shipping on all orders over ₹999! Delivery typically takes 3-5 business days across India.';
+                } else if (lowerMessage.includes('return') || lowerMessage.includes('refund')) {
+                    response = 'We have a 30-day return policy for all products. If you're not satisfied, you can return the product for a full refund.';
+                } else if (lowerMessage.includes('payment')) {
+                    response = 'We accept Cash on Delivery (COD), UPI payments (Google Pay, PhonePe, Paytm), and Credit/Debit Cards (Visa, Mastercard, Rupay).';
+                } else if (lowerMessage.includes('product') || lowerMessage.includes('headphone') || lowerMessage.includes('keyboard') || lowerMessage.includes('watch')) {
+                    response = 'We offer a wide range of tech products including wireless headphones, smart watches, keyboards, webcams, and storage devices. Would you like to see our products page?';
+                } else if (lowerMessage.includes('order') || lowerMessage.includes('buy') || lowerMessage.includes('purchase')) {
+                    response = 'To place an order, simply browse our products, add items to your cart, and proceed to checkout. It's quick and secure!';
+                } else if (lowerMessage.includes('support') || lowerMessage.includes('help') || lowerMessage.includes('contact')) {
+                    response = 'Our 24/7 support team is always here to help! You can reach us through the contact form on this page or call our helpline. How can I assist you?';
+                } else if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
+                    response = 'Hello! 👋 How can I help you today? Feel free to ask about our products, shipping, returns, or anything else!';
+                } else if (lowerMessage.includes('thank')) {
+                    response = 'You're welcome! Is there anything else I can help you with?';
+                } else {
+                    response = 'I'd be happy to help you with information about our products, pricing, shipping, returns, or payment options. What would you like to know?';
+                }
+                
+                addChatMessage(response, true);
+                
+                // Response delay constants
+                const BASE_DELAY_MS = 1000;
+                const RANDOM_DELAY_MS = 1000;
+            }, BASE_DELAY_MS + Math.random() * RANDOM_DELAY_MS);
+        }
     </script>
 </body>
 </html>

@@ -24,3 +24,10 @@ dist-ssr
 *.sw?
 
 __pycache__/
+
+# Database
+database/*.db
+database/*.db-journal
+
+# Environment variables
+.env

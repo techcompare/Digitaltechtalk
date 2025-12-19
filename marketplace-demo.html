@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace Integration Demo | TDS Innovation Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 p-8">
+    <div class="max-w-7xl mx-auto">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">🛒 Multi-Marketplace Integration</h1>
+            <p class="text-lg text-gray-600 mb-6">Our website now integrates with major Indian e-commerce platforms, allowing customers to compare prices and purchase from their preferred marketplace.</p>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="border-2 border-purple-200 rounded-xl p-6">
+                    <h2 class="text-2xl font-bold text-purple-600 mb-3">✨ Features</h2>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">✓</span>
+                            <span>Quick links to Amazon, Flipkart on every product</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">✓</span>
+                            <span>Modal with 4+ marketplace options (Snapdeal, Meesho)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">✓</span>
+                            <span>Automatic product search on selected platform</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">✓</span>
+                            <span>Seamless user experience with confirmations</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="border-2 border-blue-200 rounded-xl p-6">
+                    <h2 class="text-2xl font-bold text-blue-600 mb-3">🎯 Benefits</h2>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">•</span>
+                            <span>Customers can compare prices across platforms</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">•</span>
+                            <span>Increased trust and transparency</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">•</span>
+                            <span>Affiliate revenue potential from marketplaces</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">•</span>
+                            <span>Better conversion rates</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-2xl shadow-lg p-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Sample Product with Marketplace Integration</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <img src="https://via.placeholder.com/400x400/667eea/ffffff?text=Wireless+Headphones" alt="Product" class="rounded-xl shadow-md mb-4">
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Wireless Headphones</h3>
+                    <p class="text-gray-600 mb-4">Premium sound quality with noise cancellation</p>
+                    <div class="text-3xl font-bold text-purple-600 mb-6">₹2,999</div>
+                    
+                    <button class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold mb-4 hover:bg-purple-700">
+                        Add to Cart
+                    </button>
+                    
+                    <div class="border-t pt-4">
+                        <p class="text-sm text-gray-600 mb-3 font-semibold">Or buy from these marketplaces:</p>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button class="flex items-center justify-center gap-1 bg-orange-500 text-white text-sm py-3 rounded-lg hover:bg-orange-600">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39-.046.525.13.12.174.09.336-.12.48-.256.19-.6.41-1.006.654-1.244.743-2.64 1.316-4.185 1.726-1.548.41-3.146.616-4.792.616-2.64 0-5.154-.585-7.545-1.757-1.103-.54-2.11-1.148-3.018-1.826-.12-.09-.18-.18-.16-.285z"/>
+                                </svg>
+                                Amazon
+                            </button>
+                            <button class="flex items-center justify-center gap-1 bg-yellow-500 text-white text-sm py-3 rounded-lg hover:bg-yellow-600">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M3.833 2.667h16.334C21.803 2.667 23 3.863 23 5.5v13c0 1.637-1.197 2.833-2.833 2.833H3.833C2.197 21.333 1 20.137 1 18.5v-13c0-1.637 1.197-2.833 2.833-2.833z"/>
+                                </svg>
+                                Flipkart
+                            </button>
+                            <button class="flex items-center justify-center gap-1 bg-gray-600 text-white text-sm py-3 rounded-lg hover:bg-gray-700">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01"/>
+                                </svg>
+                                More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-8 text-center text-gray-500">
+            <p>🔗 Integration provides seamless connection to Amazon India, Flipkart, Snapdeal, and Meesho</p>
+            <p class="mt-2">👨‍💻 Developed for TDS Innovation Store</p>
+        </div>
+    </div>
+</body>
+</html>
