@@ -1,23 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Place Your Order | FreshBake Delights</title>
-  <style>
-    body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #fff8f0; color: #333; }
-    .container { max-width: 700px; margin: 0 auto; padding: 50px 20px; }
-    h1 { color: #d35400; text-align: center; margin-bottom: 30px; }
-    p { text-align: center; font-size: 18px; margin-bottom: 30px; }
-    .btn { display: block; margin: 0 auto; padding: 15px 30px; background: #e67e22; color: white; font-size: 16px; border-radius: 30px; text-decoration: none; width: max-content; }
-    .btn:hover { background: #d35400; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | TDS Innovation Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
 </head>
-<body>
-  <div class="container">
-    <h1>Place Your Order</h1>
-    <p>We’re just a message away! Reach out to place your custom or regular bakery orders.</p>
-    <a href="https://wa.me/91XXXXXXXXXX" class="btn">Order on WhatsApp</a>
-  </div>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-2">
+                    <div class="bg-purple-600 p-2 rounded-lg">
+                        <i data-lucide="shopping-bag" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <a href="index.html" class="text-xl font-bold text-gray-900">TDS Innovation</a>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="text-gray-600 hover:text-purple-600 font-medium">Back to Store</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Checkout Section -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h1 class="text-4xl font-bold text-gray-900 mb-8">Checkout</h1>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Checkout Form -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-xl shadow-md p-8 mb-6">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Shipping Information</h2>
+                    <form id="checkout-form">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">First Name *</label>
+                                <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Last Name *</label>
+                                <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-medium mb-2">Email Address *</label>
+                            <input type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-medium mb-2">Phone Number *</label>
+                            <input type="tel" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-medium mb-2">Street Address *</label>
+                            <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600">
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">City *</label>
+                                <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">State *</label>
+                                <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">PIN Code *</label>
+                                <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-medium mb-2">Order Notes (Optional)</label>
+                            <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600" placeholder="Any special instructions?"></textarea>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Payment Method</h2>
+                    
+                    <div class="space-y-4">
+                        <label class="flex items-center p-4 border-2 border-purple-600 rounded-lg cursor-pointer">
+                            <input type="radio" name="payment" value="cod" checked class="mr-4">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="banknote" class="w-5 h-5 text-purple-600"></i>
+                                    <span class="font-semibold text-gray-900">Cash on Delivery</span>
+                                </div>
+                                <p class="text-sm text-gray-600 mt-1">Pay when you receive your order</p>
+                            </div>
+                        </label>
+                        
+                        <label class="flex items-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-purple-600">
+                            <input type="radio" name="payment" value="upi" class="mr-4">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="smartphone" class="w-5 h-5 text-gray-600"></i>
+                                    <span class="font-semibold text-gray-900">UPI Payment</span>
+                                </div>
+                                <p class="text-sm text-gray-600 mt-1">Google Pay, PhonePe, Paytm</p>
+                            </div>
+                        </label>
+                        
+                        <label class="flex items-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-purple-600">
+                            <input type="radio" name="payment" value="card" class="mr-4">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="credit-card" class="w-5 h-5 text-gray-600"></i>
+                                    <span class="font-semibold text-gray-900">Credit/Debit Card</span>
+                                </div>
+                                <p class="text-sm text-gray-600 mt-1">Visa, Mastercard, Rupay</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Order Summary -->
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-xl shadow-md p-8 sticky top-4">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Order Summary</h2>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-center gap-4 pb-4 border-b">
+                            <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=80&h=80&fit=crop" 
+                                 alt="Product" 
+                                 class="w-16 h-16 rounded-lg object-cover">
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-gray-900">Wireless Headphones</h4>
+                                <p class="text-sm text-gray-600">Qty: 1</p>
+                            </div>
+                            <span class="font-bold text-gray-900">₹2,999</span>
+                        </div>
+                        
+                        <div class="flex items-center gap-4 pb-4 border-b">
+                            <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=80&h=80&fit=crop" 
+                                 alt="Product" 
+                                 class="w-16 h-16 rounded-lg object-cover">
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-gray-900">Smart Watch Pro</h4>
+                                <p class="text-sm text-gray-600">Qty: 1</p>
+                            </div>
+                            <span class="font-bold text-gray-900">₹5,999</span>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex justify-between text-gray-600">
+                            <span>Subtotal</span>
+                            <span>₹8,998</span>
+                        </div>
+                        <div class="flex justify-between text-gray-600">
+                            <span>Shipping</span>
+                            <span class="text-green-600 font-semibold">FREE</span>
+                        </div>
+                        <div class="flex justify-between text-gray-600">
+                            <span>Tax (GST 18%)</span>
+                            <span>₹1,620</span>
+                        </div>
+                        <div class="border-t pt-3 flex justify-between items-center">
+                            <span class="text-xl font-bold text-gray-900">Total</span>
+                            <span class="text-2xl font-bold text-purple-600">₹10,618</span>
+                        </div>
+                    </div>
+                    
+                    <button onclick="placeOrder()" class="w-full bg-purple-600 text-white py-4 rounded-lg hover:bg-purple-700 transition font-semibold text-lg flex items-center justify-center gap-2">
+                        <i data-lucide="lock" class="w-5 h-5"></i>
+                        Place Order
+                    </button>
+                    
+                    <div class="mt-6 flex items-center justify-center gap-4 text-gray-500 text-sm">
+                        <div class="flex items-center gap-1">
+                            <i data-lucide="shield-check" class="w-4 h-4"></i>
+                            <span>Secure Checkout</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex items-center justify-center gap-2 mb-4">
+                    <div class="bg-purple-600 p-2 rounded-lg">
+                        <i data-lucide="shopping-bag" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <span class="text-xl font-bold text-white">TDS Innovation</span>
+                </div>
+                <p class="text-gray-400">&copy; 2025 TDS Innovation Store. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        
+        function placeOrder() {
+            const form = document.getElementById('checkout-form');
+            if (form.checkValidity()) {
+                alert('Thank you for your order! Your order has been placed successfully.\n\nOrder ID: #TDS' + Math.floor(Math.random() * 100000) + '\n\nYou will receive a confirmation email shortly.');
+                window.location.href = 'index.html';
+            } else {
+                form.reportValidity();
+            }
+        }
+        
+        // Radio button styling
+        document.querySelectorAll('input[name="payment"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                document.querySelectorAll('input[name="payment"]').forEach(r => {
+                    r.parentElement.classList.remove('border-purple-600');
+                    r.parentElement.classList.add('border-gray-200');
+                });
+                this.parentElement.classList.add('border-purple-600');
+                this.parentElement.classList.remove('border-gray-200');
+            });
+        });
+    </script>
 </body>
 </html>
