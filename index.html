@@ -517,6 +517,78 @@
         </div>
     </div>
 
+    <!-- Marketplace Modal -->
+    <div id="marketplace-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4" onclick="closeMarketplaceModal()">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900" id="modal-product-name">Product Name</h3>
+                <button onclick="closeMarketplaceModal()" class="text-gray-500 hover:text-gray-700">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            
+            <p class="text-gray-600 mb-6">Choose where to buy this product:</p>
+            
+            <div class="space-y-3">
+                <button onclick="openMarketplace('amazon')" class="w-full flex items-center gap-3 p-4 border-2 border-gray-200 rounded-lg hover:border-orange-500 hover:bg-orange-50 transition">
+                    <div class="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center text-white">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39-.046.525.13.12.174.09.336-.12.48-.256.19-.6.41-1.006.654-1.244.743-2.64 1.316-4.185 1.726-1.548.41-3.146.616-4.792.616-2.64 0-5.154-.585-7.545-1.757-1.103-.54-2.11-1.148-3.018-1.826-.12-.09-.18-.18-.16-.285zm23.71-5.394c-.192-.193-.42-.29-.68-.29-.263 0-.487.097-.673.29-.188.192-.28.42-.28.683 0 .263.092.49.28.683.186.192.41.29.673.29.26 0 .488-.098.68-.29.19-.192.286-.42.286-.683 0-.264-.096-.49-.286-.683z"/>
+                        </svg>
+                    </div>
+                    <div class="text-left flex-1">
+                        <div class="font-semibold text-gray-900">Amazon India</div>
+                        <div class="text-sm text-gray-500">Fast delivery & great deals</div>
+                    </div>
+                    <i data-lucide="external-link" class="w-5 h-5 text-gray-400"></i>
+                </button>
+                
+                <button onclick="openMarketplace('flipkart')" class="w-full flex items-center gap-3 p-4 border-2 border-gray-200 rounded-lg hover:border-yellow-500 hover:bg-yellow-50 transition">
+                    <div class="w-12 h-12 bg-yellow-500 rounded-lg flex items-center justify-center text-white">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M3.833 2.667h16.334C21.803 2.667 23 3.863 23 5.5v13c0 1.637-1.197 2.833-2.833 2.833H3.833C2.197 21.333 1 20.137 1 18.5v-13c0-1.637 1.197-2.833 2.833-2.833zM19 12l-4-4v2.5H9V13h6v2.5l4-4z"/>
+                        </svg>
+                    </div>
+                    <div class="text-left flex-1">
+                        <div class="font-semibold text-gray-900">Flipkart</div>
+                        <div class="text-sm text-gray-500">India's favorite shopping site</div>
+                    </div>
+                    <i data-lucide="external-link" class="w-5 h-5 text-gray-400"></i>
+                </button>
+                
+                <button onclick="openMarketplace('snapdeal')" class="w-full flex items-center gap-3 p-4 border-2 border-gray-200 rounded-lg hover:border-red-500 hover:bg-red-50 transition">
+                    <div class="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                    </div>
+                    <div class="text-left flex-1">
+                        <div class="font-semibold text-gray-900">Snapdeal</div>
+                        <div class="text-sm text-gray-500">Unbelievable deals</div>
+                    </div>
+                    <i data-lucide="external-link" class="w-5 h-5 text-gray-400"></i>
+                </button>
+                
+                <button onclick="openMarketplace('meesho')" class="w-full flex items-center gap-3 p-4 border-2 border-gray-200 rounded-lg hover:border-pink-500 hover:bg-pink-50 transition">
+                    <div class="w-12 h-12 bg-pink-500 rounded-lg flex items-center justify-center text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div class="text-left flex-1">
+                        <div class="font-semibold text-gray-900">Meesho</div>
+                        <div class="text-sm text-gray-500">Lowest prices guaranteed</div>
+                    </div>
+                    <i data-lucide="external-link" class="w-5 h-5 text-gray-400"></i>
+                </button>
+            </div>
+            
+            <div class="mt-6 text-center text-sm text-gray-500">
+                <p>🔗 We'll redirect you to your chosen marketplace</p>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Initialize Lucide Icons
         lucide.createIcons();
@@ -578,9 +650,32 @@
                             </div>
                         </div>
                         <button onclick="addToCart('${product.name}', ${product.price}, ${product.id})" 
-                                class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-medium">
+                                class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-medium mb-3">
                             Add to Cart
                         </button>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button onclick="buyOnMarketplace(${product.id}, 'amazon')" 
+                                    class="flex items-center justify-center gap-1 bg-orange-500 text-white text-xs py-2 rounded hover:bg-orange-600 transition">
+                                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39-.046.525.13.12.174.09.336-.12.48-.256.19-.6.41-1.006.654-1.244.743-2.64 1.316-4.185 1.726-1.548.41-3.146.616-4.792.616-2.64 0-5.154-.585-7.545-1.757-1.103-.54-2.11-1.148-3.018-1.826-.12-.09-.18-.18-.16-.285zm23.71-5.394c-.192-.193-.42-.29-.68-.29-.263 0-.487.097-.673.29-.188.192-.28.42-.28.683 0 .263.092.49.28.683.186.192.41.29.673.29.26 0 .488-.098.68-.29.19-.192.286-.42.286-.683 0-.264-.096-.49-.286-.683zm.157 11.394l-.005-.002c-1.038-.75-2.32-1.304-3.875-1.674.105-.01.185-.03.24-.06.08-.04.16-.08.23-.14.18-.16.27-.35.27-.58-.02-.24-.12-.43-.3-.58-.18-.14-.39-.2-.64-.2h-5.73v.58c0 .34.12.63.36.87.25.24.54.36.88.36h3.46c-.19.24-.48.52-.86.82-.39.3-.8.53-1.24.67-.45.14-.9.21-1.37.21-.88 0-1.67-.22-2.38-.67s-1.27-1.03-1.67-1.77c-.4-.73-.6-1.53-.6-2.38 0-.87.2-1.66.6-2.4.4-.73.95-1.31 1.65-1.74.7-.43 1.47-.65 2.32-.65.5 0 .98.08 1.44.25.46.17.85.4 1.18.7l.42-.46c-.43-.39-.94-.7-1.52-.92-.58-.23-1.2-.34-1.85-.34-1.02 0-1.95.25-2.78.74-.83.5-1.49 1.17-1.97 2.02-.48.85-.72 1.78-.72 2.8 0 1.02.24 1.95.72 2.8.48.84 1.13 1.51 1.95 2 .82.5 1.74.74 2.75.74.68 0 1.33-.13 1.95-.38.62-.26 1.16-.6 1.62-1.03.46-.43.82-.9 1.07-1.42h.96c.3 0 .56.1.77.3.21.2.32.45.32.75 0 .26-.09.49-.26.67 1.48.34 2.65.84 3.51 1.5z"/>
+                                </svg>
+                                Amazon
+                            </button>
+                            <button onclick="buyOnMarketplace(${product.id}, 'flipkart')" 
+                                    class="flex items-center justify-center gap-1 bg-yellow-500 text-white text-xs py-2 rounded hover:bg-yellow-600 transition">
+                                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M3.833 2.667h16.334C21.803 2.667 23 3.863 23 5.5v13c0 1.637-1.197 2.833-2.833 2.833H3.833C2.197 21.333 1 20.137 1 18.5v-13c0-1.637 1.197-2.833 2.833-2.833zM19 12l-4-4v2.5H9V13h6v2.5l4-4z"/>
+                                </svg>
+                                Flipkart
+                            </button>
+                            <button onclick="showMoreStores(${product.id})" 
+                                    class="flex items-center justify-center gap-1 bg-gray-600 text-white text-xs py-2 rounded hover:bg-gray-700 transition">
+                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"/>
+                                </svg>
+                                More
+                            </button>
+                        </div>
                     </div>
                 </div>
             `).join('');
@@ -743,6 +838,61 @@
             loadProducts();
             loadCart();
         });
+
+        // Marketplace Integration
+        let currentProduct = { name: '', price: 0 };
+
+        function getProductById(productId) {
+            return products.find(p => p.id === productId);
+        }
+
+        function buyOnMarketplace(productId, marketplace) {
+            const product = getProductById(productId);
+            if (!product) return;
+            
+            const marketplaceUrls = {
+                amazon: `https://www.amazon.in/s?k=${encodeURIComponent(product.name)}`,
+                flipkart: `https://www.flipkart.com/search?q=${encodeURIComponent(product.name)}`
+            };
+            
+            // Show confirmation
+            if (confirm(`You will be redirected to ${marketplace.charAt(0).toUpperCase() + marketplace.slice(1)} to search for "${product.name}". Continue?`)) {
+                window.open(marketplaceUrls[marketplace], '_blank');
+            }
+        }
+
+        function showMoreStores(productId) {
+            const product = getProductById(productId);
+            if (!product) return;
+            
+            currentProduct = { name: product.name, price: product.price };
+            document.getElementById('modal-product-name').textContent = product.name;
+            document.getElementById('marketplace-modal').classList.remove('hidden');
+            
+            // Reinitialize icons after modal is shown
+            setTimeout(() => {
+                lucide.createIcons();
+            }, 100);
+        }
+
+        function closeMarketplaceModal() {
+            document.getElementById('marketplace-modal').classList.add('hidden');
+        }
+
+        function openMarketplace(marketplace) {
+            const productName = currentProduct.name;
+            const marketplaceUrls = {
+                amazon: `https://www.amazon.in/s?k=${encodeURIComponent(productName)}`,
+                flipkart: `https://www.flipkart.com/search?q=${encodeURIComponent(productName)}`,
+                snapdeal: `https://www.snapdeal.com/search?keyword=${encodeURIComponent(productName)}`,
+                meesho: `https://www.meesho.com/search?q=${encodeURIComponent(productName)}`
+            };
+            
+            if (marketplaceUrls[marketplace]) {
+                window.open(marketplaceUrls[marketplace], '_blank');
+                closeMarketplaceModal();
+            }
+        }
 
         // Chatbot functionality
         function toggleChatbot() {
