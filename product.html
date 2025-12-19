@@ -3,37 +3,384 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Products | FreshBake Delights</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>All Products | TDS Innovation Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    </style>
 </head>
-<body>
-    <!-- Navigation (Same as index.html) -->
-    <nav>
-        <a href="index.html" class="logo">FreshBake Delights</a>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="products.html">Products</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-2">
+                    <div class="bg-purple-600 p-2 rounded-lg">
+                        <i data-lucide="shopping-bag" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <a href="index.html" class="text-xl font-bold text-gray-900">TDS Innovation</a>
+                </div>
+                
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="index.html" class="text-gray-600 hover:text-purple-600 font-medium">Home</a>
+                    <a href="product.html" class="text-purple-600 font-medium">Products</a>
+                    <a href="index.html#about" class="text-gray-600 hover:text-purple-600 font-medium">About</a>
+                    <a href="index.html#contact" class="text-gray-600 hover:text-purple-600 font-medium">Contact</a>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <button class="relative p-2 hover:bg-gray-100 rounded-full" onclick="alert('Cart functionality - Add to cart from product page')">
+                        <i data-lucide="shopping-cart" class="w-6 h-6 text-gray-600"></i>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </button>
+                    <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">
+                        Sign In
+                    </button>
+                </div>
+            </div>
         </div>
     </nav>
 
-    <!-- Product Grid -->
-    <section class="product-grid">
-        <div class="product-card">
-            <img src="chocolate-cake.jpg" alt="Chocolate Cake">
-            <h3>Chocolate Cake</h3>
-            <p>₹499</p>
-            <button class="add-to-cart">Add to Cart</button>
+    <!-- Products Page -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Header -->
+        <div class="mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">All Products</h1>
+            <p class="text-gray-600 text-lg">Discover our complete collection of tech products</p>
         </div>
-        <!-- More products -->
-    </section>
 
-    <!-- Footer (Same as index.html) -->
-    <footer>
-        <p>&copy; 2024 FreshBake Delights</p>
+        <!-- Filters -->
+        <div class="mb-8 flex flex-wrap gap-4">
+            <button class="px-6 py-2 bg-purple-600 text-white rounded-lg font-medium">All</button>
+            <button class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300">Audio</button>
+            <button class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300">Wearables</button>
+            <button class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300">Accessories</button>
+            <button class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300">Storage</button>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Product 1 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=400&fit=crop" 
+                         alt="Wireless Headphones" 
+                         class="w-full h-64 object-cover">
+                    <span class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold">Sale</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-semibold text-lg text-gray-900 mb-2">Wireless Headphones</h3>
+                    <p class="text-gray-600 text-sm mb-4">Premium sound quality with noise cancellation</p>
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <span class="text-2xl font-bold text-purple-600">₹2,999</span>
+                            <span class="text-gray-400 line-through ml-2">₹4,999</span>
+                        </div>
+                    </div>
+                    <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-medium">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400&h=400&fit=crop" 
+                         alt="Smart Watch Pro" 
+                         class="w-full h-64 object-cover">
+                </div>
+                <div class="p-6">
+                    <h3 class="font-semibold text-lg text-gray-900 mb-2">Smart Watch Pro</h3>
+                    <p class="text-gray-600 text-sm mb-4">Track your fitness and stay connected</p>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-2xl font-bold text-purple-600">₹5,999</span>
+                    </div>
+                    <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-medium">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=400&h=400&fit=crop" 
+                         alt="Laptop Stand" 
+                         class="w-full h-64 object-cover">
+                    <span class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-semibold">New</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-semibold text-lg text-gray-900 mb-2">Laptop Stand</h3>
+                    <p class="text-gray-600 text-sm mb-4">Ergonomic design for better posture</p>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-2xl font-bold text-purple-600">₹1,499</span>
+                    </div>
+                    <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-medium">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1625948515291-69613efd103f?w=400&h=400&fit=crop" 
+                         alt="Wireless Keyboard" 
+                         class="w-full h-64 object-cover">
+                </div>
+                <div class="p-6">
+                    <h3 class="font-semibold text-lg text-gray-900 mb-2">Wireless Keyboard</h3>
+                    <p class="text-gray-600 text-sm mb-4">Mechanical keys with RGB lighting</p>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-2xl font-bold text-purple-600">₹3,499</span>
+                    </div>
+                    <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-medium">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=400&fit=crop" 
+                         alt="Webcam HD" 
+                         class="w-full h-64 object-cover">
+                </div>
+                <div class="p-6">
+                    <h3 class="font-semibold text-lg text-gray-900 mb-2">Webcam HD</h3>
+                    <p class="text-gray-600 text-sm mb-4">Crystal clear video calls and streaming</p>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-2xl font-bold text-purple-600">₹2,299</span>
+                    </div>
+                    <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-medium">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1624705002806-5d72df19c3ad?w=400&h=400&fit=crop" 
+                         alt="USB-C Hub" 
+                         class="w-full h-64 object-cover">
+                    <span class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold">-30%</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-semibold text-lg text-gray-900 mb-2">USB-C Hub</h3>
+                    <p class="text-gray-600 text-sm mb-4">Multi-port adapter for connectivity</p>
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <span class="text-2xl font-bold text-purple-600">₹999</span>
+                            <span class="text-gray-400 line-through ml-2">₹1,499</span>
+                        </div>
+                    </div>
+                    <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-medium">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 7 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=400&fit=crop" 
+                         alt="Wireless Mouse" 
+                         class="w-full h-64 object-cover">
+                </div>
+                <div class="p-6">
+                    <h3 class="font-semibold text-lg text-gray-900 mb-2">Wireless Mouse</h3>
+                    <p class="text-gray-600 text-sm mb-4">Precision tracking and comfort</p>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-2xl font-bold text-purple-600">₹899</span>
+                    </div>
+                    <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-medium">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 8 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1589492477829-5e65395b66cc?w=400&h=400&fit=crop" 
+                         alt="Portable SSD" 
+                         class="w-full h-64 object-cover">
+                    <span class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-semibold">New</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-semibold text-lg text-gray-900 mb-2">Portable SSD</h3>
+                    <p class="text-gray-600 text-sm mb-4">Fast storage with 1TB capacity</p>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-2xl font-bold text-purple-600">₹7,999</span>
+                    </div>
+                    <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-medium">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 9 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&h=400&fit=crop" 
+                         alt="Monitor 27 inch" 
+                         class="w-full h-64 object-cover">
+                </div>
+                <div class="p-6">
+                    <h3 class="font-semibold text-lg text-gray-900 mb-2">Monitor 27"</h3>
+                    <p class="text-gray-600 text-sm mb-4">4K UHD display with HDR support</p>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-2xl font-bold text-purple-600">₹18,999</span>
+                    </div>
+                    <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-medium">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 10 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1588508065123-287b28e013da?w=400&h=400&fit=crop" 
+                         alt="Desk Lamp" 
+                         class="w-full h-64 object-cover">
+                </div>
+                <div class="p-6">
+                    <h3 class="font-semibold text-lg text-gray-900 mb-2">LED Desk Lamp</h3>
+                    <p class="text-gray-600 text-sm mb-4">Adjustable brightness and color temp</p>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-2xl font-bold text-purple-600">₹1,799</span>
+                    </div>
+                    <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-medium">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 11 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=400&fit=crop" 
+                         alt="Phone Holder" 
+                         class="w-full h-64 object-cover">
+                </div>
+                <div class="p-6">
+                    <h3 class="font-semibold text-lg text-gray-900 mb-2">Phone Holder</h3>
+                    <p class="text-gray-600 text-sm mb-4">Adjustable stand for desk or bed</p>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-2xl font-bold text-purple-600">₹599</span>
+                    </div>
+                    <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-medium">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 12 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop" 
+                         alt="Bluetooth Speaker" 
+                         class="w-full h-64 object-cover">
+                    <span class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold">Hot</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-semibold text-lg text-gray-900 mb-2">Bluetooth Speaker</h3>
+                    <p class="text-gray-600 text-sm mb-4">Portable with 360° sound</p>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-2xl font-bold text-purple-600">₹2,499</span>
+                    </div>
+                    <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-medium">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="bg-purple-600 p-2 rounded-lg">
+                            <i data-lucide="shopping-bag" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <span class="text-xl font-bold text-white">TDS Innovation</span>
+                    </div>
+                    <p class="text-gray-400">Your trusted partner for digital technology solutions.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-purple-400">Home</a></li>
+                        <li><a href="product.html" class="hover:text-purple-400">Products</a></li>
+                        <li><a href="index.html#about" class="hover:text-purple-400">About Us</a></li>
+                        <li><a href="index.html#contact" class="hover:text-purple-400">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-purple-400">Help Center</a></li>
+                        <li><a href="#" class="hover:text-purple-400">Shipping Info</a></li>
+                        <li><a href="#" class="hover:text-purple-400">Returns</a></li>
+                        <li><a href="#" class="hover:text-purple-400">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Subscribe to get updates</p>
+                    <div class="flex gap-2">
+                        <input type="email" placeholder="Your email" class="flex-1 px-4 py-2 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-purple-600">
+                        <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
+                            <i data-lucide="send" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 TDS Innovation Store. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>
