@@ -812,25 +812,29 @@
                 } else if (lowerMessage.includes('shipping') || lowerMessage.includes('delivery')) {
                     response = 'We offer FREE shipping on all orders over ₹999! Delivery typically takes 3-5 business days across India.';
                 } else if (lowerMessage.includes('return') || lowerMessage.includes('refund')) {
-                    response = 'We have a 30-day return policy for all products. If you\'re not satisfied, you can return the product for a full refund.';
+                    response = 'We have a 30-day return policy for all products. If you're not satisfied, you can return the product for a full refund.';
                 } else if (lowerMessage.includes('payment')) {
                     response = 'We accept Cash on Delivery (COD), UPI payments (Google Pay, PhonePe, Paytm), and Credit/Debit Cards (Visa, Mastercard, Rupay).';
                 } else if (lowerMessage.includes('product') || lowerMessage.includes('headphone') || lowerMessage.includes('keyboard') || lowerMessage.includes('watch')) {
                     response = 'We offer a wide range of tech products including wireless headphones, smart watches, keyboards, webcams, and storage devices. Would you like to see our products page?';
                 } else if (lowerMessage.includes('order') || lowerMessage.includes('buy') || lowerMessage.includes('purchase')) {
-                    response = 'To place an order, simply browse our products, add items to your cart, and proceed to checkout. It\'s quick and secure!';
+                    response = 'To place an order, simply browse our products, add items to your cart, and proceed to checkout. It's quick and secure!';
                 } else if (lowerMessage.includes('support') || lowerMessage.includes('help') || lowerMessage.includes('contact')) {
                     response = 'Our 24/7 support team is always here to help! You can reach us through the contact form on this page or call our helpline. How can I assist you?';
                 } else if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
                     response = 'Hello! 👋 How can I help you today? Feel free to ask about our products, shipping, returns, or anything else!';
                 } else if (lowerMessage.includes('thank')) {
-                    response = 'You\'re welcome! Is there anything else I can help you with?';
+                    response = 'You're welcome! Is there anything else I can help you with?';
                 } else {
-                    response = 'I\'d be happy to help you with information about our products, pricing, shipping, returns, or payment options. What would you like to know?';
+                    response = 'I'd be happy to help you with information about our products, pricing, shipping, returns, or payment options. What would you like to know?';
                 }
                 
                 addChatMessage(response, true);
-            }, 1000 + Math.random() * 1000);
+                
+                // Response delay constants
+                const BASE_DELAY_MS = 1000;
+                const RANDOM_DELAY_MS = 1000;
+            }, BASE_DELAY_MS + Math.random() * RANDOM_DELAY_MS);
         }
     </script>
 </body>
