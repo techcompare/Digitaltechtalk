@@ -65,6 +65,13 @@ button{
     border: 1px solid white;
     color:white;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+button:hover {
+    transform: scale(1.05);
+}
+button:active {
+    transform: scale(0.98);
 }
 .content{
     display: flex;
@@ -102,6 +109,7 @@ button{
     transform: rotate(-45deg);
     transition: transform 1s;
     z-index: 1;
+    will-change: transform;
 }
 .juice-wheel img{
     width: 320px;
@@ -139,11 +147,11 @@ button{
     transform: rotate(-45deg);
     transition: transform 1s;
     z-index: 0;
-
+    will-change: transform;
 }
 .fruits-wheel img{
     width: 650px;
-    opacity: 40%;
+    opacity: 0.4;
 }
 .dynamic-fruits-1{
     position: absolute;
