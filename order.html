@@ -260,16 +260,23 @@
             }
             
             // Get form data
-            const formElements = form.elements;
-            const firstName = formElements[0].value;
-            const lastName = formElements[1].value;
-            const email = formElements[2].value;
-            const phone = formElements[3].value;
-            const address = formElements[4].value;
-            const city = formElements[5].value;
-            const state = formElements[6].value;
-            const zip = formElements[7].value;
-            const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+            const form = document.getElementById('checkout-form');
+            const firstName = form.elements['firstName'].value;
+            const lastName = form.elements['lastName'].value;
+            const email = form.elements['email'].value;
+            const phone = form.elements['phone'].value;
+            const address = form.elements['address'].value;
+            const city = form.elements['city'].value;
+            const state = form.elements['state'].value;
+            const zip = form.elements['zip'].value;
+            const paymentMethodElement = document.querySelector('input[name="payment"]:checked');
+            
+            if (!paymentMethodElement) {
+                alert('Please select a payment method');
+                return;
+            }
+            
+            const paymentMethod = paymentMethodElement.value;
             
             // Prepare order data
             const orderData = {
