@@ -604,11 +604,8 @@
                 return;
             }
             
-            alert('Thank you for your order! You will be redirected to checkout.');
-            // In a real application, this would redirect to a checkout page
-            cart = [];
-            updateCart();
-            toggleCart();
+            // Redirect to checkout page
+            window.location.href = 'order.html';
         }
 
         // Contact Form
