@@ -44,6 +44,3 @@ For privacy-related questions or requests, contact us directly in the app throug
 
 Or email us at workwithme785@gmail.com.
 
-**Domain**: tdsinnovation.store  
-**Type**: E-commerce Platform  
-**Focus**: Technology Products
