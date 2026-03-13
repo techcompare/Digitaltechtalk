@@ -3,343 +3,325 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Marketing & Growth Strategist | Portfolio</title>
+    <title>Growth Architect | Digital Media Engine</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@100;300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #030712;
-            color: #f3f4f6;
+        :root {
+            --accent: #6366f1;
+            --accent-glow: rgba(99, 102, 241, 0.2);
+            --bg: #050505;
         }
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg);
+            color: #ffffff;
+            overflow-x: hidden;
+            cursor: none;
+        }
+        .h-font { font-family: 'Space Grotesk', sans-serif; }
+
+        /* Background Effects */
+        .bg-grid {
+            background-image:
+                linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .grain {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        /* Premium Text */
         .gradient-text {
-            background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+            background: linear-gradient(135deg, #fff 0%, #6366f1 50%, #a855f7 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: textShine 5s ease infinite;
         }
-        .glass-card {
-            background: rgba(17, 24, 39, 0.7);
-            backdrop-filter: blur(12px);
+        @keyframes textShine {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .hero-glow {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 50% 30%, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.05) 40%, transparent 70%);
-            pointer-events: none;
-            z-index: -1;
-        }
-        .skill-tag {
+        .glass-hover:hover {
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
+            border-color: rgba(99, 102, 241, 0.3);
+            transform: translateY(-5px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .skill-tag:hover {
-            background: rgba(99, 102, 241, 0.1);
-            border-color: rgba(99, 102, 241, 0.4);
-            transform: translateY(-2px);
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: #222; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+        /* Floating Animation */
+        .float { animation: float 6s ease-in-out infinite; }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .bento-item { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+
+        /* Custom Cursor */
+        #cursor {
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.15s ease-out, opacity 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+        #cursor-follower {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.3s ease-out, opacity 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        @media (max-width: 768px) {
+            body { cursor: auto; }
+            #cursor, #cursor-follower { display: none; }
         }
     </style>
 </head>
-<body class="antialiased selection:bg-indigo-500 selection:text-white">
+<body class="bg-grid">
+    <div id="cursor"></div>
+    <div id="cursor-follower"></div>
+    <div class="grain"></div>
 
-    <!-- Hero Glow Effect -->
-    <div class="hero-glow"></div>
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-[70] translate-x-full transition-transform duration-500 glass-dark flex flex-col items-center justify-center gap-8 md:hidden opacity-0 pointer-events-none hidden">
+        <button id="close-menu" class="absolute top-10 right-10 text-white p-2 glass rounded-full"><i data-lucide="x"></i></button>
+        <a href="#about" class="h-font text-4xl font-bold mobile-link">About</a>
+        <a href="#work" class="h-font text-4xl font-bold mobile-link">Strategy</a>
+        <a href="#skills" class="h-font text-4xl font-bold mobile-link">Toolkit</a>
+        <a href="#contact" class="h-font text-4xl font-bold mobile-link">Contact</a>
+    </div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 px-6 py-4">
-        <div class="max-w-6xl mx-auto flex justify-between items-center glass-card rounded-full px-6 py-3">
-            <div class="flex items-center gap-2">
-                <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
-                    <span class="font-bold text-white italic">DS</span>
+    <nav class="fixed top-8 left-1/2 -translate-x-1/2 z-[60] w-[90%] max-w-4xl">
+        <div class="glass rounded-2xl px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center float">
+                    <i data-lucide="zap" class="w-5 h-5 text-white fill-white"></i>
                 </div>
-                <span class="font-bold tracking-tight">Growth Strategist</span>
+                <span class="h-font font-bold text-xl tracking-tighter uppercase">Media Architect</span>
             </div>
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
-                <a href="#about" class="hover:text-white transition">About</a>
-                <a href="#projects" class="hover:text-white transition">Projects</a>
-                <a href="#skills" class="hover:text-white transition">Skills</a>
-                <a href="#contact" class="px-5 py-2 bg-white text-black rounded-full hover:bg-gray-200 transition">Contact</a>
+            <div class="hidden md:flex items-center gap-10 text-xs font-bold uppercase tracking-[0.2em]">
+                <a href="#about" class="hover:text-indigo-400 transition">About</a>
+                <a href="#work" class="hover:text-indigo-400 transition">Strategy</a>
+                <a href="#skills" class="hover:text-indigo-400 transition">Toolkit</a>
+                <a href="#contact" class="bg-white text-black px-6 py-2.5 rounded-full hover:scale-105 transition active:scale-95">Contact</a>
             </div>
-            <div class="md:hidden">
-                <button id="menu-btn" class="p-2 text-gray-400 hover:text-white">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
-                </button>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden mt-2 glass-card rounded-2xl p-6 absolute w-[calc(100%-3rem)] left-6 flex flex-col gap-4 text-center">
-            <a href="#about" class="hover:text-white transition">About</a>
-            <a href="#projects" class="hover:text-white transition">Projects</a>
-            <a href="#skills" class="hover:text-white transition">Skills</a>
-            <a href="#contact" class="px-5 py-2 bg-white text-black rounded-full hover:bg-gray-200 transition">Contact</a>
+            <button id="menu-btn" class="md:hidden text-white"><i data-lucide="menu"></i></button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="pt-40 pb-20 px-6">
-        <div class="max-w-6xl mx-auto text-center">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold uppercase tracking-wider mb-6">
-                <span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
-                Available for Strategic Growth Roles
+    <section class="min-h-screen flex flex-col justify-center items-center px-6 relative overflow-hidden">
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-600/20 blur-[120px] rounded-full"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-600/10 blur-[120px] rounded-full"></div>
+
+        <div class="max-w-6xl mx-auto text-center relative z-10">
+            <div class="inline-block glass px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-8 animate-pulse border-indigo-500/30 text-indigo-400">
+                Operating from Pune | Scaling Worldwide
             </div>
-            <h1 class="text-5xl md:text-7xl font-extrabold mb-8 tracking-tight">
-                Building <span class="gradient-text">Digital Empires</span><br> From Pune to the World.
+            <h1 class="h-font text-6xl md:text-9xl font-black mb-8 leading-[0.9] tracking-tighter">
+                ENGINEERING<br>
+                <span class="gradient-text">DIGITAL REACH</span>
             </h1>
-            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
-                A digital marketing powerhouse since 2020. I scale communities, automate content distribution, and build platforms that command attention.
+            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light leading-relaxed">
+                Aggressive growth strategist & digital architect. Since 2020, I've been building high-frequency content engines and automated media pipelines.
             </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#projects" class="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold transition shadow-lg shadow-indigo-500/25 flex items-center gap-2">
-                    View Impact Projects <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                <a href="#work" class="group relative px-10 py-5 bg-white text-black font-black uppercase text-sm tracking-widest rounded-xl overflow-hidden transition-all">
+                    <span class="relative z-10">Deploy Strategy</span>
+                    <div class="absolute inset-0 bg-indigo-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                 </a>
-                <a href="#contact" class="px-8 py-4 glass-card hover:bg-white/5 text-white rounded-xl font-bold transition border border-white/10">
-                    Get in Touch
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats/Quick Info -->
-    <section class="py-10 px-6">
-        <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="glass-card p-6 rounded-2xl text-center">
-                <div class="text-3xl font-bold gradient-text mb-1">4+</div>
-                <div class="text-gray-500 text-sm uppercase tracking-widest font-semibold">Years Experience</div>
-            </div>
-            <div class="glass-card p-6 rounded-2xl text-center">
-                <div class="text-3xl font-bold gradient-text mb-1">10+</div>
-                <div class="text-gray-500 text-sm uppercase tracking-widest font-semibold">Platforms Built</div>
-            </div>
-            <div class="glass-card p-6 rounded-2xl text-center">
-                <div class="text-3xl font-bold gradient-text mb-1">50K+</div>
-                <div class="text-gray-500 text-sm uppercase tracking-widest font-semibold">Community Members</div>
-            </div>
-            <div class="glass-card p-6 rounded-2xl text-center">
-                <div class="text-3xl font-bold gradient-text mb-1">RSS</div>
-                <div class="text-gray-500 text-sm uppercase tracking-widest font-semibold">Automation Pro</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About / Focus Section -->
-    <section id="about" class="py-24 px-6 relative overflow-hidden">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-            <div>
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">Mastering the <span class="text-indigo-500">Digital Flow</span>.</h2>
-                <p class="text-gray-400 text-lg mb-8 leading-relaxed">
-                    Based in Pune and pursuing BCom with ACCA, I bridge the gap between finance-grade precision and viral digital growth. Since 2020, I've been architecting social media ecosystems and automated news distribution networks.
-                </p>
-                <div class="space-y-4">
-                    <div class="flex items-start gap-4">
-                        <div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-500 shrink-0">
-                            <i data-lucide="trending-up" class="w-5 h-5"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-white">Social Media Growth</h4>
-                            <p class="text-sm text-gray-500">Expertise in Instagram news pages and YouTube channel management.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4">
-                        <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-500 shrink-0">
-                            <i data-lucide="zap" class="w-5 h-5"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-white">RSS & Automation</h4>
-                            <p class="text-sm text-gray-500">Automating content pipelines for high-traffic websites.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4">
-                        <div class="w-10 h-10 rounded-lg bg-pink-500/10 flex items-center justify-center text-pink-500 shrink-0">
-                            <i data-lucide="users" class="w-5 h-5"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-white">Community Building</h4>
-                            <p class="text-sm text-gray-500">Managing large-scale Telegram and Twitter communities.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="relative">
-                <div class="absolute -inset-4 bg-indigo-600/20 blur-3xl rounded-full"></div>
-                <div class="glass-card p-2 rounded-3xl relative">
-                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=1000&fit=crop" alt="Digital Marketing" class="rounded-2xl opacity-80">
+                <div class="flex items-center gap-4 text-gray-500 font-mono text-xs uppercase tracking-tighter">
+                    <span class="w-12 h-[1px] bg-gray-800"></span>
+                    Scroll to Explore
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-24 px-6 bg-white/[0.02]">
+    <!-- About Section - Editorial Style -->
+    <section id="about" class="py-32 px-6">
         <div class="max-w-6xl mx-auto">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-                <div>
-                    <h2 class="text-4xl font-bold mb-4">Impact <span class="gradient-text">Projects</span></h2>
-                    <p class="text-gray-400 max-w-xl">A selection of platforms I've built and managed, focusing on reach, automation, and user engagement.</p>
-                </div>
-                <div class="text-gray-500 text-sm font-medium italic">2020 - Present</div>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="group">
-                    <div class="relative overflow-hidden rounded-2xl mb-6 aspect-video bg-gray-900 border border-white/5">
-                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-60">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 to-transparent"></div>
-                        <div class="absolute bottom-4 left-4">
-                            <span class="px-2 py-1 rounded-md bg-white/10 text-[10px] font-bold uppercase text-white backdrop-blur-md">Tech News</span>
+            <div class="grid md:grid-cols-2 gap-20 items-start">
+                <div class="sticky top-40">
+                    <h2 class="h-font text-5xl md:text-7xl font-bold leading-tight mb-8">
+                        The <span class="text-indigo-500">Vision</span><br>Behind the Growth.
+                    </h2>
+                    <p class="text-gray-400 text-xl font-light mb-8 leading-relaxed">
+                        Currently pursuing BCom with ACCA, I merge fiscal precision with viral mechanics. I don't just "post"—I architect ecosystems that capture attention at scale.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="glass p-6 rounded-2xl">
+                            <div class="text-4xl font-black h-font mb-2">4+</div>
+                            <div class="text-[10px] uppercase tracking-widest text-indigo-400 font-bold">Years of Execution</div>
+                        </div>
+                        <div class="glass p-6 rounded-2xl">
+                            <div class="text-4xl font-black h-font mb-2">50K+</div>
+                            <div class="text-[10px] uppercase tracking-widest text-indigo-400 font-bold">Network Reach</div>
                         </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">Tech News Media Engine</h3>
-                    <p class="text-gray-400 text-sm mb-4 leading-relaxed">
-                        Managing a multi-platform tech news network. Responsible for content research, viral distribution, and cross-platform engagement.
-                    </p>
-                    <ul class="text-xs text-gray-500 space-y-1 mb-6">
-                        <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-3 h-3 text-indigo-500"></i> Optimized content research workflows</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-3 h-3 text-indigo-500"></i> Managed community engagement across 4 platforms</li>
-                    </ul>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="text-[10px] px-2 py-0.5 rounded-full border border-white/10 text-gray-400">YouTube</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded-full border border-white/10 text-gray-400">Instagram</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded-full border border-white/10 text-gray-400">Telegram</span>
-                    </div>
                 </div>
-
-                <!-- Project 2 -->
-                <div class="group">
-                    <div class="relative overflow-hidden rounded-2xl mb-6 aspect-video bg-gray-900 border border-white/5">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-60">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 to-transparent"></div>
-                        <div class="absolute bottom-4 left-4">
-                            <span class="px-2 py-1 rounded-md bg-white/10 text-[10px] font-bold uppercase text-white backdrop-blur-md">Automation</span>
-                        </div>
+                <div class="space-y-12 pt-20">
+                    <div class="group border-b border-white/10 pb-12">
+                        <div class="text-indigo-500 font-mono text-sm mb-4">01 // CONTENT STRATEGY</div>
+                        <h3 class="h-font text-3xl font-bold mb-4">Visual Storytelling at Scale</h3>
+                        <p class="text-gray-500">Crafting high-retention content for YouTube, Instagram, and Twitter. Focus on data-driven research and viral triggers.</p>
                     </div>
-                    <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">RSS Content Automation</h3>
-                    <p class="text-gray-400 text-sm mb-4 leading-relaxed">
-                        Built and optimized multiple websites using RSS automation for real-time news delivery. Integrated seamless distribution pipelines.
-                    </p>
-                    <ul class="text-xs text-gray-500 space-y-1 mb-6">
-                        <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-3 h-3 text-indigo-500"></i> Automated 100% of news publishing flow</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-3 h-3 text-indigo-500"></i> Scaled content distribution across networks</li>
-                    </ul>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="text-[10px] px-2 py-0.5 rounded-full border border-white/10 text-gray-400">Web Dev</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded-full border border-white/10 text-gray-400">RSS Feeds</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded-full border border-white/10 text-gray-400">SEO</span>
+                    <div class="group border-b border-white/10 pb-12">
+                        <div class="text-indigo-500 font-mono text-sm mb-4">02 // MEDIA AUTOMATION</div>
+                        <h3 class="h-font text-3xl font-bold mb-4">RSS News Distribution</h3>
+                        <p class="text-gray-500">Building automated news engines that crawl, process, and publish content across multiple digital touchpoints 24/7.</p>
                     </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="group">
-                    <div class="relative overflow-hidden rounded-2xl mb-6 aspect-video bg-gray-900 border border-white/5">
-                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-60">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 to-transparent"></div>
-                        <div class="absolute bottom-4 left-4">
-                            <span class="px-2 py-1 rounded-md bg-white/10 text-[10px] font-bold uppercase text-white backdrop-blur-md">App Dev</span>
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">Android App Prototype</h3>
-                    <p class="text-gray-400 text-sm mb-4 leading-relaxed">
-                        Developed a mobile application prototype using MIT App Inventor and Android Studio, focusing on UI/UX and feature integration.
-                    </p>
-                    <ul class="text-xs text-gray-500 space-y-1 mb-6">
-                        <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-3 h-3 text-indigo-500"></i> Designed custom UI for better user retention</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-3 h-3 text-indigo-500"></i> Conducted end-to-end feature testing</li>
-                    </ul>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="text-[10px] px-2 py-0.5 rounded-full border border-white/10 text-gray-400">Android Studio</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded-full border border-white/10 text-gray-400">UI Design</span>
+                    <div class="group border-b border-white/10 pb-12">
+                        <div class="text-indigo-500 font-mono text-sm mb-4">03 // COMMUNITY OPS</div>
+                        <h3 class="h-font text-3xl font-bold mb-4">Community Management</h3>
+                        <p class="text-gray-500">Managing large-scale Telegram and social communities, fostering engagement and distribution loops.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills & Tools Section -->
-    <section id="skills" class="py-24 px-6">
+    <!-- Strategy / Work Section - Bento Grid -->
+    <section id="work" class="py-32 px-6 bg-[#080808]">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold mb-16 text-center">Skillset & <span class="text-indigo-500">Toolkit</span></h2>
+            <div class="mb-20 text-center md:text-left">
+                <h2 class="h-font text-4xl md:text-6xl font-black uppercase italic tracking-tighter">Strategic Deployment</h2>
+                <div class="h-1 w-20 bg-indigo-600 mt-4"></div>
+            </div>
 
-            <div class="grid md:grid-cols-2 gap-16">
-                <div>
-                    <h4 class="text-sm font-bold uppercase tracking-widest text-gray-500 mb-8 flex items-center gap-2">
-                        <i data-lucide="layers" class="w-4 h-4"></i> Core Expertise
-                    </h4>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="skill-tag p-4 rounded-xl flex items-center gap-3">
-                            <i data-lucide="target" class="w-5 h-5 text-indigo-500"></i>
-                            <span class="font-medium">Digital Marketing</span>
+            <div class="grid md:grid-cols-12 gap-6 h-auto md:h-[800px]">
+                <!-- Tech Media Engine -->
+                <div class="md:col-span-8 glass p-10 rounded-[2.5rem] relative overflow-hidden group bento-item glass-hover">
+                    <div class="absolute -right-20 -top-20 w-80 h-80 bg-indigo-600/20 blur-[100px] group-hover:bg-indigo-600/40 transition-all duration-700"></div>
+                    <div class="relative z-10 h-full flex flex-col justify-between">
+                        <div>
+                            <span class="text-indigo-500 font-mono text-xs uppercase mb-6 block tracking-widest">Main Engine</span>
+                            <h3 class="h-font text-4xl md:text-5xl font-bold mb-6">Tech News Media Engine</h3>
+                            <p class="text-gray-400 max-w-md text-lg">A multi-channel distribution network focused on emerging tech news. Managing YouTube, Instagram, and X ecosystems.</p>
                         </div>
-                        <div class="skill-tag p-4 rounded-xl flex items-center gap-3">
-                            <i data-lucide="share-2" class="w-5 h-5 text-indigo-500"></i>
-                            <span class="font-medium">SMM</span>
-                        </div>
-                        <div class="skill-tag p-4 rounded-xl flex items-center gap-3">
-                            <i data-lucide="edit-3" class="w-5 h-5 text-indigo-500"></i>
-                            <span class="font-medium">Content Creation</span>
-                        </div>
-                        <div class="skill-tag p-4 rounded-xl flex items-center gap-3">
-                            <i data-lucide="heart" class="w-5 h-5 text-indigo-500"></i>
-                            <span class="font-medium">Community Building</span>
-                        </div>
-                        <div class="skill-tag p-4 rounded-xl flex items-center gap-3">
-                            <i data-lucide="layout" class="w-5 h-5 text-indigo-500"></i>
-                            <span class="font-medium">Website Management</span>
-                        </div>
-                        <div class="skill-tag p-4 rounded-xl flex items-center gap-3">
-                            <i data-lucide="refresh-cw" class="w-5 h-5 text-indigo-500"></i>
-                            <span class="font-medium">RSS Automation</span>
+                        <div class="flex flex-wrap gap-4 mt-8">
+                            <div class="glass px-6 py-3 rounded-xl flex items-center gap-3">
+                                <i data-lucide="youtube" class="w-5 h-5 text-red-500"></i>
+                                <span class="text-sm font-bold">YouTube</span>
+                            </div>
+                            <div class="glass px-6 py-3 rounded-xl flex items-center gap-3">
+                                <i data-lucide="instagram" class="w-5 h-5 text-pink-500"></i>
+                                <span class="text-sm font-bold">Instagram</span>
+                            </div>
+                            <div class="glass px-6 py-3 rounded-xl flex items-center gap-3">
+                                <i data-lucide="send" class="w-5 h-5 text-blue-400"></i>
+                                <span class="text-sm font-bold">Telegram</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div>
-                    <h4 class="text-sm font-bold uppercase tracking-widest text-gray-500 mb-8 flex items-center gap-2">
-                        <i data-lucide="tool" class="w-4 h-4"></i> Professional Stack
-                    </h4>
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
-                        <div class="flex flex-col items-center gap-3 p-4 glass-card rounded-2xl group">
-                            <div class="w-12 h-12 flex items-center justify-center bg-white/5 rounded-xl group-hover:bg-indigo-500/20 transition">
-                                <i data-lucide="palette" class="w-6 h-6 text-gray-400 group-hover:text-indigo-400"></i>
+                <!-- RSS Automation -->
+                <div class="md:col-span-4 glass p-10 rounded-[2.5rem] group bento-item glass-hover flex flex-col">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mb-8 group-hover:rotate-12 transition-transform">
+                        <i data-lucide="refresh-ccw" class="w-8 h-8 text-indigo-500"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="h-font text-3xl font-bold mb-4">RSS Automation</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-6">Automating 100% of the news publishing flow using custom scrapers and RSS pipelines for instant content delivery.</p>
+                    </div>
+                    <div class="font-mono text-[9px] text-indigo-400/50 bg-black/40 p-4 rounded-xl border border-white/5 overflow-hidden">
+                        <div class="animate-pulse">> Initializing RSS_Scraper.sys...</div>
+                        <div>> Fetching tech_nodes [24/7]</div>
+                        <div>> Content_Parsing: 100%</div>
+                        <div class="text-indigo-400">> DEPLOYED_TO_ALL_NODES</div>
+                    </div>
+                </div>
+
+                <!-- App Dev -->
+                <div class="md:col-span-4 glass p-10 rounded-[2.5rem] group bento-item glass-hover flex flex-col">
+                    <div class="mb-8">
+                        <h3 class="h-font text-3xl font-bold mb-4">App Engineering</h3>
+                        <p class="text-gray-500 text-sm mb-6">Rapid prototyping of mobile solutions. Architecting UI/UX flows and feature sets for Android ecosystems.</p>
+                    </div>
+                    <div class="flex-grow flex items-end">
+                        <div class="w-full space-y-4">
+                            <div class="space-y-1.5">
+                                <div class="flex justify-between text-[10px] font-black uppercase tracking-widest text-gray-400">
+                                    <span>UI/UX Architecture</span>
+                                    <span class="text-indigo-500">95%</span>
+                                </div>
+                                <div class="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                                    <div class="h-full bg-indigo-500 w-[95%]"></div>
+                                </div>
                             </div>
-                            <span class="text-xs font-semibold">Canva</span>
+                            <div class="space-y-1.5">
+                                <div class="flex justify-between text-[10px] font-black uppercase tracking-widest text-gray-400">
+                                    <span>Feature Logic</span>
+                                    <span class="text-indigo-500">85%</span>
+                                </div>
+                                <div class="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                                    <div class="h-full bg-indigo-500 w-[85%]"></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="flex flex-col items-center gap-3 p-4 glass-card rounded-2xl group">
-                            <div class="w-12 h-12 flex items-center justify-center bg-white/5 rounded-xl group-hover:bg-indigo-500/20 transition">
-                                <i data-lucide="smartphone" class="w-6 h-6 text-gray-400 group-hover:text-indigo-400"></i>
-                            </div>
-                            <span class="text-xs font-semibold">Android Studio</span>
+                    </div>
+                </div>
+
+                <!-- Website Management -->
+                <div class="md:col-span-8 glass p-10 rounded-[2.5rem] group bento-item glass-hover bg-gradient-to-br from-[#0a0a0a] to-[#050505]">
+                    <div class="flex flex-col md:flex-row items-center gap-10">
+                        <div class="flex-1">
+                            <h3 class="h-font text-3xl font-bold mb-4">Web Ecosystems</h3>
+                            <p class="text-gray-500 text-sm">Deploying and managing multiple content-heavy websites focused on high-traffic distribution and RSS integration.</p>
                         </div>
-                        <div class="flex flex-col items-center gap-3 p-4 glass-card rounded-2xl group">
-                            <div class="w-12 h-12 flex items-center justify-center bg-white/5 rounded-xl group-hover:bg-indigo-500/20 transition">
-                                <i data-lucide="box" class="w-6 h-6 text-gray-400 group-hover:text-indigo-400"></i>
+                        <div class="w-full md:w-1/2 grid grid-cols-2 gap-3">
+                            <div class="aspect-square glass rounded-2xl flex flex-col items-center justify-center p-4">
+                                <i data-lucide="layout" class="w-6 h-6 text-indigo-500 mb-2"></i>
+                                <span class="text-[10px] font-black uppercase tracking-tighter">UI Design</span>
                             </div>
-                            <span class="text-xs font-semibold">MIT App Inv</span>
-                        </div>
-                        <div class="flex flex-col items-center gap-3 p-4 glass-card rounded-2xl group">
-                            <div class="w-12 h-12 flex items-center justify-center bg-white/5 rounded-xl group-hover:bg-indigo-500/20 transition">
-                                <i data-lucide="instagram" class="w-6 h-6 text-gray-400 group-hover:text-indigo-400"></i>
+                            <div class="aspect-square glass rounded-2xl flex flex-col items-center justify-center p-4">
+                                <i data-lucide="search" class="w-6 h-6 text-indigo-500 mb-2"></i>
+                                <span class="text-[10px] font-black uppercase tracking-tighter">SEO Ops</span>
                             </div>
-                            <span class="text-xs font-semibold">Instagram</span>
-                        </div>
-                        <div class="flex flex-col items-center gap-3 p-4 glass-card rounded-2xl group">
-                            <div class="w-12 h-12 flex items-center justify-center bg-white/5 rounded-xl group-hover:bg-indigo-500/20 transition">
-                                <i data-lucide="send" class="w-6 h-6 text-gray-400 group-hover:text-indigo-400"></i>
-                            </div>
-                            <span class="text-xs font-semibold">Telegram</span>
-                        </div>
-                        <div class="flex flex-col items-center gap-3 p-4 glass-card rounded-2xl group">
-                            <div class="w-12 h-12 flex items-center justify-center bg-white/5 rounded-xl group-hover:bg-indigo-500/20 transition">
-                                <i data-lucide="video" class="w-6 h-6 text-gray-400 group-hover:text-indigo-400"></i>
-                            </div>
-                            <span class="text-xs font-semibold">YouTube</span>
                         </div>
                     </div>
                 </div>
@@ -347,62 +329,194 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-24 px-6 relative overflow-hidden">
-        <div class="max-w-4xl mx-auto glass-card rounded-[2rem] p-12 md:p-16 text-center">
-            <h2 class="text-4xl font-bold mb-6">Let's Build Something <span class="gradient-text">Legendary</span>.</h2>
-            <p class="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">
-                Ready to scale your digital presence or need a strategist who understands the heartbeat of the internet?
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-6 mb-12">
-                <div class="flex items-center gap-3 justify-center text-gray-300">
-                    <i data-lucide="mail" class="w-5 h-5 text-indigo-500"></i>
-                    <span>Business Contact: DM via Socials</span>
-                </div>
-                <div class="flex items-center gap-3 justify-center text-gray-300">
-                    <i data-lucide="briefcase" class="w-5 h-5 text-indigo-500"></i>
-                    <span>Professional Contact: Upon Request</span>
-                </div>
+    <!-- Toolkit -->
+    <section id="skills" class="py-32 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col items-center mb-20">
+                <span class="text-indigo-500 font-mono text-sm uppercase tracking-[0.5em] mb-4">Inventory</span>
+                <h2 class="h-font text-5xl md:text-7xl font-black text-center uppercase">THE TOOLKIT</h2>
             </div>
-            <div class="flex justify-center gap-6">
-                <a href="#" class="w-12 h-12 rounded-full glass-card flex items-center justify-center hover:bg-indigo-600 transition hover:text-white"><i data-lucide="instagram" class="w-5 h-5"></i></a>
-                <a href="#" class="w-12 h-12 rounded-full glass-card flex items-center justify-center hover:bg-indigo-600 transition hover:text-white"><i data-lucide="twitter" class="w-5 h-5"></i></a>
-                <a href="#" class="w-12 h-12 rounded-full glass-card flex items-center justify-center hover:bg-indigo-600 transition hover:text-white"><i data-lucide="youtube" class="w-5 h-5"></i></a>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <!-- Tool -->
+                <div class="glass aspect-square rounded-3xl flex flex-col items-center justify-center group hover:border-indigo-500 transition-colors">
+                    <i data-lucide="palette" class="w-10 h-10 text-gray-600 group-hover:text-indigo-500 transition-colors mb-4"></i>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-gray-500 group-hover:text-white transition-colors">Canva</span>
+                </div>
+                <!-- Tool -->
+                <div class="glass aspect-square rounded-3xl flex flex-col items-center justify-center group hover:border-indigo-500 transition-colors">
+                    <i data-lucide="smartphone" class="w-10 h-10 text-gray-600 group-hover:text-indigo-500 transition-colors mb-4"></i>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-gray-500 group-hover:text-white transition-colors">Android Studio</span>
+                </div>
+                <!-- Tool -->
+                <div class="glass aspect-square rounded-3xl flex flex-col items-center justify-center group hover:border-indigo-500 transition-colors">
+                    <i data-lucide="instagram" class="w-10 h-10 text-gray-600 group-hover:text-indigo-500 transition-colors mb-4"></i>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-gray-500 group-hover:text-white transition-colors">Instagram</span>
+                </div>
+                <!-- Tool -->
+                <div class="glass aspect-square rounded-3xl flex flex-col items-center justify-center group hover:border-indigo-500 transition-colors">
+                    <i data-lucide="send" class="w-10 h-10 text-gray-600 group-hover:text-indigo-500 transition-colors mb-4"></i>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-gray-500 group-hover:text-white transition-colors">Telegram</span>
+                </div>
+                <!-- Tool -->
+                <div class="glass aspect-square rounded-3xl flex flex-col items-center justify-center group hover:border-indigo-500 transition-colors">
+                    <i data-lucide="video" class="w-10 h-10 text-gray-600 group-hover:text-indigo-500 transition-colors mb-4"></i>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-gray-500 group-hover:text-white transition-colors">YouTube</span>
+                </div>
+                <!-- Tool -->
+                <div class="glass aspect-square rounded-3xl flex flex-col items-center justify-center group hover:border-indigo-500 transition-colors">
+                    <i data-lucide="twitter" class="w-10 h-10 text-gray-600 group-hover:text-indigo-500 transition-colors mb-4"></i>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-gray-500 group-hover:text-white transition-colors">X / Twitter</span>
+                </div>
+                <!-- Tool -->
+                <div class="glass aspect-square rounded-3xl flex flex-col items-center justify-center group hover:border-indigo-500 transition-colors lg:col-start-3">
+                    <i data-lucide="cpu" class="w-10 h-10 text-gray-600 group-hover:text-indigo-500 transition-colors mb-4"></i>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-gray-500 group-hover:text-white transition-colors text-center">MIT App Inventor</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-12 border-t border-white/5 px-6">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="text-gray-500 text-sm">
-                &copy; 2025 Pune Digital Portfolio. All Rights Reserved.
+    <!-- Contact -->
+    <section id="contact" class="py-32 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="glass rounded-[3rem] p-12 md:p-32 text-center relative overflow-hidden">
+                <div class="absolute inset-0 bg-indigo-600/10 blur-[150px]"></div>
+                <div class="relative z-10">
+                    <h2 class="h-font text-5xl md:text-8xl font-black mb-12 tracking-tighter">LET'S SCALE<br>TOGETHER.</h2>
+                    <div class="flex flex-col md:flex-row justify-center items-center gap-12 text-sm font-bold uppercase tracking-widest">
+                        <div class="flex items-center gap-4 group cursor-pointer">
+                            <div class="w-12 h-12 glass rounded-full flex items-center justify-center group-hover:bg-indigo-600 transition">
+                                <i data-lucide="message-square" class="w-5 h-5"></i>
+                            </div>
+                            <span>DM VIA SOCIALS</span>
+                        </div>
+                        <div class="flex items-center gap-4 group cursor-pointer">
+                            <div class="w-12 h-12 glass rounded-full flex items-center justify-center group-hover:bg-indigo-600 transition">
+                                <i data-lucide="briefcase" class="w-5 h-5"></i>
+                            </div>
+                            <span>PROFESSIONAL CONTACT: UPON REQUEST</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="flex items-center gap-8 text-gray-500 text-xs uppercase tracking-widest font-bold">
-                <a href="#about" class="hover:text-white transition">About</a>
-                <a href="#projects" class="hover:text-white transition">Projects</a>
-                <a href="#skills" class="hover:text-white transition">Skills</a>
+        </div>
+    </section>
+
+    <footer class="py-20 border-t border-white/5 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="h-font font-black text-2xl">MEDIA ARCHITECT</div>
+            <div class="text-[10px] text-gray-500 font-bold uppercase tracking-[0.3em]">
+                &copy; 2025 Pune, India. Zero Personal Details Revealed.
+            </div>
+            <div class="flex gap-6">
+                <a href="#" class="text-gray-500 hover:text-white transition"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                <a href="#" class="text-gray-500 hover:text-white transition"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                <a href="#" class="text-gray-500 hover:text-white transition"><i data-lucide="youtube" class="w-5 h-5"></i></a>
             </div>
         </div>
     </footer>
 
     <script>
-        // Initialize Lucide icons
         lucide.createIcons();
 
-        // Mobile Menu Toggle
+        // Mobile Menu Logic
         const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-menu');
         const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
 
         menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.remove('hidden');
+            setTimeout(() => {
+                mobileMenu.style.transform = 'translateX(0)';
+                mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+                mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
+            }, 10);
         });
 
-        // Close menu when clicking on a link
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
+        const hideMenu = () => {
+            mobileMenu.style.transform = 'translateX(100%)';
+            mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+            mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+            setTimeout(() => {
                 mobileMenu.classList.add('hidden');
+            }, 500);
+        };
+
+        closeBtn.addEventListener('click', hideMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', hideMenu));
+
+        // Custom Cursor Logic
+        const cursor = document.getElementById('cursor');
+        const follower = document.getElementById('cursor-follower');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+
+            follower.style.left = e.clientX + 'px';
+            follower.style.top = e.clientY + 'px';
+        });
+
+        const magneticElements = document.querySelectorAll('a, button, .glass-hover');
+
+        magneticElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(3)';
+                follower.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                follower.style.borderColor = 'var(--accent)';
             });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                follower.style.transform = 'translate(-50%, -50%) scale(1)';
+                follower.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                el.style.transform = 'translate(0, 0)';
+            });
+
+            el.addEventListener('mousemove', (e) => {
+                const rect = el.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+
+                // Only apply magnetic effect if not too far from center
+                el.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+            });
+        });
+
+        // Reveal on Scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.bento-item').forEach(item => {
+            item.style.opacity = "0";
+            item.style.transform = "translateY(30px)";
+            item.style.transition = "all 0.8s cubic-bezier(0.2, 1, 0.3, 1)";
+            observer.observe(item);
+        });
+
+        // Navigation Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav > div');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-3');
+                nav.classList.remove('py-4');
+                nav.style.backgroundColor = 'rgba(5, 5, 5, 0.8)';
+            } else {
+                nav.classList.add('py-4');
+                nav.classList.remove('py-3');
+                nav.style.backgroundColor = 'rgba(255, 255, 255, 0.03)';
+            }
         });
     </script>
 </body>
