@@ -1,5 +1,5 @@
-Privacy Policy – Pune City Guide
-Effective Date: March 14, 2026
+Privacy Policy – Pune Buzz
+Effective Date: 8th April , 2026
 
 1. Information We Collect
 Account Data
