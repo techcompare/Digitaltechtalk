@@ -1,168 +1,131 @@
+# Privacy Policy
 
+**Last Updated:** July 3, 2026
 
-**Privacy Policy for EcoPath**
+Welcome to **TicketStub** ("the App," "we," "our," or "us"). Your privacy is important to us. This Privacy Policy explains what information we collect, how we use it, and how we protect your data when you use TicketStub.
 
-**Effective Date:** 25th April 2026
+By using TicketStub, you agree to the practices described in this Privacy Policy.
 
-EcoPath (“we”, “our”, or “us”) respects your privacy and is committed to protecting your information. This Privacy Policy explains how we collect, use, and share information when you use our application.
+## Information We Collect
 
----
+### Account Information
 
-### 1. Information We Collect
+When you create an account, we collect:
 
-EcoPath does not require user registration or login. However, the app may collect and process the following types of data:
+* Your email address.
+* Authentication information required to securely sign in using Supabase Authentication.
 
-**a. Location Data**
-We collect precise location data to provide GPS-based trail tracking and map exploration features. Location data is accessed only while the app is in use.
+Your password is securely managed by Supabase Authentication and is never stored in plain text by TicketStub.
 
-**b. Photos and Videos**
-The app allows users to capture and store photos for creating geo-tagged memories.
+### User Content
 
-**c. Audio Data**
-Users can record and store audio (such as nature sounds) within the app.
+We collect the content you choose to create and store in the App, including:
 
-**d. App Activity**
-We may collect information about how users interact with the app (e.g., feature usage) to improve functionality.
+* Photos you upload.
+* Digital ticket stubs.
+* Notes and descriptions.
+* Dates.
+* Locations (if you choose to add them).
+* Tags and other custom information.
 
-**e. Device or Other Identifiers**
-We may collect device-related identifiers and diagnostic data (such as crash logs) to maintain app performance and reliability.
+### Device Permissions
 
----
+Depending on how you use the App, TicketStub may request permission to access:
 
-### 2. How We Use Information
+* **Camera** – to capture photos for creating ticket stubs.
+* **Photos/Media Library** – to import images into the App.
+* **Location (Optional)** – to attach location information to your memories.
 
-We use collected data to:
+You can manage or revoke these permissions at any time through your device settings.
 
-* Provide core features such as trail tracking, media capture, and memory playback
-* Improve app stability, performance, and user experience
-* Enable AI-powered features requested by the user
+## How We Use Your Information
 
----
+We use your information to:
 
-### 3. AI and Data Processing
+* Create and manage your ticket collection.
+* Synchronize your data securely across your devices.
+* Generate digital ticket stubs from your photos.
+* Display insights, trends, and statistics about your saved memories.
+* Improve the App's functionality, reliability, and performance.
+* Respond to customer support requests.
 
-EcoPath uses third-party AI services through OpenRouter to provide intelligent features.
+We do **not** sell your personal information or use it for advertising.
 
-When you use AI features:
+## Data Storage
 
-* User-provided data (such as text, images, or audio) may be transmitted securely to external servers for processing
-* Data is sent only when you actively use AI features
-* All data transmission is encrypted (HTTPS)
+TicketStub uses **Supabase** to securely store your account information and app data.
 
-We do not sell your data. We recommend that users do not share sensitive personal information when using AI features.
+Your photos, ticket stubs, notes, and other content are stored securely in the cloud so they remain available whenever you sign in.
 
----
+Some temporary data may also be stored locally on your device to improve performance.
 
-### 4. Data Sharing
+## Internet Connection
 
-We may share limited data with third-party service providers strictly for app functionality, including:
+TicketStub requires an internet connection to:
 
-* AI processing services (via OpenRouter)
-* Cloud or infrastructure providers
+* Sign in to your account.
+* Sync your data.
+* Upload photos.
+* Access your ticket collection across devices.
 
-We do not sell user data to advertisers or other third parties.
+Some cached information may remain available while offline, but full functionality requires an internet connection.
 
----
+## Data Sharing
 
-### 5. Data Security
+We do not sell, rent, or trade your personal information.
 
-We implement reasonable security measures to protect your data:
+We only share information with trusted third-party service providers that help operate the App, including:
 
-* Data is encrypted during transmission
-* Access to data is limited to necessary services
+* **Supabase** – for user authentication, database services, and secure cloud storage.
 
----
+These providers process your data only to provide the services necessary for TicketStub.
 
-### 6. User Control
+## Data Security
 
-You have control over your data:
+We use reasonable technical and organizational measures to protect your information.
 
-* You choose when to enable location, capture photos, or record audio
-* You cannot  delete your data within the app at any time
-* You can revoke permissions through your device settings
+Data transmitted between the App and our servers is encrypted where applicable, and access to your information is restricted to authorized services.
 
----
+While we strive to protect your information, no method of electronic transmission or storage is completely secure, and we cannot guarantee absolute security.
 
-### 7. Data Retention
+## Your Rights
 
-We retain data only as long as necessary to provide app functionality. If you delete data from the app, it is removed from our accessible systems.
+You may:
 
----
+* Access your account information.
+* Update your account details.
+* Delete individual ticket stubs.
+* Revoke Camera, Photos, or Location permissions through your device settings.
+* Request deletion of your account and associated data.
 
-### 8. Children’s Privacy
+## Account and Data Deletion
 
-EcoPath is not intended for children under the age of 13. We do not knowingly collect personal data from children.
+You may request deletion of your TicketStub account and all associated data at any time.
 
----
+To request account deletion, please contact us at:
 
-### 9. Third-Party Services
+**Email:** [workwithme785@gmail.com](mailto:workwithme785@gmail.com)
 
-EcoPath may rely on third-party services (including OpenRouter and other infrastructure providers) which may process data according to their own privacy policies.
+Please include the email address associated with your TicketStub account.
 
----
+After verifying your request, we will permanently delete your account and associated personal data within a reasonable timeframe, unless we are required by law to retain certain information.
 
-### 10. Changes to This Privacy Policy
+## Children's Privacy
 
-We may update this Privacy Policy from time to time. Any changes will be reflected with an updated “Effective Date”.
+TicketStub is not intended for children under the age of 13.
 
----
+We do not knowingly collect personal information from children. If we learn that a child has provided personal information, we will promptly delete it.
 
-### 11. Contact Us
+## Changes to This Privacy Policy
 
-If you have any questions about this Privacy Policy, you can contact us at:
+We may update this Privacy Policy from time to time.
 
-**Email:** workwithme785@gmail.com
+When changes are made, we will update the "Last Updated" date at the top of this page. Continued use of TicketStub after changes become effective constitutes acceptance of the updated Privacy Policy.
 
----
+## Contact Us
 
-**By using EcoPath, you agree to this Privacy Policy.**
+If you have any questions, concerns, or requests regarding this Privacy Policy, please contact us:
 
-
-
-Privacy Policy – Pune Buzz
-Effective Date: 8th April , 2026
-
-1. Information We Collect
-Account Data
-When you sign up, we collect your email address and generate a unique User ID.
-
-This links your posts, saved places, and achievements to your profile.
-
-Community Content
-Text, images, and posts shared in Pune Buzz are visible to other users.
-
-You are responsible for the content you post.
-
-Device Data
-The Scan → Plan feature may access your camera and storage.
-
-All image processing happens locally on your device; we do not access your images remotely without permission.
-
-2. Location Services
-We use your device location to provide relevant city data, tag posts, and show weather or crowd activity updates.
-
-Location is only accessed when necessary and with your consent.
-
-3. Data Storage & Security
-We store your account, posts, and favorites securely using Supabase.
-
-Your data is never sold or shared with third-party advertisers.
-
-We take standard security measures to protect your data from unauthorized access.
-
-4. Your Control
-Delete Account
-You can delete your account and all associated data at any time via the Profile screen.
-
-Permissions
-You can revoke camera or location permissions at any time through your device settings.
-
-Content Management
-You can edit or remove your posts in Pune Buzz.
-
-5. Contact Us
-For privacy-related questions or requests, contact us directly in the app through Settings → Privacy.
-
-Or email us at workwithme785@gmail.com.
+**Email:** [workwithme785@gmail.com](mailto:workwithme785@gmail.com)
 
 
