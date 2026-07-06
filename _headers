@@ -1,7 +1,11 @@
+/app-ads.txt
+  Access-Control-Allow-Origin: *
+  Content-Type: text/plain; charset=utf-8
+
 /*
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   X-XSS-Protection: 1; mode=block
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Content-Security-Policy: default-src 'self' https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; connect-src 'self' https:;
+  Content-Security-Policy: default-src 'self' https:; style-src 'self' 'unsafe-inline' https://googleapis.com; font-src 'self' https://gstatic.com; script-src 'self'; connect-src 'self' https:;
