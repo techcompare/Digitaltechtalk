@@ -3,100 +3,204 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TicketStub — Turn Your Photos Into Keepsake Memories</title>
-<meta name="description" content="TicketStub is an Android app that turns your everyday photos into collectible, ticket-style memories — for concerts, travel, food, and the small moments worth keeping.">
+<title>Privacy Policy — TicketStub</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTYiIGZpbGw9IiMyNDJBMUYiLz48Y2lyY2xlIGN4PSIzMiIgY3k9IjMyIiByPSIxNCIgZmlsbD0iI0I1NDcyRiIvPjwvc3ZnPgo=">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTYiIGZpbGw9IiMyNDJBMUYiLz48Y2lyY2xlIGN4PSIzMiIgY3k9IjMyIiByPSIxNCIgZmlsbD0iI0I1NDcyRiIvPjwvc3ZnPgo=">
+<style>
+  :root{
+    --paper:#EDE7D6;
+    --ink:#242A1F;
+    --ink-soft:#565f4c;
+    --rust:#B5472F;
+    --line: rgba(36,42,31,0.28);
+    --card-bg:#F6F2E6;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Serif 4', Georgia, serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color: var(--rust); }
+  .mono{ font-family:'Space Mono', monospace; }
+  .wrap{ max-width: 760px; margin:0 auto; padding: 0 24px 100px; }
+
+  header.top{ padding: 40px 0 0; }
+  .brand{
+    font-family:'Space Mono', monospace;
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:0.06em;
+    text-decoration:none;
+    color: var(--ink);
+    display:flex; align-items:center; gap:9px;
+  }
+  .brand .dot{ width:8px; height:8px; border-radius:50%; background: var(--rust); display:inline-block; }
+
+  .doc-card{
+    margin-top: 34px;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 44px 46px;
+  }
+
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color: var(--rust);
+    margin: 0 0 12px;
+  }
+  h1{
+    font-family:'Space Mono', monospace;
+    font-size: clamp(24px, 4vw, 30px);
+    margin: 0 0 8px;
+    line-height:1.2;
+  }
+  .meta{
+    font-family:'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-bottom: 34px;
+    padding-bottom: 24px;
+    border-bottom: 1px dashed var(--line);
+  }
+
+  h2{
+    font-family:'Space Mono', monospace;
+    font-size: 15px;
+    letter-spacing:0.01em;
+    margin: 38px 0 12px;
+    padding-top: 4px;
+  }
+  h2 .num{ color: var(--rust); margin-right:8px; }
+
+  p{ font-size: 16px; line-height:1.7; margin: 0 0 14px; color: var(--ink); }
+  ul{ margin: 0 0 16px; padding-left: 22px; }
+  li{ font-size: 16px; line-height:1.7; margin-bottom: 6px; }
+
+  .callout{
+    background: rgba(181,71,47,0.07);
+    border: 1px solid rgba(181,71,47,0.25);
+    border-radius: 6px;
+    padding: 14px 18px;
+    font-size: 14.5px;
+    color: var(--ink);
+    margin: 10px 0 22px;
+  }
+  .callout strong{ color: var(--rust); }
+
+  .steps{
+    background: rgba(85,100,62,0.07);
+    border: 1px solid rgba(85,100,62,0.3);
+    border-radius: 6px;
+    padding: 18px 20px;
+    margin: 10px 0 22px;
+  }
+  .steps ol{ margin: 0; padding-left: 20px; }
+  .steps li{ margin-bottom: 8px; }
+  .steps li:last-child{ margin-bottom: 0; }
+
+  .contact-box{
+    margin-top: 38px;
+    border-top: 1px dashed var(--line);
+    padding-top: 26px;
+    font-family:'Space Mono', monospace;
+    font-size: 13.5px;
+    line-height: 1.8;
+    color: var(--ink-soft);
+  }
+  .contact-box strong{ color: var(--ink); }
+
+  footer.site{
+    margin-top: 30px;
+    font-family:'Space Mono', monospace;
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    text-align:center;
+  }
+</style>
 </head>
 <body>
 
-<header class="site">
-  <div class="wrap nav">
-    <a href="index.html" class="brand"><span class="dot"></span>TICKETSTUB</a>
-    <nav class="links">
-      <a href="index.html" class="active">Home</a>
-      <a href="features.html">Features</a>
-      <a href="faq.html">FAQ</a>
-      <a href="updates.html">Updates</a>
-      <a href="privacy-policy.html">Privacy</a>
-      <a href="terms.html">Terms</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </div>
-</header>
+<div class="wrap">
+  <header class="top">
+    <span class="brand"><span class="dot"></span>DAILY TOOLS HQ</span>
+  </header>
 
-<main>
-  <section class="page-hero">
-    <div class="wrap">
-      <p class="eyebrow">About TicketStub</p>
-      <h1 class="page-title">Every memory deserves<br>a ticket stub.</h1>
-      <p class="lede">TicketStub is an Android app that turns an ordinary photo into a small, collectible keepsake — the kind of thing you'd tuck into a drawer and rediscover years later. It's built for the moments that don't fit neatly into a camera roll: a concert, a first meal at a new restaurant, a train journey, a rainy afternoon worth remembering.</p>
-    </div>
-  </section>
+  <div class="doc-card">
+    <p class="eyebrow">Privacy Policy</p>
+    <h1>TicketStub</h1>
+    <div class="meta">Effective date: July 10, 2026 &nbsp;·&nbsp; Last updated: July 10, 2026</div>
 
-  <section class="block">
-    <div class="wrap">
-      <h2 class="h">Why a "ticket stub"?</h2>
-      <p>Physical ticket stubs used to do something photos alone don't: they carried context. A date, a venue, a price, a seat number — small printed details that, years later, told you exactly where you were and what it meant. Camera rolls have gotten enormous, but they've lost that context. Everything looks the same: a flat grid of thumbnails with no story attached.</p>
-      <p>TicketStub brings that context back. Pick a photo, and the app turns it into a stub-style card — with a title, a date, a location, and a short note — styled like something you'd find in an old shoebox of memories. Over time, your stubs build into a personal archive that's actually pleasant to revisit, not just scroll past.</p>
-    </div>
-  </section>
+    <p>Daily Tools HQ ("we", "us", "our") built TicketStub (the "App"), an app that turns your photos into collectible, ticket-style memories. This Privacy Policy explains what information the App collects, how it is used, and how you can request that your account and data be deleted.</p>
 
-  <section class="block card">
-    <h2 class="h">What TicketStub does</h2>
-    <p>At its core, TicketStub is simple: you take or choose a photo, and the app helps you turn it into a memory card with the details that matter — when it happened, where, and why it was worth keeping. Your stubs are organized into a personal collection you can browse, search, and revisit.</p>
+    <h2><span class="num">01</span>Information We Collect</h2>
+    <p>To use TicketStub, you create an account with an email address and password. We collect:</p>
     <ul>
-      <li><strong>Photo → Stub:</strong> Convert any photo into a ticket-style memory card in a few taps.</li>
-      <li><strong>Context that sticks:</strong> Attach a date, location, and personal note to every stub.</li>
-      <li><strong>A real collection:</strong> Browse your stubs the way you'd flip through a box of old tickets, not a flat photo grid.</li>
-      <li><strong>Private by default:</strong> Your account and stubs are yours — see our <a href="privacy-policy.html">Privacy Policy</a> for the details.</li>
+      <li><strong>Account information:</strong> the email address and password you provide at sign-up. Your password is stored in encrypted/hashed form — we do not store or have access to your plain-text password.</li>
+      <li><strong>App content:</strong> the photos, ticket entries, notes, dates, and locations you create within the App, associated with your account so they sync to your login.</li>
+      <li><strong>Basic device and usage information:</strong> standard technical data (such as app version and device type) used for troubleshooting and keeping the App working correctly.</li>
     </ul>
-    <p><a href="features.html">See the full feature breakdown →</a></p>
-  </section>
 
-  <section class="block">
-    <div class="wrap">
-      <h2 class="h">Who it's for</h2>
-      <p>TicketStub is for anyone who takes a photo and thinks "I want to remember this properly" — not just have it disappear into a camera roll of four thousand other images. People use it for gig and concert memories, travel days, restaurant visits, small personal milestones, and the kind of ordinary afternoons that turn out to matter more in hindsight than they seemed to at the time.</p>
-      <p>It's intentionally not a social app. There's no feed, no followers, no public sharing pressure. It's a private, personal archive — built for you to look back on, on your own terms.</p>
+    <h2><span class="num">02</span>How We Use Your Information</h2>
+    <ul>
+      <li>To create and authenticate your account, and let you sign in across sessions</li>
+      <li>To store and sync your ticket entries, photos, and notes to your account</li>
+      <li>To respond to support requests, including account deletion requests</li>
+    </ul>
+
+    <h2><span class="num">03</span>Advertising</h2>
+    <p>TicketStub does not display third-party ads and does not use an ad network. We do not share your data with advertisers.</p>
+
+    <h2><span class="num">04</span>Data Sharing</h2>
+    <p>We do not sell your personal information. We do not share your email, password, or app content with third parties, except where required to operate core account/login infrastructure or where required by law.</p>
+
+    <h2><span class="num">05</span>Third-Party Infrastructure (Supabase)</h2>
+    <p>TicketStub uses <a href="https://supabase.com/privacy" target="_blank" rel="noopener">Supabase</a> as its backend provider for account authentication and data storage. Your email address, encrypted password, and the photos and ticket entries you create are stored on Supabase's servers on our behalf. Supabase does not use your data for its own purposes and processes it only to provide hosting and database infrastructure to us. Supabase's own privacy and security practices are described in their <a href="https://supabase.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</p>
+
+    <h2><span class="num">06</span>Data Retention</h2>
+    <p>We retain your account information and app content for as long as your account remains active, so that your tickets and memories stay available to you across devices and app reinstalls. You can request deletion at any time — see below.</p>
+
+    <h2><span class="num">07</span>Account &amp; Data Deletion</h2>
+    <p>You can request deletion of your account and all associated data at any time. Because deletion is handled manually to verify it's really you, requests are made by email rather than in-app:</p>
+    <div class="steps">
+      <ol>
+        <li>Email <a href="mailto:workwithme785@gmail.com?subject=TicketStub%20Account%20Deletion%20Request">workwithme785@gmail.com</a> from the address linked to your TicketStub account</li>
+        <li>Use the subject line "TicketStub Account Deletion Request"</li>
+        <li>Include the email address registered on your account</li>
+      </ol>
     </div>
-  </section>
+    <p>Once verified, your account, login credentials, and all associated app content (photos, tickets, notes) will be permanently deleted from our systems. Deletion requests are typically processed within a few business days. Some information may be retained briefly where required for fraud prevention, legal compliance, or dispute resolution, after which it is also deleted.</p>
 
-  <section class="block">
-    <div class="wrap">
-      <h2 class="h">Who built it</h2>
-      <p>TicketStub is built and maintained by <strong>Pranav Kadam</strong>, an independent Android developer based in Pune, India, working under the studio name <strong>Daily Tools HQ</strong>. It's a solo-built app — designed, developed, and supported by one person, which is why the focus stays narrow: a small set of things done properly, rather than a long feature list done half-heartedly.</p>
-      <p>Have a question, a bug to report, or an idea for what TicketStub should do next? Visit the <a href="contact.html">Contact page</a> — every message is read personally.</p>
+    <h2><span class="num">08</span>Children's Privacy</h2>
+    <p>TicketStub is not directed at children, and we do not knowingly collect personal information from children. If you believe a child has created an account or provided personal information, please contact us using the details below and we will take appropriate steps to remove it.</p>
+
+    <h2><span class="num">09</span>Your Choices</h2>
+    <ul>
+      <li>Update the email address or password on your account at any time from within the App</li>
+      <li>Request full account and data deletion by email, as described above</li>
+      <li>Contact us with any questions about how your data is handled</li>
+    </ul>
+
+    <h2><span class="num">10</span>Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated "Last updated" date. Continued use of the App after changes are posted constitutes acceptance of the revised policy.</p>
+
+    <div class="contact-box">
+      <strong>Contact</strong><br>
+      Developer: Pranav Kadam — Daily Tools HQ<br>
+      Support &amp; account deletion requests: <a href="mailto:workwithme785@gmail.com">workwithme785@gmail.com</a>
     </div>
-  </section>
-
-  <section class="block card">
-    <h2 class="h">Get TicketStub</h2>
-    <p style="margin-bottom:6px;">TicketStub is available now on Google Play.</p>
-    <a class="btn" href="https://play.google.com/store/apps/details?id=com.pranav.bmcc" target="_blank" rel="noopener">Download on Google Play →</a>
-  </section>
-</main>
-
-<footer class="site">
-  <div class="wrap footer-grid">
-    <div>
-      <a href="index.html" class="brand"><span class="dot"></span>TICKETSTUB</a>
-      <p>Turn your photos into collectible, ticket-style memories. Built by Daily Tools HQ, Pune, India.</p>
-    </div>
-    <nav>
-      <a href="features.html">Features</a>
-      <a href="faq.html">FAQ</a>
-      <a href="updates.html">Updates</a>
-      <a href="privacy-policy.html">Privacy Policy</a>
-      <a href="terms.html">Terms &amp; Conditions</a>
-      <a href="contact.html">Contact</a>
-    </nav>
   </div>
-  <div class="wrap copyright">© 2026 Daily Tools HQ — Pranav Kadam. All rights reserved.</div>
-</footer>
+
+  <footer class="site">© 2026 Daily Tools HQ — Pranav Kadam</footer>
+</div>
 
 </body>
 </html>
